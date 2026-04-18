@@ -1,27 +1,26 @@
 import type { Question } from '../core/types';
 import { quizConfig } from './config';
-import { aiBasicsQuestions } from './ai-basics';
-import { mlBasicsQuestions } from './ml-basics';
-import { generativeAiQuestions } from './generative-ai';
-import { promptEngineeringQuestions } from './prompt-engineering';
-import { aiRisksQuestions } from './ai-risks';
-import { legalQuestions } from './legal';
-import { businessQuestions } from './business';
+import { questions as hardwareQ } from './fe-hardware';
+import { questions as softwareQ } from './fe-software';
+import { questions as databaseQ } from './fe-database';
+import { questions as networkQ } from './fe-network';
+import { questions as securityQ } from './fe-security';
+import { questions as managementQ } from './fe-management';
+import { questions as devMethodsQ } from './fe-dev-methods';
+import { questions as projectMgmtQ } from './fe-project-mgmt';
+import { questions as serviceMgmtQ } from './fe-service-mgmt';
 
 export const allQuestions: Question[] = [
-  ...aiBasicsQuestions,
-  ...mlBasicsQuestions,
-  ...generativeAiQuestions,
-  ...promptEngineeringQuestions,
-  ...aiRisksQuestions,
-  ...legalQuestions,
-  ...businessQuestions,
+  ...hardwareQ,
+  ...softwareQ,
+  ...databaseQ,
+  ...networkQ,
+  ...securityQ,
+  ...managementQ,
+  ...devMethodsQ,
+  ...projectMgmtQ,
+  ...serviceMgmtQ,
 ];
 
-export const categories = quizConfig.categories.map((cat) => ({
-  id: cat.id,
-  label: cat.label,
-  icon: cat.icon,
-}));
-
+export const categories = quizConfig.categories;
 export { quizConfig };
