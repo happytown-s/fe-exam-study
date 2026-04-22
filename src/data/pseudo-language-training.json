@@ -5,192 +5,312 @@
       "title": "Syntax Guide",
       "titleJa": "記法ガイド",
       "difficulty": 1,
-      "cheatsheet": "=== IPA Pseudo-Language Reference ===\n\n[Declaration]\nx: integer\ny: float\ns: string\nA: array of integer\n\n[Assignment]\nx <- 10\nx <- x + 1\ns <- \"hello\"\n\n[Array]\nA: [3, 1, 4, 1, 5]\nA[1]  // first element (1-indexed)\nA[5]  // last element\n\n[Conditional]\nif (x > 0) then\n  print(x)\nelseif (x = 0) then\n  print(\"zero\")\nelse\n  print(\"negative\")\nendif\n\n[Loop: while]\nx <- 0\nwhile (x < 5) do\n  x <- x + 1\nendwhile\n\n[Loop: for]\nsum <- 0\nfor (i from 1 to 10) do\n  sum <- sum + i\nendfor\n\n[Comparison]\n=   equal\n<>  not equal\n>   greater\n<   less\n>=  greater or equal\n<=  less or equal\n\n[Logical]\nand, or, not\n\n[Arithmetic]\n+, -, *, / (integer division), mod\n\n[String]\nconcatenation with & operator\ns <- \"hello\" & \" \" & \"world\"\n\n[Function]\nfunction add(a: integer, b: integer): integer\n  return a + b\nendfunction\n\n[Output]\nprint(x)\nprint(\"result: \" & x)\n\n=== Common Patterns ===\n\n[Sum of array]\nsum <- 0\nfor (i from 1 to N) do\n  sum <- sum + A[i]\nendfor\n\n[Max of array]\nmax <- A[1]\nfor (i from 2 to N) do\n  if (A[i] > max) then\n    max <- A[i]\n  endif\nendfor\n\n[Count condition]\ncnt <- 0\nfor (i from 1 to N) do\n  if (A[i] > 0) then\n    cnt <- cnt + 1\n  endif\nendfor\n\n=== Comparison Table ===\nIPA Pseudo    | Python         | JavaScript\n--------------|----------------|-----------\nx <- 10       | x = 10         | x = 10\nif (c) then   | if c:          | if (c) {\nendfor        | (indentation)  | }\nmod           | %              | %\nA[i]          | A[i-1]         | A[i-1]\nprint(x)      | print(x)       | console.log(x)\nand / or      | and / or       | && / ||\n<>            | !=             | !==\nnot           | not            | !",
+      "cheatsheet": "=== IPA擬似言語リファレンス ===\n\n[宣言]\nx: integer\ny: float\ns: string\nA: array of integer\n\n[代入]\nx <- 10\nx <- x + 1\ns <- \"hello\"\n\n[配列]\nA: [3, 1, 4, 1, 5]\nA[1]  // 先頭要素（1インデックス）\nA[5]  // 末尾要素\n\n[条件分岐]\nif (x > 0) then\n  print(x)\nelseif (x = 0) then\n  print(\"zero\")\nelse\n  print(\"negative\")\nendif\n\n[ループ: while]\nx <- 0\nwhile (x < 5) do\n  x <- x + 1\nendwhile\n\n[ループ: for]\nsum <- 0\nfor (i from 1 to 10) do\n  sum <- sum + i\nendfor\n\n[比較]\n=   等しい\n<>  等しくない\n>   大きい\n<   小さい\n>=  以上\n<=  以下\n\n[論理]\nand, or, not\n\n[算術]\n+, -, *, /（整数除算）, mod\n\n[文字列]\n&演算子で連結\ns <- \"hello\" & \" \" & \"world\"\n\n[関数]\nfunction add(a: integer, b: integer): integer\n  return a + b\nendfunction\n\n[出力]\nprint(x)\nprint(\"result: \" & x)\n\n=== よく使うパターン ===\n\n[配列の合計]\nsum <- 0\nfor (i from 1 to N) do\n  sum <- sum + A[i]\nendfor\n\n[配列の最大値]\nmax <- A[1]\nfor (i from 2 to N) do\n  if (A[i] > max) then\n    max <- A[i]\n  endif\nendfor\n\n[条件カウント]\ncnt <- 0\nfor (i from 1 to N) do\n  if (A[i] > 0) then\n    cnt <- cnt + 1\n  endif\nendfor\n\n=== 比較表 ===\nIPA擬似言語   | Python         | JavaScript\n--------------|----------------|-----------\nx <- 10       | x = 10         | x = 10\nif (c) then   | if c:          | if (c) {\nendfor        | (インデント)    | }\nmod           | %              | %\nA[i]          | A[i-1]         | A[i-1]\nprint(x)      | print(x)       | console.log(x)\nand / or      | and / or       | && / ||\n<>            | !=             | !==\nnot           | not            | !",
       "example": {
-        "question": "What does the following code output?",
+        "question": "次のコードの出力は？",
         "code": "x <- 0\nfor (i from 1 to 5) do\n  x <- x + i\nendfor\nprint(x)",
         "steps": [
-          "Initialize: x = 0",
+          "初期化：x = 0",
           "i=1: x = 0 + 1 = 1",
           "i=2: x = 1 + 2 = 3",
           "i=3: x = 3 + 3 = 6",
           "i=4: x = 6 + 4 = 10",
           "i=5: x = 10 + 5 = 15",
-          "Output: 15"
+          "出力：15"
         ],
         "answer": "15"
       },
       "questions": [
         {
           "type": "practice",
-          "question": "What is the correct way to assign the value 5 to variable x in IPA pseudo-language?",
+          "question": "IPA擬似言語で変数xに5を代入する正しい書き方は？",
           "code": "x <- 5",
           "options": [
-            {"text": "x <- 5", "correct": true},
-            {"text": "x = 5", "correct": false},
-            {"text": "x := 5", "correct": false},
-            {"text": "let x = 5", "correct": false}
+            {
+              "text": "x <- 5",
+              "correct": true
+            },
+            {
+              "text": "x = 5",
+              "correct": false
+            },
+            {
+              "text": "x := 5",
+              "correct": false
+            },
+            {
+              "text": "let x = 5",
+              "correct": false
+            }
           ],
           "steps": [
-            "IPA pseudo-language uses the <- operator for assignment",
-            "x <- 5 assigns 5 to variable x",
-            "Correct: x <- 5"
+            "IPA擬似言語では <- 演算子で代入する",
+            "x <- 5 で変数xに5を代入",
+            "正解：x <- 5"
           ]
         },
         {
           "type": "practice",
-          "question": "What does this code output?",
+          "question": "次のコードの出力は？",
           "code": "x <- 10\ny <- 3\nprint(x mod y)",
           "options": [
-            {"text": "1", "correct": true},
-            {"text": "3", "correct": false},
-            {"text": "0", "correct": false},
-            {"text": "10", "correct": false}
+            {
+              "text": "1",
+              "correct": true
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "0",
+              "correct": false
+            },
+            {
+              "text": "10",
+              "correct": false
+            }
           ],
           "steps": [
             "x = 10, y = 3",
-            "10 mod 3 = 10 - (3 * 3) = 10 - 9 = 1",
-            "mod returns the remainder of integer division",
-            "Output: 1"
+            "10 mod 3 = 10 - (3 × 3) = 10 - 9 = 1",
+            "modは整数除算の余りを返す",
+            "出力：1"
           ]
         },
         {
           "type": "practice",
-          "question": "What does this code output?",
+          "question": "次のコードの出力は？",
           "code": "x <- 7 / 2\nprint(x)",
           "options": [
-            {"text": "3", "correct": true},
-            {"text": "3.5", "correct": false},
-            {"text": "4", "correct": false},
-            {"text": "2", "correct": false}
+            {
+              "text": "3",
+              "correct": true
+            },
+            {
+              "text": "3.5",
+              "correct": false
+            },
+            {
+              "text": "4",
+              "correct": false
+            },
+            {
+              "text": "2",
+              "correct": false
+            }
           ],
           "steps": [
             "x <- 7 / 2",
-            "In IPA pseudo-language, / is integer division",
-            "7 / 2 = 3 (truncated, not rounded)",
-            "Output: 3"
+            "IPA擬似言語では / は整数除算",
+            "7 / 2 = 3（切り捨て、四捨五入ではない）",
+            "出力：3"
           ]
         },
         {
           "type": "practice",
-          "question": "What does this code output?",
+          "question": "次のコードの出力は？",
           "code": "s <- \"hello\"\ns <- s & \" \" & \"world\"\nprint(s)",
           "options": [
-            {"text": "hello world", "correct": true},
-            {"text": "helloworld", "correct": false},
-            {"text": "hello+world", "correct": false},
-            {"text": "error", "correct": false}
+            {
+              "text": "hello world",
+              "correct": true
+            },
+            {
+              "text": "helloworld",
+              "correct": false
+            },
+            {
+              "text": "hello+world",
+              "correct": false
+            },
+            {
+              "text": "error",
+              "correct": false
+            }
           ],
           "steps": [
             "s = \"hello\"",
             "s <- s & \" \" & \"world\"",
-            "The & operator concatenates strings",
+            "& 演算子は文字列を連結する",
             "s = \"hello\" & \" \" & \"world\" = \"hello world\"",
-            "Output: hello world"
+            "出力：hello world"
           ]
         },
         {
           "type": "practice",
-          "question": "How many times does the loop body execute?",
+          "question": "ループ本体は何回実行される？",
           "code": "for (i from 1 to 5) do\n  print(i)\nendfor",
           "options": [
-            {"text": "5", "correct": true},
-            {"text": "4", "correct": false},
-            {"text": "6", "correct": false},
-            {"text": "0", "correct": false}
+            {
+              "text": "5",
+              "correct": true
+            },
+            {
+              "text": "4",
+              "correct": false
+            },
+            {
+              "text": "6",
+              "correct": false
+            },
+            {
+              "text": "0",
+              "correct": false
+            }
           ],
           "steps": [
-            "for (i from 1 to 5) iterates i = 1, 2, 3, 4, 5",
-            "That is 5 iterations",
-            "Body executes 5 times"
+            "for (i from 1 to 5) は i = 1, 2, 3, 4, 5 を繰り返す",
+            "5回の反復",
+            "本体は5回実行される"
           ]
         },
         {
           "type": "practice",
-          "question": "What does this code output?",
+          "question": "次のコードの出力は？",
           "code": "x <- 10\nif (x > 5) then\n  print(\"big\")\nelse\n  print(\"small\")\nendif",
           "options": [
-            {"text": "big", "correct": true},
-            {"text": "small", "correct": false},
-            {"text": "10", "correct": false},
-            {"text": "error", "correct": false}
+            {
+              "text": "big",
+              "correct": true
+            },
+            {
+              "text": "small",
+              "correct": false
+            },
+            {
+              "text": "10",
+              "correct": false
+            },
+            {
+              "text": "error",
+              "correct": false
+            }
           ],
           "steps": [
             "x = 10",
-            "Condition: x > 5 -> 10 > 5 -> true",
-            "Enter if branch, print(\"big\")",
-            "Output: big"
+            "条件：x > 5 → 10 > 5 → true",
+            "if分岐に入り、print(\"big\")",
+            "出力：big"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the first element of array A?",
+          "question": "配列Aの先頭要素は？",
           "code": "A: [10, 20, 30, 40, 50]\nprint(A[1])",
           "options": [
-            {"text": "10", "correct": true},
-            {"text": "0", "correct": false},
-            {"text": "1", "correct": false},
-            {"text": "undefined", "correct": false}
+            {
+              "text": "10",
+              "correct": true
+            },
+            {
+              "text": "0",
+              "correct": false
+            },
+            {
+              "text": "1",
+              "correct": false
+            },
+            {
+              "text": "undefined",
+              "correct": false
+            }
           ],
           "steps": [
             "A = [10, 20, 30, 40, 50]",
-            "IPA pseudo-language arrays are 1-indexed",
-            "A[1] = first element = 10",
-            "Output: 10"
+            "IPA擬似言語の配列は1インデックス",
+            "A[1] = 先頭要素 = 10",
+            "出力：10"
           ]
         },
         {
           "type": "practice",
-          "question": "What does this code output?",
+          "question": "次のコードの出力は？",
           "code": "x <- 5\nif (x > 10) then\n  x <- x + 1\nelseif (x > 3) then\n  x <- x + 10\nelse\n  x <- 0\nendif\nprint(x)",
           "options": [
-            {"text": "15", "correct": true},
-            {"text": "6", "correct": false},
-            {"text": "0", "correct": false},
-            {"text": "5", "correct": false}
+            {
+              "text": "15",
+              "correct": true
+            },
+            {
+              "text": "6",
+              "correct": false
+            },
+            {
+              "text": "0",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            }
           ],
           "steps": [
             "x = 5",
-            "Check: x > 10 -> 5 > 10 -> false",
-            "Check: x > 3 -> 5 > 3 -> true",
-            "Execute: x <- x + 10 = 5 + 10 = 15",
-            "Output: 15"
+            "判定：x > 10 → 5 > 10 → false",
+            "判定：x > 3 → 5 > 3 → true",
+            "実行：x <- x + 10 = 5 + 10 = 15",
+            "出力：15"
           ]
         },
         {
           "type": "practice",
-          "question": "What does this code output?",
+          "question": "次のコードの出力は？",
           "code": "x <- 1\nwhile (x <= 3) do\n  x <- x * 2\nendwhile\nprint(x)",
           "options": [
-            {"text": "4", "correct": true},
-            {"text": "3", "correct": false},
-            {"text": "8", "correct": false},
-            {"text": "2", "correct": false}
+            {
+              "text": "4",
+              "correct": true
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "8",
+              "correct": false
+            },
+            {
+              "text": "2",
+              "correct": false
+            }
           ],
           "steps": [
             "x = 1",
-            "Check x<=3: 1<=3 yes -> x = 1*2 = 2",
-            "Check x<=3: 2<=3 yes -> x = 2*2 = 4",
-            "Check x<=3: 4<=3 no -> exit loop",
-            "Output: 4"
+            "x<=3: 1<=3 はい → x = 1×2 = 2",
+            "x<=3: 2<=3 はい → x = 2×2 = 4",
+            "x<=3: 4<=3 いいえ → ループ終了",
+            "出力：4"
           ]
         },
         {
           "type": "practice",
-          "question": "What does this code output?",
+          "question": "次のコードの出力は？",
           "code": "a <- 3\nb <- 4\nif (a > b and a > 0) then\n  print(a)\nelse\n  print(b)\nendif",
           "options": [
-            {"text": "4", "correct": true},
-            {"text": "3", "correct": false},
-            {"text": "7", "correct": false},
-            {"text": "0", "correct": false}
+            {
+              "text": "4",
+              "correct": true
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "7",
+              "correct": false
+            },
+            {
+              "text": "0",
+              "correct": false
+            }
           ],
           "steps": [
             "a = 3, b = 4",
-            "Check: a > b -> 3 > 4 -> false",
-            "Since 'and' short-circuits, condition is false",
-            "Enter else branch, print(b) = print(4)",
-            "Output: 4"
+            "判定：a > b → 3 > 4 → false",
+            "'and'は短絡評価で条件はfalse",
+            "else分岐に入り、print(b) = print(4)",
+            "出力：4"
           ]
         }
       ]
@@ -200,46 +320,70 @@
       "title": "Basic Trace",
       "titleJa": "基本トレース",
       "difficulty": 1,
-      "cheatsheet": "=== Basic Trace Strategy ===\n\n1. Create a variable table\n2. Execute line by line, updating the table\n3. Watch for loop boundaries and conditionals\n4. Common mistakes:\n   - Forgetting 1-indexed arrays\n   - Confusing integer division (/) with float division\n   - Off-by-one in loop boundaries\n   - Not resetting variables between iterations",
+      "cheatsheet": "=== 基本トレース戦略 ===\n\n1. 変数テーブルを作成する\n2. 行ごとに実行し、テーブルを更新する\n3. ループ境界と条件分岐に注意する\n4. よくある間違い：\n   - 1インデックス配列を見落とす\n   - 整数除算(/)と浮動小数点除算を混同する\n   - ループ境界のオフバイワン\n   - 反復間で変数のリセットを忘れる",
       "example": {
-        "question": "What is the value of x after execution?",
+        "question": "実行後のxの値は？",
         "code": "x <- 0\nfor (i from 1 to 3) do\n  x <- x + i * 2\nendfor",
         "steps": [
           "x = 0",
-          "i=1: x = 0 + 1*2 = 2",
-          "i=2: x = 2 + 2*2 = 6",
-          "i=3: x = 6 + 3*2 = 12",
-          "Final: x = 12"
+          "i=1: x = 0 + 1×2 = 2",
+          "i=2: x = 2 + 2×2 = 6",
+          "i=3: x = 6 + 3×2 = 12",
+          "最終：x = 12"
         ],
         "answer": "12"
       },
       "questions": [
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 5\nx <- x + 3\nx <- x * 2\nprint(x)",
           "options": [
-            {"text": "16", "correct": true},
-            {"text": "13", "correct": false},
-            {"text": "11", "correct": false},
-            {"text": "10", "correct": false}
+            {
+              "text": "16",
+              "correct": true
+            },
+            {
+              "text": "13",
+              "correct": false
+            },
+            {
+              "text": "11",
+              "correct": false
+            },
+            {
+              "text": "10",
+              "correct": false
+            }
           ],
           "steps": [
             "x = 5",
             "x <- x + 3 = 5 + 3 = 8",
-            "x <- x * 2 = 8 * 2 = 16",
-            "Output: 16"
+            "x <- x * 2 = 8 × 2 = 16",
+            "出力：16"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of sum after execution?",
+          "question": "実行後のsumの値は？",
           "code": "sum <- 0\nfor (i from 1 to 4) do\n  sum <- sum + i\nendfor\nprint(sum)",
           "options": [
-            {"text": "10", "correct": true},
-            {"text": "4", "correct": false},
-            {"text": "6", "correct": false},
-            {"text": "15", "correct": false}
+            {
+              "text": "10",
+              "correct": true
+            },
+            {
+              "text": "4",
+              "correct": false
+            },
+            {
+              "text": "6",
+              "correct": false
+            },
+            {
+              "text": "15",
+              "correct": false
+            }
           ],
           "steps": [
             "sum = 0",
@@ -247,130 +391,214 @@
             "i=2: sum = 1+2 = 3",
             "i=3: sum = 3+3 = 6",
             "i=4: sum = 6+4 = 10",
-            "Output: 10"
+            "出力：10"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 100\nif (x > 50) then\n  x <- x / 2\nendif\nif (x > 20) then\n  x <- x - 10\nendif\nprint(x)",
           "options": [
-            {"text": "40", "correct": true},
-            {"text": "50", "correct": false},
-            {"text": "30", "correct": false},
-            {"text": "90", "correct": false}
+            {
+              "text": "40",
+              "correct": true
+            },
+            {
+              "text": "50",
+              "correct": false
+            },
+            {
+              "text": "30",
+              "correct": false
+            },
+            {
+              "text": "90",
+              "correct": false
+            }
           ],
           "steps": [
             "x = 100",
-            "Check x>50: 100>50 yes -> x = 100/2 = 50",
-            "Check x>20: 50>20 yes -> x = 50-10 = 40",
-            "Output: 40"
+            "x>50: 100>50 はい → x = 100/2 = 50",
+            "x>20: 50>20 はい → x = 50-10 = 40",
+            "出力：40"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of cnt after execution?",
+          "question": "実行後のcntの値は？",
           "code": "cnt <- 0\nfor (i from 1 to 6) do\n  if (i mod 2 = 0) then\n    cnt <- cnt + 1\n  endif\nendfor\nprint(cnt)",
           "options": [
-            {"text": "3", "correct": true},
-            {"text": "2", "correct": false},
-            {"text": "4", "correct": false},
-            {"text": "6", "correct": false}
+            {
+              "text": "3",
+              "correct": true
+            },
+            {
+              "text": "2",
+              "correct": false
+            },
+            {
+              "text": "4",
+              "correct": false
+            },
+            {
+              "text": "6",
+              "correct": false
+            }
           ],
           "steps": [
             "cnt = 0",
-            "i=1: 1 mod 2 = 1 != 0, skip",
+            "i=1: 1 mod 2 = 1 ≠ 0、スキップ",
             "i=2: 2 mod 2 = 0, cnt = 0+1 = 1",
-            "i=3: 3 mod 2 = 1 != 0, skip",
+            "i=3: 3 mod 2 = 1 ≠ 0、スキップ",
             "i=4: 4 mod 2 = 0, cnt = 1+1 = 2",
-            "i=5: 5 mod 2 = 1 != 0, skip",
+            "i=5: 5 mod 2 = 1 ≠ 0、スキップ",
             "i=6: 6 mod 2 = 0, cnt = 2+1 = 3",
-            "Output: 3"
+            "出力：3"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 1\nfor (i from 1 to 3) do\n  x <- x * i\nendfor\nprint(x)",
           "options": [
-            {"text": "6", "correct": true},
-            {"text": "3", "correct": false},
-            {"text": "9", "correct": false},
-            {"text": "1", "correct": false}
+            {
+              "text": "6",
+              "correct": true
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "9",
+              "correct": false
+            },
+            {
+              "text": "1",
+              "correct": false
+            }
           ],
           "steps": [
             "x = 1",
-            "i=1: x = 1*1 = 1",
-            "i=2: x = 1*2 = 2",
-            "i=3: x = 2*3 = 6",
-            "Output: 6 (factorial of 3)"
+            "i=1: x = 1×1 = 1",
+            "i=2: x = 1×2 = 2",
+            "i=3: x = 2×3 = 6",
+            "出力：6（3の階乗）"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of y after execution?",
+          "question": "実行後のyの値は？",
           "code": "y <- 0\nx <- 10\nwhile (x > 0) do\n  y <- y + x mod 10\n  x <- x / 10\nendwhile\nprint(y)",
           "options": [
-            {"text": "1", "correct": true},
-            {"text": "10", "correct": false},
-            {"text": "01", "correct": false},
-            {"text": "0", "correct": false}
+            {
+              "text": "1",
+              "correct": true
+            },
+            {
+              "text": "10",
+              "correct": false
+            },
+            {
+              "text": "01",
+              "correct": false
+            },
+            {
+              "text": "0",
+              "correct": false
+            }
           ],
           "steps": [
             "y=0, x=10",
-            "x>0: yes. y = 0 + 10 mod 10 = 0 + 0 = 0. x = 10/10 = 1",
-            "x>0: yes. y = 0 + 1 mod 10 = 0 + 1 = 1. x = 1/10 = 0",
-            "x>0: no. Exit loop",
-            "Output: 1"
+            "x>0: はい。y = 0 + 10 mod 10 = 0 + 0 = 0。x = 10/10 = 1",
+            "x>0: はい。y = 0 + 1 mod 10 = 0 + 1 = 1。x = 1/10 = 0",
+            "x>0: いいえ。ループ終了",
+            "出力：1"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of result after execution?",
+          "question": "実行後のresultの値は？",
           "code": "result <- 0\nfor (i from 1 to 5) do\n  if (i <> 3) then\n    result <- result + i\n  endif\nendfor\nprint(result)",
           "options": [
-            {"text": "12", "correct": true},
-            {"text": "15", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "10", "correct": false}
+            {
+              "text": "12",
+              "correct": true
+            },
+            {
+              "text": "15",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "10",
+              "correct": false
+            }
           ],
           "steps": [
             "result = 0",
-            "i=1: 1<>3 yes -> result = 0+1 = 1",
-            "i=2: 2<>3 yes -> result = 1+2 = 3",
-            "i=3: 3<>3 no -> skip",
-            "i=4: 4<>3 yes -> result = 3+4 = 7",
-            "i=5: 5<>3 yes -> result = 7+5 = 12",
-            "Output: 12"
+            "i=1: 1<>3 はい → result = 0+1 = 1",
+            "i=2: 2<>3 はい → result = 1+2 = 3",
+            "i=3: 3<>3 いいえ → スキップ",
+            "i=4: 4<>3 はい → result = 3+4 = 7",
+            "i=5: 5<>3 はい → result = 7+5 = 12",
+            "出力：12"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 0\nfor (i from 1 to 3) do\n  for (j from 1 to 3) do\n    x <- x + 1\n  endfor\nendfor\nprint(x)",
           "options": [
-            {"text": "9", "correct": true},
-            {"text": "6", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "12", "correct": false}
+            {
+              "text": "9",
+              "correct": true
+            },
+            {
+              "text": "6",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "12",
+              "correct": false
+            }
           ],
           "steps": [
             "x = 0",
-            "i=1: j=1,2,3 -> x += 1 three times: x = 3",
-            "i=2: j=1,2,3 -> x += 1 three times: x = 6",
-            "i=3: j=1,2,3 -> x += 1 three times: x = 9",
-            "Output: 9"
+            "i=1: j=1,2,3 → x += 1を3回: x = 3",
+            "i=2: j=1,2,3 → x += 1を3回: x = 6",
+            "i=3: j=1,2,3 → x += 1を3回: x = 9",
+            "出力：9"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 2\nfor (i from 1 to 4) do\n  x <- x + x\nendfor\nprint(x)",
           "options": [
-            {"text": "32", "correct": true},
-            {"text": "8", "correct": false},
-            {"text": "16", "correct": false},
-            {"text": "10", "correct": false}
+            {
+              "text": "32",
+              "correct": true
+            },
+            {
+              "text": "8",
+              "correct": false
+            },
+            {
+              "text": "16",
+              "correct": false
+            },
+            {
+              "text": "10",
+              "correct": false
+            }
           ],
           "steps": [
             "x = 2",
@@ -378,147 +606,243 @@
             "i=2: x = 4+4 = 8",
             "i=3: x = 8+8 = 16",
             "i=4: x = 16+16 = 32",
-            "Output: 32 (2^5)"
+            "出力：32（2^5）"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of a after execution?",
+          "question": "実行後のbの値は？",
           "code": "a <- 10\nb <- 3\na <- a mod b\nb <- a + b\nprint(b)",
           "options": [
-            {"text": "4", "correct": true},
-            {"text": "13", "correct": false},
-            {"text": "6", "correct": false},
-            {"text": "3", "correct": false}
+            {
+              "text": "4",
+              "correct": true
+            },
+            {
+              "text": "13",
+              "correct": false
+            },
+            {
+              "text": "6",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            }
           ],
           "steps": [
             "a = 10, b = 3",
             "a <- a mod b = 10 mod 3 = 1",
             "b <- a + b = 1 + 3 = 4",
-            "Output: 4"
+            "出力：4"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 0\nfor (i from 1 to 5) do\n  if (i mod 2 = 1) then\n    x <- x - i\n  else\n    x <- x + i\n  endif\nendfor\nprint(x)",
           "options": [
-            {"text": "3", "correct": true},
-            {"text": "-3", "correct": false},
-            {"text": "5", "correct": false},
-            {"text": "0", "correct": false}
+            {
+              "text": "3",
+              "correct": true
+            },
+            {
+              "text": "-3",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "0",
+              "correct": false
+            }
           ],
           "steps": [
             "x = 0",
-            "i=1: odd -> x = 0-1 = -1",
-            "i=2: even -> x = -1+2 = 1",
-            "i=3: odd -> x = 1-3 = -2",
-            "i=4: even -> x = -2+4 = 2",
-            "i=5: odd -> x = 2-5 = -3",
-            "Output: -3"
+            "i=1: 奇数 → x = 0-1 = -1",
+            "i=2: 偶数 → x = -1+2 = 1",
+            "i=3: 奇数 → x = 1-3 = -2",
+            "i=4: 偶数 → x = -2+4 = 2",
+            "i=5: 奇数 → x = 2-5 = -3",
+            "出力：-3"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of s after execution?",
+          "question": "実行後のsの値は？",
           "code": "s <- 0\nn <- 5\nfor (i from 1 to n) do\n  if (n mod i = 0) then\n    s <- s + i\n  endif\nendfor\nprint(s)",
           "options": [
-            {"text": "6", "correct": true},
-            {"text": "5", "correct": false},
-            {"text": "7", "correct": false},
-            {"text": "15", "correct": false}
+            {
+              "text": "6",
+              "correct": true
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "7",
+              "correct": false
+            },
+            {
+              "text": "15",
+              "correct": false
+            }
           ],
           "steps": [
             "s=0, n=5",
-            "i=1: 5 mod 1 = 0 yes -> s = 0+1 = 1",
-            "i=2: 5 mod 2 = 1 no -> skip",
-            "i=3: 5 mod 3 = 2 no -> skip",
-            "i=4: 5 mod 4 = 1 no -> skip",
-            "i=5: 5 mod 5 = 0 yes -> s = 1+5 = 6",
-            "s = sum of divisors of 5 = 6",
-            "Output: 6"
+            "i=1: 5 mod 1 = 0 はい → s = 0+1 = 1",
+            "i=2: 5 mod 2 = 1 いいえ → スキップ",
+            "i=3: 5 mod 3 = 2 いいえ → スキップ",
+            "i=4: 5 mod 4 = 1 いいえ → スキップ",
+            "i=5: 5 mod 5 = 0 はい → s = 1+5 = 6",
+            "s = 5の約数の和 = 6",
+            "出力：6"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 1\ny <- 2\nx <- y\ny <- x\nprint(x)",
           "options": [
-            {"text": "2", "correct": true},
-            {"text": "1", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "error", "correct": false}
+            {
+              "text": "2",
+              "correct": true
+            },
+            {
+              "text": "1",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "error",
+              "correct": false
+            }
           ],
           "steps": [
             "x = 1, y = 2",
-            "x <- y -> x = 2",
-            "y <- x -> y = 2",
-            "This is NOT a swap! x gets overwritten first",
-            "Output: 2"
+            "x <- y → x = 2",
+            "y <- x → y = 2",
+            "これはスワップではない！xが先に上書きされる",
+            "出力：2"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 0\nfor (i from 10 to 1 step -1) do\n  x <- x + 1\nendfor\nprint(x)",
           "options": [
-            {"text": "10", "correct": true},
-            {"text": "0", "correct": false},
-            {"text": "11", "correct": false},
-            {"text": "9", "correct": false}
+            {
+              "text": "10",
+              "correct": true
+            },
+            {
+              "text": "0",
+              "correct": false
+            },
+            {
+              "text": "11",
+              "correct": false
+            },
+            {
+              "text": "9",
+              "correct": false
+            }
           ],
           "steps": [
-            "Note: IPA pseudo-language for loop counts down from 10 to 1",
-            "i=10,9,8,7,6,5,4,3,2,1 -> 10 iterations",
-            "x increments by 1 each time",
+            "注意：IPA擬似言語のforループは10から1へカウントダウン",
+            "i=10,9,8,7,6,5,4,3,2,1 → 10回の反復",
+            "xは毎回1ずつ増加",
             "x = 10",
-            "Output: 10"
+            "出力：10"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of c after execution?",
+          "question": "実行後のcの値は？",
           "code": "a <- 5\nb <- 8\nc <- a\nif (a > b) then\n  c <- a\nelse\n  c <- b\nendif\nprint(c)",
           "options": [
-            {"text": "8", "correct": true},
-            {"text": "5", "correct": false},
-            {"text": "13", "correct": false},
-            {"text": "3", "correct": false}
+            {
+              "text": "8",
+              "correct": true
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "13",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            }
           ],
           "steps": [
             "a=5, b=8, c=5",
-            "a > b: 5 > 8 -> false",
-            "Enter else: c <- b = 8",
-            "Output: 8"
+            "a > b: 5 > 8 → false",
+            "elseに入る：c <- b = 8",
+            "出力：8"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of flag after execution?",
+          "question": "実行後のflagの値は？",
           "code": "flag <- true\nx <- 7\nif (x mod 2 = 0) then\n  flag <- false\nendif\nif (x > 10) then\n  flag <- false\nendif\nif flag then\n  print(\"yes\")\nelse\n  print(\"no\")\nendif",
           "options": [
-            {"text": "yes", "correct": true},
-            {"text": "no", "correct": false},
-            {"text": "true", "correct": false},
-            {"text": "7", "correct": false}
+            {
+              "text": "yes",
+              "correct": true
+            },
+            {
+              "text": "no",
+              "correct": false
+            },
+            {
+              "text": "true",
+              "correct": false
+            },
+            {
+              "text": "7",
+              "correct": false
+            }
           ],
           "steps": [
             "flag = true, x = 7",
-            "7 mod 2 = 1 != 0 -> don't set flag to false",
-            "7 > 10 -> false -> don't set flag to false",
-            "flag is still true",
-            "Output: yes"
+            "7 mod 2 = 1 ≠ 0 → flagをfalseにしない",
+            "7 > 10 → false → flagをfalseにしない",
+            "flagはtrueのまま",
+            "出力：yes"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 100\nwhile (x > 10) do\n  x <- x / 2\nendwhile\nprint(x)",
           "options": [
-            {"text": "6", "correct": true},
-            {"text": "5", "correct": false},
-            {"text": "10", "correct": false},
-            {"text": "12", "correct": false}
+            {
+              "text": "6",
+              "correct": true
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "10",
+              "correct": false
+            },
+            {
+              "text": "12",
+              "correct": false
+            }
           ],
           "steps": [
             "x = 100",
@@ -526,63 +850,99 @@
             "50>10: x = 50/2 = 25",
             "25>10: x = 25/2 = 12",
             "12>10: x = 12/2 = 6",
-            "6>10: no -> exit",
-            "Output: 6"
+            "6>10: いいえ → 終了",
+            "出力：6"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of result after execution?",
+          "question": "実行後のresultの値は？",
           "code": "result <- 1\nfor (i from 1 to 3) do\n  result <- result * 2\nendfor\nprint(result)",
           "options": [
-            {"text": "8", "correct": true},
-            {"text": "6", "correct": false},
-            {"text": "9", "correct": false},
-            {"text": "4", "correct": false}
+            {
+              "text": "8",
+              "correct": true
+            },
+            {
+              "text": "6",
+              "correct": false
+            },
+            {
+              "text": "9",
+              "correct": false
+            },
+            {
+              "text": "4",
+              "correct": false
+            }
           ],
           "steps": [
             "result = 1",
-            "i=1: result = 1*2 = 2",
-            "i=2: result = 2*2 = 4",
-            "i=3: result = 4*2 = 8",
-            "Output: 8 (2^3)"
+            "i=1: result = 1×2 = 2",
+            "i=2: result = 2×2 = 4",
+            "i=3: result = 4×2 = 8",
+            "出力：8（2^3）"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 15\nif (x mod 3 = 0 and x mod 5 = 0) then\n  x <- 0\nelseif (x mod 3 = 0) then\n  x <- 1\nelseif (x mod 5 = 0) then\n  x <- 2\nelse\n  x <- 3\nendif\nprint(x)",
           "options": [
-            {"text": "0", "correct": true},
-            {"text": "1", "correct": false},
-            {"text": "2", "correct": false},
-            {"text": "3", "correct": false}
+            {
+              "text": "0",
+              "correct": true
+            },
+            {
+              "text": "1",
+              "correct": false
+            },
+            {
+              "text": "2",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            }
           ],
           "steps": [
             "x = 15",
             "15 mod 3 = 0: true, 15 mod 5 = 0: true",
-            "Both true, so 'and' is true",
+            "両方trueなので 'and' はtrue",
             "x <- 0",
-            "Output: 0"
+            "出力：0"
           ]
         },
         {
           "type": "practice",
-          "question": "What does this code output?",
+          "question": "次のコードの出力は？",
           "code": "a <- 3\nb <- 0\nfor (i from 1 to a) do\n  for (j from 1 to i) do\n    b <- b + 1\n  endfor\nendfor\nprint(b)",
           "options": [
-            {"text": "6", "correct": true},
-            {"text": "9", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "4", "correct": false}
+            {
+              "text": "6",
+              "correct": true
+            },
+            {
+              "text": "9",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "4",
+              "correct": false
+            }
           ],
           "steps": [
             "a=3, b=0",
-            "i=1: j=1 -> b=1 (1 iteration)",
-            "i=2: j=1,2 -> b=1+1+1=3 (2 iterations)",
-            "i=3: j=1,2,3 -> b=3+1+1+1=6 (3 iterations)",
-            "Total: 1+2+3 = 6",
-            "Output: 6"
+            "i=1: j=1 → b=1（1回）",
+            "i=2: j=1,2 → b=1+1+1=3（2回）",
+            "i=3: j=1,2,3 → b=3+1+1+1=6（3回）",
+            "合計：1+2+3 = 6",
+            "出力：6"
           ]
         }
       ]
@@ -592,9 +952,9 @@
       "title": "Array Operations",
       "titleJa": "配列操作",
       "difficulty": 2,
-      "cheatsheet": "=== Array Operations in IPA Pseudo-Language ===\n\n[Declaration]\nA: [3, 1, 4, 1, 5]\nA: array of integer  // explicit type\n\n[Access]\nA[1] = first element (1-indexed!)\nA[N] = last element\n\n[Common Patterns]\n\nSum:\n  sum <- 0\n  for (i from 1 to N) do\n    sum <- sum + A[i]\n  endfor\n\nMax:\n  max <- A[1]\n  for (i from 2 to N) do\n    if (A[i] > max) then max <- A[i]\n  endif\n  endfor\n\nMin:\n  min <- A[1]\n  for (i from 2 to N) do\n    if (A[i] < min) then min <- A[i]\n  endif\n  endfor\n\nCount condition:\n  cnt <- 0\n  for (i from 1 to N) do\n    if (A[i] > threshold) then cnt <- cnt + 1\n  endif\n  endfor\n\nSearch (linear):\n  found <- false\n  for (i from 1 to N) do\n    if (A[i] = target) then\n      found <- true\n    endif\n  endfor\n\nSwap:\n  tmp <- A[i]\n  A[i] <- A[j]\n  A[j] <- tmp",
+      "cheatsheet": "=== IPA擬似言語の配列操作 ===\n\n[宣言]\nA: [3, 1, 4, 1, 5]\nA: array of integer  // 明示的な型指定\n\n[アクセス]\nA[1] = 先頭要素（1インデックス！）\nA[N] = 末尾要素\n\n[よく使うパターン]\n\n合計：\n  sum <- 0\n  for (i from 1 to N) do\n    sum <- sum + A[i]\n  endfor\n\n最大値：\n  max <- A[1]\n  for (i from 2 to N) do\n    if (A[i] > max) then max <- A[i]\n  endif\n  endfor\n\n最小値：\n  min <- A[1]\n  for (i from 2 to N) do\n    if (A[i] < min) then min <- A[i]\n  endif\n  endfor\n\n条件カウント：\n  cnt <- 0\n  for (i from 1 to N) do\n    if (A[i] > threshold) then cnt <- cnt + 1\n  endif\n  endfor\n\n探索（線形）：\n  found <- false\n  for (i from 1 to N) do\n    if (A[i] = target) then\n      found <- true\n    endif\n  endfor\n\nスワップ：\n  tmp <- A[i]\n  A[i] <- A[j]\n  A[j] <- tmp",
       "example": {
-        "question": "What is the value of sum after execution?",
+        "question": "実行後のsumの値は？",
         "code": "A: [2, 4, 6, 8, 10]\nsum <- 0\nfor (i from 1 to 5) do\n  sum <- sum + A[i]\nendfor",
         "steps": [
           "A = [2, 4, 6, 8, 10], sum = 0",
@@ -603,258 +963,414 @@
           "i=3: sum = 6 + 6 = 12",
           "i=4: sum = 12 + 8 = 20",
           "i=5: sum = 20 + 10 = 30",
-          "Final: sum = 30"
+          "最終：sum = 30"
         ],
         "answer": "30"
       },
       "questions": [
         {
           "type": "practice",
-          "question": "What is the value of max after execution?",
+          "question": "実行後のmaxの値は？",
           "code": "A: [3, 7, 2, 9, 5]\nmax <- A[1]\nfor (i from 2 to 5) do\n  if (A[i] > max) then\n    max <- A[i]\n  endif\nendfor\nprint(max)",
           "options": [
-            {"text": "9", "correct": true},
-            {"text": "7", "correct": false},
-            {"text": "5", "correct": false},
-            {"text": "3", "correct": false}
+            {
+              "text": "9",
+              "correct": true
+            },
+            {
+              "text": "7",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            }
           ],
           "steps": [
             "A = [3,7,2,9,5], max = 3",
-            "i=2: A[2]=7, 7>3 yes -> max=7",
-            "i=3: A[3]=2, 2>7 no",
-            "i=4: A[4]=9, 9>7 yes -> max=9",
-            "i=5: A[5]=5, 5>9 no",
-            "Output: 9"
+            "i=2: A[2]=7, 7>3 はい → max=7",
+            "i=3: A[3]=2, 2>7 いいえ",
+            "i=4: A[4]=9, 9>7 はい → max=9",
+            "i=5: A[5]=5, 5>9 いいえ",
+            "出力：9"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of min after execution?",
+          "question": "実行後のminの値は？",
           "code": "A: [8, 3, 6, 1, 4]\nmin <- A[1]\nfor (i from 2 to 5) do\n  if (A[i] < min) then\n    min <- A[i]\n  endif\nendfor\nprint(min)",
           "options": [
-            {"text": "1", "correct": true},
-            {"text": "3", "correct": false},
-            {"text": "4", "correct": false},
-            {"text": "8", "correct": false}
+            {
+              "text": "1",
+              "correct": true
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "4",
+              "correct": false
+            },
+            {
+              "text": "8",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[8,3,6,1,4], min=8",
-            "i=2: A[2]=3, 3<8 yes -> min=3",
-            "i=3: A[3]=6, 6<3 no",
-            "i=4: A[4]=1, 1<3 yes -> min=1",
-            "i=5: A[5]=4, 4<1 no",
-            "Output: 1"
+            "i=2: A[2]=3, 3<8 はい → min=3",
+            "i=3: A[3]=6, 6<3 いいえ",
+            "i=4: A[4]=1, 1<3 はい → min=1",
+            "i=5: A[5]=4, 4<1 いいえ",
+            "出力：1"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of cnt after execution?",
+          "question": "実行後のcntの値は？",
           "code": "A: [10, 25, 30, 5, 20, 15]\ncnt <- 0\nfor (i from 1 to 6) do\n  if (A[i] >= 20) then\n    cnt <- cnt + 1\n  endif\nendfor\nprint(cnt)",
           "options": [
-            {"text": "3", "correct": true},
-            {"text": "4", "correct": false},
-            {"text": "2", "correct": false},
-            {"text": "6", "correct": false}
+            {
+              "text": "3",
+              "correct": true
+            },
+            {
+              "text": "4",
+              "correct": false
+            },
+            {
+              "text": "2",
+              "correct": false
+            },
+            {
+              "text": "6",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[10,25,30,5,20,15], cnt=0",
-            "i=1: 10>=20? no",
-            "i=2: 25>=20? yes -> cnt=1",
-            "i=3: 30>=20? yes -> cnt=2",
-            "i=4: 5>=20? no",
-            "i=5: 20>=20? yes -> cnt=3",
-            "i=6: 15>=20? no",
-            "Output: 3"
+            "i=1: 10>=20? いいえ",
+            "i=2: 25>=20? はい → cnt=1",
+            "i=3: 30>=20? はい → cnt=2",
+            "i=4: 5>=20? いいえ",
+            "i=5: 20>=20? はい → cnt=3",
+            "i=6: 15>=20? いいえ",
+            "出力：3"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of sum after execution?",
+          "question": "実行後のsumの値は？",
           "code": "A: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\nsum <- 0\nfor (i from 1 to 10) do\n  if (i mod 2 = 0) then\n    sum <- sum + A[i]\n  endif\nendfor\nprint(sum)",
           "options": [
-            {"text": "30", "correct": true},
-            {"text": "25", "correct": false},
-            {"text": "55", "correct": false},
-            {"text": "20", "correct": false}
+            {
+              "text": "30",
+              "correct": true
+            },
+            {
+              "text": "25",
+              "correct": false
+            },
+            {
+              "text": "55",
+              "correct": false
+            },
+            {
+              "text": "20",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[1,2,3,4,5,6,7,8,9,10], sum=0",
-            "i=1: 1 mod 2=1 no",
-            "i=2: 2 mod 2=0 yes -> sum=0+2=2",
-            "i=3: 3 mod 2=1 no",
-            "i=4: 4 mod 2=0 yes -> sum=2+4=6",
-            "i=5: no",
-            "i=6: yes -> sum=6+6=12",
-            "i=7: no",
-            "i=8: yes -> sum=12+8=20",
-            "i=9: no",
-            "i=10: yes -> sum=20+10=30",
-            "Output: 30"
+            "i=1: 1 mod 2=1 いいえ",
+            "i=2: 2 mod 2=0 はい → sum=0+2=2",
+            "i=3: 3 mod 2=1 いいえ",
+            "i=4: 4 mod 2=0 はい → sum=2+4=6",
+            "i=5: いいえ",
+            "i=6: はい → sum=6+6=12",
+            "i=7: いいえ",
+            "i=8: はい → sum=12+8=20",
+            "i=9: いいえ",
+            "i=10: はい → sum=20+10=30",
+            "出力：30"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of A[3] after execution?",
+          "question": "実行後のA[3]の値は？",
           "code": "A: [1, 2, 3, 4, 5]\ntmp <- A[1]\nA[1] <- A[5]\nA[5] <- tmp\nprint(A[3])",
           "options": [
-            {"text": "3", "correct": true},
-            {"text": "5", "correct": false},
-            {"text": "1", "correct": false},
-            {"text": "2", "correct": false}
+            {
+              "text": "3",
+              "correct": true
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "1",
+              "correct": false
+            },
+            {
+              "text": "2",
+              "correct": false
+            }
           ],
           "steps": [
             "A = [1,2,3,4,5]",
             "tmp = A[1] = 1",
-            "A[1] = A[5] = 5 -> A = [5,2,3,4,5]",
-            "A[5] = tmp = 1 -> A = [5,2,3,4,1]",
-            "A[3] = 3 (unchanged by the swap of A[1] and A[5])",
-            "Output: 3"
+            "A[1] = A[5] = 5 → A = [5,2,3,4,5]",
+            "A[5] = tmp = 1 → A = [5,2,3,4,1]",
+            "A[3] = 3（A[1]とA[5]のスワップで変更されず）",
+            "出力：3"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of sum after execution?",
+          "question": "実行後のsumの値は？",
           "code": "A: [5, 3, 8, 1, 4]\nsum <- 0\nfor (i from 2 to 4) do\n  sum <- sum + A[i]\nendfor\nprint(sum)",
           "options": [
-            {"text": "12", "correct": true},
-            {"text": "21", "correct": false},
-            {"text": "11", "correct": false},
-            {"text": "15", "correct": false}
+            {
+              "text": "12",
+              "correct": true
+            },
+            {
+              "text": "21",
+              "correct": false
+            },
+            {
+              "text": "11",
+              "correct": false
+            },
+            {
+              "text": "15",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[5,3,8,1,4], sum=0",
             "i=2: sum = 0+A[2] = 0+3 = 3",
             "i=3: sum = 3+A[3] = 3+8 = 11",
             "i=4: sum = 11+A[4] = 11+1 = 12",
-            "Output: 12"
+            "出力：12"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of found and pos after execution?",
+          "question": "実行後のposの値は？",
           "code": "A: [10, 20, 30, 40, 50]\ntarget <- 30\npos <- 0\nfor (i from 1 to 5) do\n  if (A[i] = target) then\n    pos <- i\n  endif\nendfor\nprint(pos)",
           "options": [
-            {"text": "3", "correct": true},
-            {"text": "30", "correct": false},
-            {"text": "2", "correct": false},
-            {"text": "0", "correct": false}
+            {
+              "text": "3",
+              "correct": true
+            },
+            {
+              "text": "30",
+              "correct": false
+            },
+            {
+              "text": "2",
+              "correct": false
+            },
+            {
+              "text": "0",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[10,20,30,40,50], target=30, pos=0",
-            "i=1: A[1]=10, 10=30? no",
-            "i=2: A[2]=20, 20=30? no",
-            "i=3: A[3]=30, 30=30? yes -> pos=3",
-            "i=4: A[4]=40, no",
-            "i=5: A[5]=50, no",
-            "Output: 3"
+            "i=1: A[1]=10, 10=30? いいえ",
+            "i=2: A[2]=20, 20=30? いいえ",
+            "i=3: A[3]=30, 30=30? はい → pos=3",
+            "i=4: A[4]=40, いいえ",
+            "i=5: A[5]=50, いいえ",
+            "出力：3"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of avg after execution?",
+          "question": "実行後のavgの値は？",
           "code": "A: [2, 4, 6, 8]\nsum <- 0\nfor (i from 1 to 4) do\n  sum <- sum + A[i]\nendfor\navg <- sum / 4\nprint(avg)",
           "options": [
-            {"text": "5", "correct": true},
-            {"text": "5.0", "correct": false},
-            {"text": "20", "correct": false},
-            {"text": "4", "correct": false}
+            {
+              "text": "5",
+              "correct": true
+            },
+            {
+              "text": "5.0",
+              "correct": false
+            },
+            {
+              "text": "20",
+              "correct": false
+            },
+            {
+              "text": "4",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[2,4,6,8], sum=0",
             "sum = 2+4+6+8 = 20",
             "avg = 20 / 4 = 5",
-            "IPA / is integer division, but 20/4 = 5 exactly",
-            "Output: 5"
+            "IPAの/は整数除算だが、20/4 = 5はぴったり",
+            "出力：5"
           ]
         },
         {
           "type": "practice",
-          "question": "After reversing the array, what is A[1]?",
+          "question": "配列を反転後、A[1]は？",
           "code": "A: [1, 2, 3, 4]\nfor (i from 1 to 2) do\n  tmp <- A[i]\n  A[i] <- A[5 - i]\n  A[5 - i] <- tmp\nendfor\nprint(A[1])",
           "options": [
-            {"text": "4", "correct": true},
-            {"text": "1", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "2", "correct": false}
+            {
+              "text": "4",
+              "correct": true
+            },
+            {
+              "text": "1",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "2",
+              "correct": false
+            }
           ],
           "steps": [
             "A = [1,2,3,4]",
-            "i=1: tmp=A[1]=1, A[1]=A[4]=4, A[4]=1 -> A=[4,2,3,1]",
-            "i=2: tmp=A[2]=2, A[2]=A[3]=3, A[3]=2 -> A=[4,3,2,1]",
-            "Array reversed!",
+            "i=1: tmp=A[1]=1, A[1]=A[4]=4, A[4]=1 → A=[4,2,3,1]",
+            "i=2: tmp=A[2]=2, A[2]=A[3]=3, A[3]=2 → A=[4,3,2,1]",
+            "配列が反転！",
             "A[1] = 4",
-            "Output: 4"
+            "出力：4"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of cnt after execution?",
+          "question": "実行後のcntの値は？",
           "code": "A: [5, 5, 5, 5, 5]\ncnt <- 0\nfor (i from 1 to 5) do\n  for (j from 1 to 5) do\n    if (A[i] = A[j]) then\n      cnt <- cnt + 1\n    endif\n  endfor\nendfor\nprint(cnt)",
           "options": [
-            {"text": "25", "correct": true},
-            {"text": "5", "correct": false},
-            {"text": "10", "correct": false},
-            {"text": "20", "correct": false}
+            {
+              "text": "25",
+              "correct": true
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "10",
+              "correct": false
+            },
+            {
+              "text": "20",
+              "correct": false
+            }
           ],
           "steps": [
-            "All elements are 5, so A[i]=A[j] is always true",
-            "Nested loop: 5 x 5 = 25 iterations",
-            "Each iteration increments cnt",
+            "全要素が5なので A[i]=A[j] は常にtrue",
+            "ネストループ：5 × 5 = 25回の反復",
+            "各反復でcntが増加",
             "cnt = 25",
-            "Output: 25"
+            "出力：25"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of A[2] after execution?",
+          "question": "実行後のA[2]の値は？",
           "code": "A: [3, 1, 4, 1, 5]\nfor (i from 1 to 4) do\n  A[i] <- A[i + 1]\nendfor\nprint(A[2])",
           "options": [
-            {"text": "4", "correct": true},
-            {"text": "1", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "5", "correct": false}
+            {
+              "text": "4",
+              "correct": true
+            },
+            {
+              "text": "1",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            }
           ],
           "steps": [
             "A = [3,1,4,1,5]",
-            "i=1: A[1] = A[2] = 1 -> A=[1,1,4,1,5]",
-            "i=2: A[2] = A[3] = 4 -> A=[1,4,4,1,5]",
-            "i=3: A[3] = A[4] = 1 -> A=[1,4,1,1,5]",
-            "i=4: A[4] = A[5] = 5 -> A=[1,4,1,5,5]",
-            "This shifts all elements left by one",
+            "i=1: A[1] = A[2] = 1 → A=[1,1,4,1,5]",
+            "i=2: A[2] = A[3] = 4 → A=[1,4,4,1,5]",
+            "i=3: A[3] = A[4] = 1 → A=[1,4,1,1,5]",
+            "i=4: A[4] = A[5] = 5 → A=[1,4,1,5,5]",
+            "全要素を1つ左にシフト",
             "A[2] = 4",
-            "Output: 4"
+            "出力：4"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of sum after execution?",
+          "question": "実行後のavgの値は？",
           "code": "A: [10, -5, 3, -2, 8]\nsum <- 0\ncnt <- 0\nfor (i from 1 to 5) do\n  if (A[i] > 0) then\n    sum <- sum + A[i]\n    cnt <- cnt + 1\n  endif\nendfor\navg <- sum / cnt\nprint(avg)",
           "options": [
-            {"text": "7", "correct": true},
-            {"text": "14", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "2", "correct": false}
+            {
+              "text": "7",
+              "correct": true
+            },
+            {
+              "text": "14",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "2",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[10,-5,3,-2,8], sum=0, cnt=0",
-            "i=1: 10>0 yes -> sum=10, cnt=1",
-            "i=2: -5>0 no",
-            "i=3: 3>0 yes -> sum=13, cnt=2",
-            "i=4: -2>0 no",
-            "i=5: 8>0 yes -> sum=21, cnt=3",
+            "i=1: 10>0 はい → sum=10, cnt=1",
+            "i=2: -5>0 いいえ",
+            "i=3: 3>0 はい → sum=13, cnt=2",
+            "i=4: -2>0 いいえ",
+            "i=5: 8>0 はい → sum=21, cnt=3",
             "avg = 21/3 = 7",
-            "Output: 7"
+            "出力：7"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of A after execution? (What is A[1] + A[2] + A[3])",
+          "question": "実行後のA[1]+A[2]+A[3]は？",
           "code": "A: [1, 2, 3]\nB: [4, 5, 6]\nfor (i from 1 to 3) do\n  A[i] <- A[i] + B[i]\nendfor\nprint(A[1] + A[2] + A[3])",
           "options": [
-            {"text": "21", "correct": true},
-            {"text": "18", "correct": false},
-            {"text": "15", "correct": false},
-            {"text": "12", "correct": false}
+            {
+              "text": "21",
+              "correct": true
+            },
+            {
+              "text": "18",
+              "correct": false
+            },
+            {
+              "text": "15",
+              "correct": false
+            },
+            {
+              "text": "12",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[1,2,3], B=[4,5,6]",
@@ -863,102 +1379,162 @@
             "i=3: A[3]=3+6=9",
             "A = [5,7,9]",
             "5+7+9 = 21",
-            "Output: 21"
+            "出力：21"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of cnt after execution?",
+          "question": "実行後のcntの値は？",
           "code": "A: [3, 7, 1, 9, 4, 6, 2, 8, 5]\ncnt <- 0\nfor (i from 1 to 8) do\n  if (A[i] > A[i + 1]) then\n    cnt <- cnt + 1\n  endif\nendfor\nprint(cnt)",
           "options": [
-            {"text": "4", "correct": true},
-            {"text": "5", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "8", "correct": false}
+            {
+              "text": "4",
+              "correct": true
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "8",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[3,7,1,9,4,6,2,8,5]",
-            "i=1: A[1]=3 > A[2]=7? no",
-            "i=2: A[2]=7 > A[3]=1? yes -> cnt=1",
-            "i=3: A[3]=1 > A[4]=9? no",
-            "i=4: A[4]=9 > A[5]=4? yes -> cnt=2",
-            "i=5: A[5]=4 > A[6]=6? no",
-            "i=6: A[6]=6 > A[7]=2? yes -> cnt=3",
-            "i=7: A[7]=2 > A[8]=8? no",
-            "i=8: A[8]=8 > A[9]=5? yes -> cnt=4",
-            "Output: 4"
+            "i=1: A[1]=3 > A[2]=7? いいえ",
+            "i=2: A[2]=7 > A[3]=1? はい → cnt=1",
+            "i=3: A[3]=1 > A[4]=9? いいえ",
+            "i=4: A[4]=9 > A[5]=4? はい → cnt=2",
+            "i=5: A[5]=4 > A[6]=6? いいえ",
+            "i=6: A[6]=6 > A[7]=2? はい → cnt=3",
+            "i=7: A[7]=2 > A[8]=8? いいえ",
+            "i=8: A[8]=8 > A[9]=5? はい → cnt=4",
+            "出力：4"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of max_pos after execution?",
+          "question": "実行後のmax_posの値は？",
           "code": "A: [2, 8, 5, 9, 3]\nmax <- A[1]\nmax_pos <- 1\nfor (i from 2 to 5) do\n  if (A[i] > max) then\n    max <- A[i]\n    max_pos <- i\n  endif\nendfor\nprint(max_pos)",
           "options": [
-            {"text": "4", "correct": true},
-            {"text": "9", "correct": false},
-            {"text": "2", "correct": false},
-            {"text": "5", "correct": false}
+            {
+              "text": "4",
+              "correct": true
+            },
+            {
+              "text": "9",
+              "correct": false
+            },
+            {
+              "text": "2",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[2,8,5,9,3], max=2, max_pos=1",
-            "i=2: A[2]=8>2 yes -> max=8, max_pos=2",
-            "i=3: A[3]=5>8 no",
-            "i=4: A[4]=9>8 yes -> max=9, max_pos=4",
-            "i=5: A[5]=3>9 no",
-            "Output: 4 (position of max value 9)"
+            "i=2: A[2]=8>2 はい → max=8, max_pos=2",
+            "i=3: A[3]=5>8 いいえ",
+            "i=4: A[4]=9>8 はい → max=9, max_pos=4",
+            "i=5: A[5]=3>9 いいえ",
+            "出力：4（最大値9の位置）"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of A[3] after execution?",
+          "question": "実行後のA[3]の値は？",
           "code": "A: [0, 0, 0, 0, 0]\nfor (i from 1 to 5) do\n  A[i] <- i * i\nendfor\nprint(A[3])",
           "options": [
-            {"text": "9", "correct": true},
-            {"text": "3", "correct": false},
-            {"text": "6", "correct": false},
-            {"text": "25", "correct": false}
+            {
+              "text": "9",
+              "correct": true
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "6",
+              "correct": false
+            },
+            {
+              "text": "25",
+              "correct": false
+            }
           ],
           "steps": [
             "A = [0,0,0,0,0]",
-            "i=1: A[1] = 1*1 = 1",
-            "i=2: A[2] = 2*2 = 4",
-            "i=3: A[3] = 3*3 = 9",
-            "i=4: A[4] = 4*4 = 16",
-            "i=5: A[5] = 5*5 = 25",
+            "i=1: A[1] = 1×1 = 1",
+            "i=2: A[2] = 2×2 = 4",
+            "i=3: A[3] = 3×3 = 9",
+            "i=4: A[4] = 4×4 = 16",
+            "i=5: A[5] = 5×5 = 25",
             "A = [1,4,9,16,25]",
             "A[3] = 9",
-            "Output: 9"
+            "出力：9"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of cnt after execution?",
+          "question": "実行後のcntの値は？",
           "code": "A: [1, 2, 3, 4, 5]\nB: [3, 1, 4, 1, 5]\ncnt <- 0\nfor (i from 1 to 5) do\n  if (A[i] = B[i]) then\n    cnt <- cnt + 1\n  endif\nendfor\nprint(cnt)",
           "options": [
-            {"text": "2", "correct": true},
-            {"text": "3", "correct": false},
-            {"text": "1", "correct": false},
-            {"text": "5", "correct": false}
+            {
+              "text": "2",
+              "correct": true
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "1",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[1,2,3,4,5], B=[3,1,4,1,5]",
-            "i=1: A[1]=1, B[1]=3 -> no",
-            "i=2: A[2]=2, B[2]=1 -> no",
-            "i=3: A[3]=3, B[3]=4 -> no",
-            "i=4: A[4]=4, B[4]=1 -> no",
-            "i=5: A[5]=5, B[5]=5 -> yes -> cnt=1",
-            "Output: 1"
+            "i=1: A[1]=1, B[1]=3 → いいえ",
+            "i=2: A[2]=2, B[2]=1 → いいえ",
+            "i=3: A[3]=3, B[3]=4 → いいえ",
+            "i=4: A[4]=4, B[4]=1 → いいえ",
+            "i=5: A[5]=5, B[5]=5 → はい → cnt=1",
+            "出力：1"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of sum after execution?",
+          "question": "実行後のsumの値は？",
           "code": "A: [1, 2, 3, 4, 5]\nsum <- 0\nfor (i from 1 to 5) do\n  sum <- sum + A[i] * A[6 - i]\nendfor\nprint(sum)",
           "options": [
-            {"text": "40", "correct": true},
-            {"text": "35", "correct": false},
-            {"text": "30", "correct": false},
-            {"text": "55", "correct": false}
+            {
+              "text": "40",
+              "correct": true
+            },
+            {
+              "text": "35",
+              "correct": false
+            },
+            {
+              "text": "30",
+              "correct": false
+            },
+            {
+              "text": "55",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[1,2,3,4,5], sum=0",
@@ -967,7 +1543,7 @@
             "i=3: A[3]*A[3] = 3*3 = 9, sum=22",
             "i=4: A[4]*A[2] = 4*2 = 8, sum=30",
             "i=5: A[5]*A[1] = 5*1 = 5, sum=35",
-            "Output: 35"
+            "出力：35"
           ]
         }
       ]
@@ -977,68 +1553,104 @@
       "title": "Loop Analysis",
       "titleJa": "ループ分析",
       "difficulty": 2,
-      "cheatsheet": "=== Loop Analysis Strategies ===\n\n[Count iterations]\nfor (i from a to b) do ... endfor\n  Count = b - a + 1\n\nfor (i from 1 to N) do\n  for (j from 1 to N) do\n    ... inner ...  // executes N*N times\n  endfor\nendfor\n\n[Triangle loops]\nfor i from 1 to N:\n  for j from 1 to i:\n    Total = N*(N+1)/2\n\n[Sum formulas]\n1+2+...+N = N*(N+1)/2\n1+3+5+...+(2N-1) = N^2\n2+4+6+...+2N = N*(N+1)\n1^2+2^2+...+N^2 = N(N+1)(2N+1)/6\n\n[Time complexity hints]\nSingle loop: O(N)\nNested loops (same N): O(N^2)\nTriangle loop: O(N^2/2) = O(N^2)\nLoop halving: O(log N)",
+      "cheatsheet": "=== ループ分析戦略 ===\n\n[反復回数のカウント]\nfor (i from a to b) do ... endfor\n  回数 = b - a + 1\n\nfor (i from 1 to N) do\n  for (j from 1 to N) do\n    ... inner ...  // N×N回実行\n  endfor\nendfor\n\n[三角ループ]\nfor i from 1 to N:\n  for j from 1 to i:\n    合計 = N*(N+1)/2\n\n[和の公式]\n1+2+...+N = N*(N+1)/2\n1+3+5+...+(2N-1) = N^2\n2+4+6+...+2N = N*(N+1)\n1^2+2^2+...+N^2 = N(N+1)(2N+1)/6\n\n[計算量のヒント]\n単一ループ：O(N)\nネストループ（同じN）：O(N^2)\n三角ループ：O(N^2/2) = O(N^2)\n半減ループ：O(log N)",
       "example": {
-        "question": "How many times does the print statement execute?",
+        "question": "print文は何回実行される？",
         "code": "cnt <- 0\nfor (i from 1 to 4) do\n  for (j from 1 to 3) do\n    cnt <- cnt + 1\n  endfor\nendfor\nprint(cnt)",
         "steps": [
-          "Outer loop: i = 1, 2, 3, 4 (4 times)",
-          "Inner loop: j = 1, 2, 3 (3 times each)",
-          "Total: 4 * 3 = 12",
+          "外側ループ：i = 1, 2, 3, 4（4回）",
+          "内側ループ：j = 1, 2, 3（各3回）",
+          "合計：4 × 3 = 12",
           "cnt = 12",
-          "Output: 12"
+          "出力：12"
         ],
         "answer": "12"
       },
       "questions": [
         {
           "type": "practice",
-          "question": "How many times does cnt increment?",
+          "question": "cntは何回インクリメントされる？",
           "code": "cnt <- 0\nfor (i from 1 to 5) do\n  for (j from 1 to i) do\n    cnt <- cnt + 1\n  endfor\nendfor\nprint(cnt)",
           "options": [
-            {"text": "15", "correct": true},
-            {"text": "10", "correct": false},
-            {"text": "25", "correct": false},
-            {"text": "5", "correct": false}
+            {
+              "text": "15",
+              "correct": true
+            },
+            {
+              "text": "10",
+              "correct": false
+            },
+            {
+              "text": "25",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            }
           ],
           "steps": [
-            "Triangle loop pattern",
-            "i=1: j=1 -> 1 time",
-            "i=2: j=1,2 -> 2 times",
-            "i=3: j=1,2,3 -> 3 times",
-            "i=4: j=1,2,3,4 -> 4 times",
-            "i=5: j=1,2,3,4,5 -> 5 times",
-            "Total: 1+2+3+4+5 = 15 = 5*6/2",
-            "Output: 15"
+            "三角ループパターン",
+            "i=1: j=1 → 1回",
+            "i=2: j=1,2 → 2回",
+            "i=3: j=1,2,3 → 3回",
+            "i=4: j=1,2,3,4 → 4回",
+            "i=5: j=1,2,3,4,5 → 5回",
+            "合計：1+2+3+4+5 = 15 = 5×6/2",
+            "出力：15"
           ]
         },
         {
           "type": "practice",
-          "question": "How many times does cnt increment?",
+          "question": "cntは何回インクリメントされる？",
           "code": "cnt <- 0\nfor (i from 1 to 3) do\n  for (j from i to 3) do\n    cnt <- cnt + 1\n  endfor\nendfor\nprint(cnt)",
           "options": [
-            {"text": "6", "correct": true},
-            {"text": "9", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "5", "correct": false}
+            {
+              "text": "6",
+              "correct": true
+            },
+            {
+              "text": "9",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            }
           ],
           "steps": [
-            "i=1: j=1,2,3 -> 3 times",
-            "i=2: j=2,3 -> 2 times",
-            "i=3: j=3 -> 1 time",
-            "Total: 3+2+1 = 6",
-            "Output: 6"
+            "i=1: j=1,2,3 → 3回",
+            "i=2: j=2,3 → 2回",
+            "i=3: j=3 → 1回",
+            "合計：3+2+1 = 6",
+            "出力：6"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of cnt after execution?",
+          "question": "実行後のcntの値は？",
           "code": "cnt <- 0\nx <- 1\nwhile (x < 100) do\n  cnt <- cnt + 1\n  x <- x * 2\nendwhile\nprint(cnt)",
           "options": [
-            {"text": "7", "correct": true},
-            {"text": "6", "correct": false},
-            {"text": "8", "correct": false},
-            {"text": "10", "correct": false}
+            {
+              "text": "7",
+              "correct": true
+            },
+            {
+              "text": "6",
+              "correct": false
+            },
+            {
+              "text": "8",
+              "correct": false
+            },
+            {
+              "text": "10",
+              "correct": false
+            }
           ],
           "steps": [
             "cnt=0, x=1",
@@ -1049,226 +1661,370 @@
             "x=16<100: cnt=5, x=32",
             "x=32<100: cnt=6, x=64",
             "x=64<100: cnt=7, x=128",
-            "x=128<100: no -> exit",
-            "Output: 7"
+            "x=128<100: いいえ → 終了",
+            "出力：7"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 0\nfor (i from 1 to 10) do\n  for (j from 1 to 10) do\n    x <- x + 1\n  endfor\nendfor\nprint(x)",
           "options": [
-            {"text": "100", "correct": true},
-            {"text": "20", "correct": false},
-            {"text": "55", "correct": false},
-            {"text": "10", "correct": false}
+            {
+              "text": "100",
+              "correct": true
+            },
+            {
+              "text": "20",
+              "correct": false
+            },
+            {
+              "text": "55",
+              "correct": false
+            },
+            {
+              "text": "10",
+              "correct": false
+            }
           ],
           "steps": [
-            "Outer loop: 10 iterations (i=1..10)",
-            "Inner loop: 10 iterations each (j=1..10)",
-            "Total: 10 * 10 = 100",
-            "Output: 100"
+            "外側ループ：10回（i=1..10）",
+            "内側ループ：各10回（j=1..10）",
+            "合計：10 × 10 = 100",
+            "出力：100"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of cnt after execution?",
+          "question": "実行後のcntの値は？",
           "code": "cnt <- 0\nfor (i from 1 to 4) do\n  for (j from 1 to 4) do\n    if (i = j) then\n      cnt <- cnt + 1\n    endif\n  endfor\nendfor\nprint(cnt)",
           "options": [
-            {"text": "4", "correct": true},
-            {"text": "16", "correct": false},
-            {"text": "12", "correct": false},
-            {"text": "8", "correct": false}
+            {
+              "text": "4",
+              "correct": true
+            },
+            {
+              "text": "16",
+              "correct": false
+            },
+            {
+              "text": "12",
+              "correct": false
+            },
+            {
+              "text": "8",
+              "correct": false
+            }
           ],
           "steps": [
-            "i=j only when both have the same value",
+            "i=jとなるのは両方が同じ値のときのみ",
             "i=1,j=1: cnt=1",
             "i=2,j=2: cnt=2",
             "i=3,j=3: cnt=3",
             "i=4,j=4: cnt=4",
-            "Total: 4 matches (diagonal)",
-            "Output: 4"
+            "合計：4マッチ（対角成分）",
+            "出力：4"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of cnt after execution?",
+          "question": "実行後のcntの値は？",
           "code": "cnt <- 0\nfor (i from 1 to 5) do\n  for (j from i + 1 to 5) do\n    cnt <- cnt + 1\n  endfor\nendfor\nprint(cnt)",
           "options": [
-            {"text": "10", "correct": true},
-            {"text": "15", "correct": false},
-            {"text": "6", "correct": false},
-            {"text": "5", "correct": false}
+            {
+              "text": "10",
+              "correct": true
+            },
+            {
+              "text": "15",
+              "correct": false
+            },
+            {
+              "text": "6",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            }
           ],
           "steps": [
-            "i=1: j=2,3,4,5 -> 4",
-            "i=2: j=3,4,5 -> 3",
-            "i=3: j=4,5 -> 2",
-            "i=4: j=5 -> 1",
-            "i=5: j=6..5 -> 0 (empty range)",
-            "Total: 4+3+2+1 = 10",
-            "Output: 10"
+            "i=1: j=2,3,4,5 → 4",
+            "i=2: j=3,4,5 → 3",
+            "i=3: j=4,5 → 2",
+            "i=4: j=5 → 1",
+            "i=5: j=6..5 → 0（空範囲）",
+            "合計：4+3+2+1 = 10",
+            "出力：10"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 0\nfor (i from 1 to 3) do\n  for (j from 1 to 3) do\n    for (k from 1 to 2) do\n      x <- x + 1\n    endfor\n  endfor\nendfor\nprint(x)",
           "options": [
-            {"text": "18", "correct": true},
-            {"text": "8", "correct": false},
-            {"text": "6", "correct": false},
-            {"text": "27", "correct": false}
+            {
+              "text": "18",
+              "correct": true
+            },
+            {
+              "text": "8",
+              "correct": false
+            },
+            {
+              "text": "6",
+              "correct": false
+            },
+            {
+              "text": "27",
+              "correct": false
+            }
           ],
           "steps": [
-            "3 nested loops: 3 * 3 * 2 = 18",
-            "x increments once per innermost iteration",
-            "Output: 18"
+            "3重ネストループ：3 × 3 × 2 = 18",
+            "xは最内ループの反復ごとに1ずつ増加",
+            "出力：18"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 0\nfor (i from 1 to 6) do\n  if (i mod 2 = 0) then\n    x <- x + i\n  endif\nendfor\nprint(x)",
           "options": [
-            {"text": "12", "correct": true},
-            {"text": "9", "correct": false},
-            {"text": "15", "correct": false},
-            {"text": "6", "correct": false}
+            {
+              "text": "12",
+              "correct": true
+            },
+            {
+              "text": "9",
+              "correct": false
+            },
+            {
+              "text": "15",
+              "correct": false
+            },
+            {
+              "text": "6",
+              "correct": false
+            }
           ],
           "steps": [
-            "Even numbers from 1 to 6: 2, 4, 6",
+            "1〜6の偶数：2, 4, 6",
             "x = 2 + 4 + 6 = 12",
-            "Output: 12"
+            "出力：12"
           ]
         },
         {
           "type": "practice",
-          "question": "How many times does the loop body execute?",
+          "question": "ループ本体は何回実行される？",
           "code": "i <- 1\nwhile (i <= 5) do\n  print(i)\n  i <- i + 2\nendwhile",
           "options": [
-            {"text": "3", "correct": true},
-            {"text": "5", "correct": false},
-            {"text": "2", "correct": false},
-            {"text": "4", "correct": false}
+            {
+              "text": "3",
+              "correct": true
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "2",
+              "correct": false
+            },
+            {
+              "text": "4",
+              "correct": false
+            }
           ],
           "steps": [
-            "i=1: 1<=5 yes, print 1, i=3",
-            "i=3: 3<=5 yes, print 3, i=5",
-            "i=5: 5<=5 yes, print 5, i=7",
-            "i=7: 7<=5 no -> exit",
-            "Prints 1, 3, 5 -> 3 times",
-            "Output: 3"
+            "i=1: 1<=5 はい, print 1, i=3",
+            "i=3: 3<=5 はい, print 3, i=5",
+            "i=5: 5<=5 はい, print 5, i=7",
+            "i=7: 7<=5 いいえ → 終了",
+            "1, 3, 5を出力 → 3回",
+            "出力：3"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 1\nfor (i from 2 to 5) do\n  x <- x + i * x\nendfor\nprint(x)",
           "options": [
-            {"text": "326", "correct": true},
-            {"text": "120", "correct": false},
-            {"text": "64", "correct": false},
-            {"text": "720", "correct": false}
+            {
+              "text": "326",
+              "correct": true
+            },
+            {
+              "text": "120",
+              "correct": false
+            },
+            {
+              "text": "64",
+              "correct": false
+            },
+            {
+              "text": "720",
+              "correct": false
+            }
           ],
           "steps": [
             "x=1",
-            "i=2: x = 1 + 2*1 = 3",
-            "i=3: x = 3 + 3*3 = 12",
-            "i=4: x = 12 + 4*12 = 60",
-            "i=5: x = 60 + 5*60 = 360",
-            "Output: 360"
+            "i=2: x = 1 + 2×1 = 3",
+            "i=3: x = 3 + 3×3 = 12",
+            "i=4: x = 12 + 4×12 = 60",
+            "i=5: x = 60 + 5×60 = 360",
+            "出力：360"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of cnt after execution?",
+          "question": "cntは何回インクリメントされる？",
           "code": "cnt <- 0\nfor (i from 1 to 10) do\n  for (j from 1 to 10) do\n    if (i + j = 11) then\n      cnt <- cnt + 1\n    endif\n  endfor\nendfor\nprint(cnt)",
           "options": [
-            {"text": "10", "correct": true},
-            {"text": "11", "correct": false},
-            {"text": "9", "correct": false},
-            {"text": "5", "correct": false}
+            {
+              "text": "10",
+              "correct": true
+            },
+            {
+              "text": "11",
+              "correct": false
+            },
+            {
+              "text": "9",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            }
           ],
           "steps": [
-            "i+j=11: pairs are (1,10),(2,9),(3,8),(4,7),(5,6),(6,5),(7,4),(8,3),(9,2),(10,1)",
-            "Each pair has exactly one (i,j) combination",
-            "10 matches total",
-            "Output: 10"
+            "i+j=11: (1,10),(2,9),(3,8),(4,7),(5,6),(6,5),(7,4),(8,3),(9,2),(10,1)",
+            "各ペアに1つの(i,j)の組み合わせ",
+            "10マッチ",
+            "出力：10"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 0\nfor (i from 1 to 100) do\n  if (i mod 3 = 0) then\n    x <- x + 1\n  endif\nendfor\nprint(x)",
           "options": [
-            {"text": "33", "correct": true},
-            {"text": "34", "correct": false},
-            {"text": "99", "correct": false},
-            {"text": "3", "correct": false}
+            {
+              "text": "33",
+              "correct": true
+            },
+            {
+              "text": "34",
+              "correct": false
+            },
+            {
+              "text": "99",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            }
           ],
           "steps": [
-            "Count multiples of 3 from 1 to 100",
+            "1〜100の3の倍数をカウント",
             "floor(100/3) = 33",
-            "Multiples: 3,6,9,...,99 (33 numbers)",
-            "Output: 33"
+            "3の倍数：3,6,9,...,99（33個）",
+            "出力：33"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 0\nfor (i from 1 to 5) do\n  for (j from 1 to i) do\n    x <- x + j\n  endfor\nendfor\nprint(x)",
           "options": [
-            {"text": "35", "correct": true},
-            {"text": "15", "correct": false},
-            {"text": "25", "correct": false},
-            {"text": "40", "correct": false}
+            {
+              "text": "35",
+              "correct": true
+            },
+            {
+              "text": "15",
+              "correct": false
+            },
+            {
+              "text": "25",
+              "correct": false
+            },
+            {
+              "text": "40",
+              "correct": false
+            }
           ],
           "steps": [
-            "i=1: j=1 -> x=0+1=1",
-            "i=2: j=1,2 -> x=1+1+2=4",
-            "i=3: j=1,2,3 -> x=4+1+2+3=10",
-            "i=4: j=1,2,3,4 -> x=10+1+2+3+4=20",
-            "i=5: j=1,2,3,4,5 -> x=20+1+2+3+4+5=35",
-            "Sum of sum(i) for i=1..5",
-            "Output: 35"
+            "i=1: j=1 → x=0+1=1",
+            "i=2: j=1,2 → x=1+1+2=4",
+            "i=3: j=1,2,3 → x=4+1+2+3=10",
+            "i=4: j=1,2,3,4 → x=10+1+2+3+4=20",
+            "i=5: j=1,2,3,4,5 → x=20+1+2+3+4+5=35",
+            "sum(i) for i=1..5の和",
+            "出力：35"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 0\nfor (i from 1 to 4) do\n  for (j from 1 to 4) do\n    if (i < j) then\n      x <- x + 1\n    endif\n  endfor\nendfor\nprint(x)",
           "options": [
-            {"text": "6", "correct": true},
-            {"text": "10", "correct": false},
-            {"text": "4", "correct": false},
-            {"text": "12", "correct": false}
+            {
+              "text": "6",
+              "correct": true
+            },
+            {
+              "text": "10",
+              "correct": false
+            },
+            {
+              "text": "4",
+              "correct": false
+            },
+            {
+              "text": "12",
+              "correct": false
+            }
           ],
           "steps": [
-            "Upper triangle (strict): i < j",
-            "i=1: j=2,3,4 -> 3",
-            "i=2: j=3,4 -> 2",
-            "i=3: j=4 -> 1",
-            "i=4: none -> 0",
-            "Total: 3+2+1 = 6",
-            "Output: 6"
+            "厳密な上三角：i < j",
+            "i=1: j=2,3,4 → 3",
+            "i=2: j=3,4 → 2",
+            "i=3: j=4 → 1",
+            "i=4: なし → 0",
+            "合計：3+2+1 = 6",
+            "出力：6"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of cnt after execution?",
+          "question": "実行後のcntの値は？",
           "code": "cnt <- 0\nfor (i from 1 to 3) do\n  for (j from 1 to 3) do\n    for (k from 1 to 3) do\n      if (i <> j and j <> k and i <> k) then\n        cnt <- cnt + 1\n      endif\n    endfor\n  endfor\nendfor\nprint(cnt)",
           "options": [
-            {"text": "6", "correct": true},
-            {"text": "9", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "27", "correct": false}
+            {
+              "text": "6",
+              "correct": true
+            },
+            {
+              "text": "9",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "27",
+              "correct": false
+            }
           ],
           "steps": [
-            "Count permutations of (1,2,3): 3! = 6",
-            "Each valid combination has i,j,k all different",
-            "6 permutations: 123,132,213,231,312,321",
-            "Output: 6"
+            "(1,2,3)の順列数：3! = 6",
+            "各有効な組み合わせでi,j,kがすべて異なる",
+            "6つの順列：123,132,213,231,312,321",
+            "出力：6"
           ]
         }
       ]
@@ -1278,16 +2034,16 @@
       "title": "Search Algorithms",
       "titleJa": "探索アルゴリズム",
       "difficulty": 2,
-      "cheatsheet": "=== Search Algorithms ===\n\n[Linear Search]\npos <- 0\nfor (i from 1 to N) do\n  if (A[i] = target) then\n    pos <- i\n  endif\nendfor\nTime: O(N)\n\n[Linear Search with early exit]\nfound <- false\npos <- 0\nfor (i from 1 to N) do\n  if (A[i] = target) then\n    found <- true\n    pos <- i\n    // break (not in IPA pseudo-language, use flag)\n  endif\nendfor\n\n[Binary Search] (sorted array required)\nlow <- 1\nhigh <- N\nwhile (low <= high) do\n  mid <- (low + high) / 2\n  if (A[mid] = target) then\n    return mid\n  elseif (A[mid] < target) then\n    low <- mid + 1\n  else\n    high <- mid - 1\n  endif\nendwhile\nreturn 0",
+      "cheatsheet": "=== 探索アルゴリズム ===\n\n[線形探索]\npos <- 0\nfor (i from 1 to N) do\n  if (A[i] = target) then\n    pos <- i\n  endif\nendfor\n計算量：O(N)\n\n[早期終了付き線形探索]\nfound <- false\npos <- 0\nfor (i from 1 to N) do\n  if (A[i] = target) then\n    found <- true\n    pos <- i\n    // break（IPA擬似言語にはない、フラグを使用）\n  endif\nendfor\n\n[二分探索]（ソート済み配列が必要）\nlow <- 1\nhigh <- N\nwhile (low <= high) do\n  mid <- (low + high) / 2\n  if (A[mid] = target) then\n    return mid\n  elseif (A[mid] < target) then\n    low <- mid + 1\n  else\n    high <- mid - 1\n  endif\nendwhile\nreturn 0",
       "example": {
-        "question": "What is the value of pos after binary search for 7?",
+        "question": "7の二分探索後のposは？",
         "code": "A: [1, 3, 5, 7, 9, 11]\ntarget <- 7\nlow <- 1\nhigh <- 6\nwhile (low <= high) do\n  mid <- (low + high) / 2\n  if (A[mid] = target) then\n    pos <- mid\n    low <- high + 1\n  elseif (A[mid] < target) then\n    low <- mid + 1\n  else\n    high <- mid - 1\n  endif\nendwhile",
         "steps": [
           "A=[1,3,5,7,9,11], target=7, low=1, high=6",
-          "mid=(1+6)/2=3, A[3]=5 < 7 -> low=4",
-          "mid=(4+6)/2=5, A[5]=9 > 7 -> high=4",
-          "mid=(4+4)/2=4, A[4]=7 = 7 -> pos=4",
-          "low=high+1 -> exit loop",
+          "mid=(1+6)/2=3, A[3]=5 < 7 → low=4",
+          "mid=(4+6)/2=5, A[5]=9 > 7 → high=4",
+          "mid=(4+4)/2=4, A[4]=7 = 7 → pos=4",
+          "low=high+1 → ループ終了",
           "pos = 4"
         ],
         "answer": "4"
@@ -1295,197 +2051,317 @@
       "questions": [
         {
           "type": "practice",
-          "question": "What is the value of pos after linear search for 4?",
+          "question": "4の線形探索後のposは？",
           "code": "A: [2, 8, 4, 1, 9, 5]\ntarget <- 4\npos <- 0\nfor (i from 1 to 6) do\n  if (A[i] = target) then\n    pos <- i\n  endif\nendfor\nprint(pos)",
           "options": [
-            {"text": "3", "correct": true},
-            {"text": "4", "correct": false},
-            {"text": "0", "correct": false},
-            {"text": "1", "correct": false}
+            {
+              "text": "3",
+              "correct": true
+            },
+            {
+              "text": "4",
+              "correct": false
+            },
+            {
+              "text": "0",
+              "correct": false
+            },
+            {
+              "text": "1",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[2,8,4,1,9,5], target=4, pos=0",
-            "i=1: A[1]=2 != 4",
-            "i=2: A[2]=8 != 4",
-            "i=3: A[3]=4 = 4 -> pos=3",
-            "i=4: A[4]=1 != 4 (pos stays 3)",
-            "i=5: A[5]=9 != 4",
-            "i=6: A[6]=5 != 4",
-            "Output: 3"
+            "i=1: A[1]=2 ≠ 4",
+            "i=2: A[2]=8 ≠ 4",
+            "i=3: A[3]=4 = 4 → pos=3",
+            "i=4: A[4]=1 ≠ 4（posは3のまま）",
+            "i=5: A[5]=9 ≠ 4",
+            "i=6: A[6]=5 ≠ 4",
+            "出力：3"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of pos after binary search for 3?",
+          "question": "3の二分探索後のposは？",
           "code": "A: [1, 2, 3, 4, 5, 6, 7]\ntarget <- 3\nlow <- 1\nhigh <- 7\nwhile (low <= high) do\n  mid <- (low + high) / 2\n  if (A[mid] = target) then\n    pos <- mid\n    low <- high + 1\n  elseif (A[mid] < target) then\n    low <- mid + 1\n  else\n    high <- mid - 1\n  endif\nendwhile\nprint(pos)",
           "options": [
-            {"text": "3", "correct": true},
-            {"text": "2", "correct": false},
-            {"text": "4", "correct": false},
-            {"text": "1", "correct": false}
+            {
+              "text": "3",
+              "correct": true
+            },
+            {
+              "text": "2",
+              "correct": false
+            },
+            {
+              "text": "4",
+              "correct": false
+            },
+            {
+              "text": "1",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[1,2,3,4,5,6,7], target=3, low=1, high=7",
-            "mid=(1+7)/2=4, A[4]=4 > 3 -> high=3",
-            "mid=(1+3)/2=2, A[2]=2 < 3 -> low=3",
-            "mid=(3+3)/2=3, A[3]=3 = 3 -> pos=3, exit",
-            "Output: 3"
+            "mid=(1+7)/2=4, A[4]=4 > 3 → high=3",
+            "mid=(1+3)/2=2, A[2]=2 < 3 → low=3",
+            "mid=(3+3)/2=3, A[3]=3 = 3 → pos=3, 終了",
+            "出力：3"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of pos after linear search for 10?",
+          "question": "10の線形探索後のposは？",
           "code": "A: [3, 7, 1, 9, 2]\ntarget <- 10\npos <- 0\nfor (i from 1 to 5) do\n  if (A[i] = target) then\n    pos <- i\n  endif\nendfor\nprint(pos)",
           "options": [
-            {"text": "0", "correct": true},
-            {"text": "5", "correct": false},
-            {"text": "10", "correct": false},
-            {"text": "-1", "correct": false}
+            {
+              "text": "0",
+              "correct": true
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "10",
+              "correct": false
+            },
+            {
+              "text": "-1",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[3,7,1,9,2], target=10",
-            "10 is not in the array",
-            "pos is never updated from 0",
-            "Output: 0 (not found)"
+            "10は配列にない",
+            "posは0のまま更新されない",
+            "出力：0（見つからず）"
           ]
         },
         {
           "type": "practice",
-          "question": "How many comparisons does binary search make to find 1?",
+          "question": "1を見つけるのに二分探索で何回比較する？",
           "code": "A: [1, 2, 3, 4, 5, 6, 7, 8]\ntarget <- 1\nlow <- 1\nhigh <- 8\ncnt <- 0\nwhile (low <= high) do\n  cnt <- cnt + 1\n  mid <- (low + high) / 2\n  if (A[mid] = target) then\n    pos <- mid\n    low <- high + 1\n  elseif (A[mid] < target) then\n    low <- mid + 1\n  else\n    high <- mid - 1\n  endif\nendwhile\nprint(cnt)",
           "options": [
-            {"text": "4", "correct": true},
-            {"text": "3", "correct": false},
-            {"text": "2", "correct": false},
-            {"text": "1", "correct": false}
+            {
+              "text": "4",
+              "correct": true
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "2",
+              "correct": false
+            },
+            {
+              "text": "1",
+              "correct": false
+            }
           ],
           "steps": [
             "low=1, high=8, cnt=0",
-            "cnt=1: mid=4, A[4]=4>1 -> high=3",
-            "cnt=2: mid=2, A[2]=2>1 -> high=1",
-            "cnt=3: mid=1, A[1]=1=1 -> found! pos=1",
-            "Output: 3"
+            "cnt=1: mid=4, A[4]=4>1 → high=3",
+            "cnt=2: mid=2, A[2]=2>1 → high=1",
+            "cnt=3: mid=1, A[1]=1=1 → 発見！pos=1",
+            "出力：3"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of cnt (count of elements greater than target)?",
+          "question": "targetより大きい要素の数（cnt）は？",
           "code": "A: [3, 8, 1, 6, 4, 9, 2, 7, 5]\ntarget <- 5\ncnt <- 0\nfor (i from 1 to 9) do\n  if (A[i] > target) then\n    cnt <- cnt + 1\n  endif\nendfor\nprint(cnt)",
           "options": [
-            {"text": "4", "correct": true},
-            {"text": "5", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "6", "correct": false}
+            {
+              "text": "4",
+              "correct": true
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "6",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[3,8,1,6,4,9,2,7,5], target=5",
-            "Elements > 5: 8, 6, 9, 7",
-            "3>5? no. 8>5? yes(1). 1>5? no. 6>5? yes(2). 4>5? no. 9>5? yes(3). 2>5? no. 7>5? yes(4). 5>5? no.",
+            "5より大きい要素：8, 6, 9, 7",
+            "3>5? いいえ。8>5? はい(1)。1>5? いいえ。6>5? はい(2)。4>5? いいえ。9>5? はい(3)。2>5? いいえ。7>5? はい(4)。5>5? いいえ。",
             "cnt = 4",
-            "Output: 4"
+            "出力：4"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of pos after binary search for 6?",
+          "question": "6の二分探索後のposは？",
           "code": "A: [2, 4, 6, 8, 10, 12, 14, 16]\ntarget <- 6\nlow <- 1\nhigh <- 8\nwhile (low <= high) do\n  mid <- (low + high) / 2\n  if (A[mid] = target) then\n    pos <- mid\n    low <- high + 1\n  elseif (A[mid] < target) then\n    low <- mid + 1\n  else\n    high <- mid - 1\n  endif\nendwhile\nprint(pos)",
           "options": [
-            {"text": "3", "correct": true},
-            {"text": "2", "correct": false},
-            {"text": "4", "correct": false},
-            {"text": "6", "correct": false}
+            {
+              "text": "3",
+              "correct": true
+            },
+            {
+              "text": "2",
+              "correct": false
+            },
+            {
+              "text": "4",
+              "correct": false
+            },
+            {
+              "text": "6",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[2,4,6,8,10,12,14,16], target=6",
-            "mid=(1+8)/2=4, A[4]=8>6 -> high=3",
-            "mid=(1+3)/2=2, A[2]=4<6 -> low=3",
-            "mid=(3+3)/2=3, A[3]=6=6 -> pos=3, exit",
-            "Output: 3"
+            "mid=(1+8)/2=4, A[4]=8>6 → high=3",
+            "mid=(1+3)/2=2, A[2]=4<6 → low=3",
+            "mid=(3+3)/2=3, A[3]=6=6 → pos=3, 終了",
+            "出力：3"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of cnt after execution?",
+          "question": "実行後のcntは？",
           "code": "A: [5, 3, 8, 3, 5, 3, 8, 5]\ntarget <- 3\ncnt <- 0\nfor (i from 1 to 8) do\n  if (A[i] = target) then\n    cnt <- cnt + 1\n  endif\nendfor\nprint(cnt)",
           "options": [
-            {"text": "3", "correct": true},
-            {"text": "2", "correct": false},
-            {"text": "5", "correct": false},
-            {"text": "8", "correct": false}
+            {
+              "text": "3",
+              "correct": true
+            },
+            {
+              "text": "2",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "8",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[5,3,8,3,5,3,8,5], target=3",
-            "i=1: 5=3? no",
-            "i=2: 3=3? yes -> cnt=1",
-            "i=3: 8=3? no",
-            "i=4: 3=3? yes -> cnt=2",
-            "i=5: 5=3? no",
-            "i=6: 3=3? yes -> cnt=3",
-            "i=7: 8=3? no",
-            "i=8: 5=3? no",
-            "Output: 3"
+            "i=1: 5=3? いいえ",
+            "i=2: 3=3? はい → cnt=1",
+            "i=3: 8=3? いいえ",
+            "i=4: 3=3? はい → cnt=2",
+            "i=5: 5=3? いいえ",
+            "i=6: 3=3? はい → cnt=3",
+            "i=7: 8=3? いいえ",
+            "i=8: 5=3? いいえ",
+            "出力：3"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of pos after binary search for 9 (not in array)?",
+          "question": "9は配列にない。二分探索後のposは？（target=4）",
           "code": "A: [1, 3, 5, 7, 9]\ntarget <- 4\nlow <- 1\nhigh <- 5\npos <- 0\nwhile (low <= high) do\n  mid <- (low + high) / 2\n  if (A[mid] = target) then\n    pos <- mid\n    low <- high + 1\n  elseif (A[mid] < target) then\n    low <- mid + 1\n  else\n    high <- mid - 1\n  endif\nendwhile\nprint(pos)",
           "options": [
-            {"text": "0", "correct": true},
-            {"text": "2", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "-1", "correct": false}
+            {
+              "text": "0",
+              "correct": true
+            },
+            {
+              "text": "2",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "-1",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[1,3,5,7,9], target=4, pos=0",
-            "mid=3, A[3]=5>4 -> high=2",
-            "mid=1, A[1]=1<4 -> low=2",
-            "mid=2, A[2]=3<4 -> low=3",
-            "low=3 > high=2 -> exit",
-            "pos stays 0 (not found)",
-            "Output: 0"
+            "mid=3, A[3]=5>4 → high=2",
+            "mid=1, A[1]=1<4 → low=2",
+            "mid=2, A[2]=3<4 → low=3",
+            "low=3 > high=2 → 終了",
+            "posは0のまま（見つからず）",
+            "出力：0"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the first position where target appears?",
+          "question": "targetが最初に出現する位置は？",
           "code": "A: [3, 5, 3, 7, 3, 9]\ntarget <- 3\npos <- 0\nfor (i from 1 to 6) do\n  if (A[i] = target and pos = 0) then\n    pos <- i\n  endif\nendfor\nprint(pos)",
           "options": [
-            {"text": "1", "correct": true},
-            {"text": "3", "correct": false},
-            {"text": "5", "correct": false},
-            {"text": "0", "correct": false}
+            {
+              "text": "1",
+              "correct": true
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "0",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[3,5,3,7,3,9], target=3, pos=0",
-            "i=1: A[1]=3=3 and pos=0 -> pos=1",
-            "i=2: A[2]=5 != 3",
-            "i=3: A[3]=3=3 but pos=1 != 0 -> skip",
-            "i=4: A[4]=7 != 3",
-            "i=5: A[5]=3=3 but pos != 0 -> skip",
-            "i=6: A[6]=9 != 3",
-            "Output: 1"
+            "i=1: A[1]=3=3 and pos=0 → pos=1",
+            "i=2: A[2]=5 ≠ 3",
+            "i=3: A[3]=3=3 だが pos=1 ≠ 0 → スキップ",
+            "i=4: A[4]=7 ≠ 3",
+            "i=5: A[5]=3=3 だが pos ≠ 0 → スキップ",
+            "i=6: A[6]=9 ≠ 3",
+            "出力：1"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of pos after binary search for 15?",
+          "question": "15の二分探索後のposは？",
           "code": "A: [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]\ntarget <- 15\nlow <- 1\nhigh <- 10\npos <- 0\nwhile (low <= high) do\n  mid <- (low + high) / 2\n  if (A[mid] = target) then\n    pos <- mid\n    low <- high + 1\n  elseif (A[mid] < target) then\n    low <- mid + 1\n  else\n    high <- mid - 1\n  endif\nendwhile\nprint(pos)",
           "options": [
-            {"text": "0", "correct": true},
-            {"text": "8", "correct": false},
-            {"text": "7", "correct": false},
-            {"text": "9", "correct": false}
+            {
+              "text": "0",
+              "correct": true
+            },
+            {
+              "text": "8",
+              "correct": false
+            },
+            {
+              "text": "7",
+              "correct": false
+            },
+            {
+              "text": "9",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[2,4,6,8,10,12,14,16,18,20], target=15",
-            "mid=5, A[5]=10<15 -> low=6",
-            "mid=8, A[8]=16>15 -> high=7",
-            "mid=6, A[6]=12<15 -> low=7",
-            "mid=7, A[7]=14<15 -> low=8",
-            "low=8 > high=7 -> exit",
-            "pos = 0 (not found)",
-            "Output: 0"
+            "mid=5, A[5]=10<15 → low=6",
+            "mid=8, A[8]=16>15 → high=7",
+            "mid=6, A[6]=12<15 → low=7",
+            "mid=7, A[7]=14<15 → low=8",
+            "low=8 > high=7 → 終了",
+            "pos = 0（見つからず）",
+            "出力：0"
           ]
         }
       ]
@@ -1495,141 +2371,213 @@
       "title": "Sort Algorithms",
       "titleJa": "ソートアルゴリズム",
       "difficulty": 3,
-      "cheatsheet": "=== Sort Algorithms ===\n\n[Bubble Sort]\nfor (i from 1 to N-1) do\n  for (j from 1 to N-i) do\n    if (A[j] > A[j+1]) then\n      swap A[j] and A[j+1]\n    endif\n  endfor\nendfor\nWorst: O(N^2), Best: O(N) (already sorted)\n\n[Selection Sort]\nfor (i from 1 to N-1) do\n  minPos <- i\n  for (j from i+1 to N) do\n    if (A[j] < A[minPos]) then\n      minPos <- j\n    endif\n  endfor\n  swap A[i] and A[minPos]\nendfor\nAlways O(N^2)\n\n[Insertion Sort]\nfor (i from 2 to N) do\n  key <- A[i]\n  j <- i - 1\n  while (j >= 1 and A[j] > key) do\n    A[j+1] <- A[j]\n    j <- j - 1\n  endwhile\n  A[j+1] <- key\nendfor\nBest: O(N), Worst: O(N^2)\n\n[Swap pattern]\ntmp <- A[i]\nA[i] <- A[j]\nA[j] <- tmp",
+      "cheatsheet": "=== ソートアルゴリズム ===\n\n[バブルソート]\nfor (i from 1 to N-1) do\n  for (j from 1 to N-i) do\n    if (A[j] > A[j+1]) then\n      A[j]とA[j+1]をスワップ\n    endif\n  endfor\nendfor\n最悪：O(N^2)、最良：O(N)（既にソート済み）\n\n[選択ソート]\nfor (i from 1 to N-1) do\n  minPos <- i\n  for (j from i+1 to N) do\n    if (A[j] < A[minPos]) then\n      minPos <- j\n    endif\n  endfor\n  A[i]とA[minPos]をスワップ\nendfor\n常にO(N^2)\n\n[挿入ソート]\nfor (i from 2 to N) do\n  key <- A[i]\n  j <- i - 1\n  while (j >= 1 and A[j] > key) do\n    A[j+1] <- A[j]\n    j <- j - 1\n  endwhile\n  A[j+1] <- key\nendfor\n最良：O(N)、最悪：O(N^2)\n\n[スワップパターン]\ntmp <- A[i]\nA[i] <- A[j]\nA[j] <- tmp",
       "example": {
-        "question": "What is A after one pass of bubble sort?",
+        "question": "バブルソート1パス後の配列は？",
         "code": "A: [5, 3, 4, 1, 2]\nfor (j from 1 to 4) do\n  if (A[j] > A[j + 1]) then\n    tmp <- A[j]\n    A[j] <- A[j + 1]\n    A[j + 1] <- tmp\n  endif\nendfor\nprint(A[1], A[2], A[3], A[4], A[5])",
         "steps": [
           "A = [5,3,4,1,2]",
-          "j=1: A[1]=5 > A[2]=3 -> swap -> [3,5,4,1,2]",
-          "j=2: A[2]=5 > A[3]=4 -> swap -> [3,4,5,1,2]",
-          "j=3: A[3]=5 > A[4]=1 -> swap -> [3,4,1,5,2]",
-          "j=4: A[4]=5 > A[5]=2 -> swap -> [3,4,1,2,5]",
-          "After pass 1: [3, 4, 1, 2, 5]"
+          "j=1: A[1]=5 > A[2]=3 → スワップ → [3,5,4,1,2]",
+          "j=2: A[2]=5 > A[3]=4 → スワップ → [3,4,5,1,2]",
+          "j=3: A[3]=5 > A[4]=1 → スワップ → [3,4,1,5,2]",
+          "j=4: A[4]=5 > A[5]=2 → スワップ → [3,4,1,2,5]",
+          "パス1後：[3, 4, 1, 2, 5]"
         ],
         "answer": "3, 4, 1, 2, 5"
       },
       "questions": [
         {
           "type": "practice",
-          "question": "What is A after the first pass of bubble sort?",
+          "question": "バブルソートの第1パス後の配列は？",
           "code": "A: [4, 2, 5, 1, 3]\nfor (j from 1 to 4) do\n  if (A[j] > A[j + 1]) then\n    tmp <- A[j]\n    A[j] <- A[j + 1]\n    A[j + 1] <- tmp\n  endif\nendfor",
           "options": [
-            {"text": "2, 4, 1, 3, 5", "correct": true},
-            {"text": "1, 2, 3, 4, 5", "correct": false},
-            {"text": "2, 4, 5, 1, 3", "correct": false},
-            {"text": "4, 2, 1, 3, 5", "correct": false}
+            {
+              "text": "2, 4, 1, 3, 5",
+              "correct": true
+            },
+            {
+              "text": "1, 2, 3, 4, 5",
+              "correct": false
+            },
+            {
+              "text": "2, 4, 5, 1, 3",
+              "correct": false
+            },
+            {
+              "text": "4, 2, 1, 3, 5",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[4,2,5,1,3]",
-            "j=1: 4>2 swap -> [2,4,5,1,3]",
-            "j=2: 4>5? no",
-            "j=3: 5>1 swap -> [2,4,1,5,3]",
-            "j=4: 5>3 swap -> [2,4,1,3,5]",
-            "Largest (5) bubbles to end",
-            "Result: 2, 4, 1, 3, 5"
+            "j=1: 4>2 スワップ → [2,4,5,1,3]",
+            "j=2: 4>5? いいえ",
+            "j=3: 5>1 スワップ → [2,4,1,5,3]",
+            "j=4: 5>3 スワップ → [2,4,1,3,5]",
+            "最大値(5)が末尾に浮上",
+            "結果：2, 4, 1, 3, 5"
           ]
         },
         {
           "type": "practice",
-          "question": "After selection sort's first iteration (i=1), what is A?",
+          "question": "選択ソートの第1反復(i=1)後、Aは？",
           "code": "A: [7, 3, 8, 1, 5]\nminPos <- 1\nfor (j from 2 to 5) do\n  if (A[j] < A[minPos]) then\n    minPos <- j\n  endif\nendfor\ntmp <- A[1]\nA[1] <- A[minPos]\nA[minPos] <- tmp",
           "options": [
-            {"text": "1, 3, 8, 7, 5", "correct": true},
-            {"text": "1, 3, 7, 8, 5", "correct": false},
-            {"text": "1, 7, 3, 8, 5", "correct": false},
-            {"text": "3, 1, 8, 7, 5", "correct": false}
+            {
+              "text": "1, 3, 8, 7, 5",
+              "correct": true
+            },
+            {
+              "text": "1, 3, 7, 8, 5",
+              "correct": false
+            },
+            {
+              "text": "1, 7, 3, 8, 5",
+              "correct": false
+            },
+            {
+              "text": "3, 1, 8, 7, 5",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[7,3,8,1,5], minPos=1",
-            "j=2: A[2]=3 < A[1]=7 -> minPos=2",
-            "j=3: A[3]=8 > A[2]=3 -> no",
-            "j=4: A[4]=1 < A[2]=3 -> minPos=4",
-            "j=5: A[5]=5 > A[4]=1 -> no",
-            "minPos=4, swap A[1] and A[4]",
+            "j=2: A[2]=3 < A[1]=7 → minPos=2",
+            "j=3: A[3]=8 > A[2]=3 → いいえ",
+            "j=4: A[4]=1 < A[2]=3 → minPos=4",
+            "j=5: A[5]=5 > A[4]=1 → いいえ",
+            "minPos=4, A[1]とA[4]をスワップ",
             "tmp=7, A[1]=1, A[4]=7",
-            "Result: 1, 3, 8, 7, 5"
+            "結果：1, 3, 8, 7, 5"
           ]
         },
         {
           "type": "practice",
-          "question": "After insertion sort's first step (i=2), what is A?",
+          "question": "挿入ソートの第1ステップ(i=2)後、Aは？",
           "code": "A: [3, 1, 4, 2]\nkey <- A[2]\nj <- 1\nwhile (j >= 1 and A[j] > key) do\n  A[j + 1] <- A[j]\n  j <- j - 1\nendwhile\nA[j + 1] <- key",
           "options": [
-            {"text": "1, 3, 4, 2", "correct": true},
-            {"text": "3, 1, 4, 2", "correct": false},
-            {"text": "1, 3, 2, 4", "correct": false},
-            {"text": "1, 4, 3, 2", "correct": false}
+            {
+              "text": "1, 3, 4, 2",
+              "correct": true
+            },
+            {
+              "text": "3, 1, 4, 2",
+              "correct": false
+            },
+            {
+              "text": "1, 3, 2, 4",
+              "correct": false
+            },
+            {
+              "text": "1, 4, 3, 2",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[3,1,4,2], key=A[2]=1, j=1",
-            "j=1: A[1]=3 > key=1 -> A[2]=A[1]=3, j=0 -> A=[3,3,4,2]",
-            "j=0: 0>=1? no -> exit while",
-            "A[0+1]=A[1]=key=1 -> A=[1,3,4,2]",
-            "Result: 1, 3, 4, 2"
+            "j=1: A[1]=3 > key=1 → A[2]=A[1]=3, j=0 → A=[3,3,4,2]",
+            "j=0: 0>=1? いいえ → while終了",
+            "A[0+1]=A[1]=key=1 → A=[1,3,4,2]",
+            "結果：1, 3, 4, 2"
           ]
         },
         {
           "type": "practice",
-          "question": "How many swaps occur in one bubble sort pass on this array?",
+          "question": "バブルソート1パスでのスワップ回数は？",
           "code": "A: [1, 2, 3, 4, 5]\ncnt <- 0\nfor (j from 1 to 4) do\n  if (A[j] > A[j + 1]) then\n    tmp <- A[j]\n    A[j] <- A[j + 1]\n    A[j + 1] <- tmp\n    cnt <- cnt + 1\n  endif\nendfor\nprint(cnt)",
           "options": [
-            {"text": "0", "correct": true},
-            {"text": "4", "correct": false},
-            {"text": "1", "correct": false},
-            {"text": "2", "correct": false}
+            {
+              "text": "0",
+              "correct": true
+            },
+            {
+              "text": "4",
+              "correct": false
+            },
+            {
+              "text": "1",
+              "correct": false
+            },
+            {
+              "text": "2",
+              "correct": false
+            }
           ],
           "steps": [
-            "A=[1,2,3,4,5] (already sorted)",
-            "j=1: 1>2? no",
-            "j=2: 2>3? no",
-            "j=3: 3>4? no",
-            "j=4: 4>5? no",
-            "No swaps needed",
-            "Output: 0"
+            "A=[1,2,3,4,5]（既にソート済み）",
+            "j=1: 1>2? いいえ",
+            "j=2: 2>3? いいえ",
+            "j=3: 3>4? いいえ",
+            "j=4: 4>5? いいえ",
+            "スワップ不要",
+            "出力：0"
           ]
         },
         {
           "type": "practice",
-          "question": "What is A[1] after the second pass of bubble sort (i=2)?",
+          "question": "バブルソート第2パス(i=2)後のA[1]は？",
           "code": "A: [5, 4, 3, 2, 1]\n// Pass 1\nfor (j from 1 to 4) do\n  if (A[j] > A[j + 1]) then\n    tmp <- A[j]; A[j] <- A[j + 1]; A[j + 1] <- tmp\n  endif\nendfor\n// Pass 2\nfor (j from 1 to 3) do\n  if (A[j] > A[j + 1]) then\n    tmp <- A[j]; A[j] <- A[j + 1]; A[j + 1] <- tmp\n  endif\nendfor\nprint(A[1])",
           "options": [
-            {"text": "2", "correct": true},
-            {"text": "1", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "4", "correct": false}
+            {
+              "text": "2",
+              "correct": true
+            },
+            {
+              "text": "1",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "4",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[5,4,3,2,1]",
-            "Pass 1: bubble largest to end",
-            "  j=1: swap(5,4) -> [4,5,3,2,1]",
-            "  j=2: swap(5,3) -> [4,3,5,2,1]",
-            "  j=3: swap(5,2) -> [4,3,2,5,1]",
-            "  j=4: swap(5,1) -> [4,3,2,1,5]",
-            "Pass 2: bubble second largest",
-            "  j=1: swap(4,3) -> [3,4,2,1,5]",
-            "  j=2: swap(4,2) -> [3,2,4,1,5]",
-            "  j=3: swap(4,1) -> [3,2,1,4,5]",
+            "パス1: 最大値を末尾へ",
+            "  j=1: swap(5,4) → [4,5,3,2,1]",
+            "  j=2: swap(5,3) → [4,3,5,2,1]",
+            "  j=3: swap(5,2) → [4,3,2,5,1]",
+            "  j=4: swap(5,1) → [4,3,2,1,5]",
+            "パス2: 2番目に大きい値を浮上",
+            "  j=1: swap(4,3) → [3,4,2,1,5]",
+            "  j=2: swap(4,2) → [3,2,4,1,5]",
+            "  j=3: swap(4,1) → [3,2,1,4,5]",
             "A[1] = 3"
           ]
         },
         {
           "type": "practice",
-          "question": "After selection sort's second iteration (i=2), what is A[2]?",
+          "question": "選択ソート第2反復(i=2)後のA[2]は？",
           "code": "A: [1, 7, 3, 9, 2, 5]\n// i=1 done: minPos=6(=1), swap -> [1,7,3,9,2,5]\n// i=2:\nminPos <- 2\nfor (j from 3 to 6) do\n  if (A[j] < A[minPos]) then\n    minPos <- j\n  endif\nendfor\ntmp <- A[2]\nA[2] <- A[minPos]\nA[minPos] <- tmp\nprint(A[2])",
           "options": [
-            {"text": "2", "correct": true},
-            {"text": "3", "correct": false},
-            {"text": "5", "correct": false},
-            {"text": "7", "correct": false}
+            {
+              "text": "2",
+              "correct": true
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "7",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[1,7,3,9,2,5], minPos=2",
-            "j=3: A[3]=3 < A[2]=7 -> minPos=3",
-            "j=4: A[4]=9 > A[3]=3 -> no",
-            "j=5: A[5]=2 < A[3]=3 -> minPos=5",
-            "j=6: A[6]=5 > A[5]=2 -> no",
-            "minPos=5, swap A[2] and A[5]",
+            "j=3: A[3]=3 < A[2]=7 → minPos=3",
+            "j=4: A[4]=9 > A[3]=3 → いいえ",
+            "j=5: A[5]=2 < A[3]=3 → minPos=5",
+            "j=6: A[6]=5 > A[5]=2 → いいえ",
+            "minPos=5, A[2]とA[5]をスワップ",
             "A[2]=2, A[5]=7",
             "A = [1,2,3,9,7,5]",
             "A[2] = 2"
@@ -1637,77 +2585,125 @@
         },
         {
           "type": "practice",
-          "question": "How many passes does bubble sort need to fully sort [5,1,2,3,4]?",
+          "question": "[5,1,2,3,4]を完全にソートするのに何パス必要？",
           "code": "// After how many outer loop iterations is the array sorted?\nA: [5, 1, 2, 3, 4]\nfor (i from 1 to 4) do\n  for (j from 1 to 5 - i) do\n    if (A[j] > A[j + 1]) then\n      tmp <- A[j]; A[j] <- A[j + 1]; A[j + 1] <- tmp\n    endif\n  endfor\nendfor",
           "options": [
-            {"text": "4", "correct": true},
-            {"text": "1", "correct": false},
-            {"text": "2", "correct": false},
-            {"text": "3", "correct": false}
+            {
+              "text": "4",
+              "correct": true
+            },
+            {
+              "text": "1",
+              "correct": false
+            },
+            {
+              "text": "2",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[5,1,2,3,4]",
-            "Pass 1: 5 bubbles to end: [1,2,3,4,5]",
-            "Pass 2: already sorted, 0 swaps",
-            "Pass 3: already sorted, 0 swaps",
-            "Pass 4: already sorted, 0 swaps",
-            "Technically fully sorted after pass 1, but the algorithm runs all 4 passes",
-            "Output: 4 (the loop runs 4 times)"
+            "パス1: 5が末尾へ → [1,2,3,4,5]",
+            "パス2: 既にソート済み、スワップ0回",
+            "パス3: 既にソート済み、スワップ0回",
+            "パス4: 既にソート済み、スワップ0回",
+            "パス1でソート済みだが、アルゴリズムは4パス実行する",
+            "出力：4（ループは4回実行される）"
           ]
         },
         {
           "type": "practice",
-          "question": "After insertion sort step i=3, what is A?",
+          "question": "挿入ソートステップi=3後、Aは？",
           "code": "A: [2, 5, 3, 4, 1]\n// After i=2: [2,5,3,4,1] (no shift needed)\n// i=3:\nkey <- A[3]\nj <- 2\nwhile (j >= 1 and A[j] > key) do\n  A[j + 1] <- A[j]\n  j <- j - 1\nendwhile\nA[j + 1] <- key",
           "options": [
-            {"text": "2, 3, 5, 4, 1", "correct": true},
-            {"text": "2, 5, 3, 4, 1", "correct": false},
-            {"text": "3, 2, 5, 4, 1", "correct": false},
-            {"text": "2, 3, 4, 5, 1", "correct": false}
+            {
+              "text": "2, 3, 5, 4, 1",
+              "correct": true
+            },
+            {
+              "text": "2, 5, 3, 4, 1",
+              "correct": false
+            },
+            {
+              "text": "3, 2, 5, 4, 1",
+              "correct": false
+            },
+            {
+              "text": "2, 3, 4, 5, 1",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[2,5,3,4,1], key=A[3]=3, j=2",
-            "j=2: A[2]=5 > 3 -> A[3]=5, j=1 -> A=[2,5,5,4,1]",
-            "j=1: A[1]=2 > 3? no -> exit while",
+            "j=2: A[2]=5 > 3 → A[3]=5, j=1 → A=[2,5,5,4,1]",
+            "j=1: A[1]=2 > 3? いいえ → while終了",
             "A[2] = key = 3",
             "A = [2,3,5,4,1]",
-            "Result: 2, 3, 5, 4, 1"
+            "結果：2, 3, 5, 4, 1"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the total number of comparisons in bubble sort for [3,2,1]?",
+          "question": "[3,2,1]のバブルソートの総比較回数は？",
           "code": "A: [3, 2, 1]\ncnt <- 0\nfor (i from 1 to 2) do\n  for (j from 1 to 3 - i) do\n    cnt <- cnt + 1\n    if (A[j] > A[j + 1]) then\n      tmp <- A[j]; A[j] <- A[j + 1]; A[j + 1] <- tmp\n    endif\n  endfor\nendfor\nprint(cnt)",
           "options": [
-            {"text": "3", "correct": true},
-            {"text": "4", "correct": false},
-            {"text": "6", "correct": false},
-            {"text": "2", "correct": false}
+            {
+              "text": "3",
+              "correct": true
+            },
+            {
+              "text": "4",
+              "correct": false
+            },
+            {
+              "text": "6",
+              "correct": false
+            },
+            {
+              "text": "2",
+              "correct": false
+            }
           ],
           "steps": [
-            "Pass 1 (i=1): j from 1 to 2 -> 2 comparisons",
-            "Pass 2 (i=2): j from 1 to 1 -> 1 comparison",
-            "Total: 2 + 1 = 3 comparisons",
-            "Output: 3"
+            "パス1(i=1): j from 1 to 2 → 2回の比較",
+            "パス2(i=2): j from 1 to 1 → 1回の比較",
+            "合計：2 + 1 = 3回の比較",
+            "出力：3"
           ]
         },
         {
           "type": "practice",
-          "question": "What is A after selection sort completes (all 5 iterations)?",
+          "question": "選択ソート完了後（全5反復）のAは？",
           "code": "A: [3, 1, 4, 1, 5]\nfor (i from 1 to 4) do\n  minPos <- i\n  for (j from i + 1 to 5) do\n    if (A[j] < A[minPos]) then\n      minPos <- j\n    endif\n  endfor\n  tmp <- A[i]; A[i] <- A[minPos]; A[minPos] <- tmp\nendfor",
           "options": [
-            {"text": "1, 1, 3, 4, 5", "correct": true},
-            {"text": "1, 1, 3, 5, 4", "correct": false},
-            {"text": "1, 3, 1, 4, 5", "correct": false},
-            {"text": "1, 3, 4, 5, 1", "correct": false}
+            {
+              "text": "1, 1, 3, 4, 5",
+              "correct": true
+            },
+            {
+              "text": "1, 1, 3, 5, 4",
+              "correct": false
+            },
+            {
+              "text": "1, 3, 1, 4, 5",
+              "correct": false
+            },
+            {
+              "text": "1, 3, 4, 5, 1",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[3,1,4,1,5]",
-            "i=1: min at j=2 (A[2]=1), swap(1,2) -> [1,3,4,1,5]",
-            "i=2: min at j=4 (A[4]=1), swap(2,4) -> [1,1,4,3,5]",
-            "i=3: min at j=4 (A[4]=3), swap(3,4) -> [1,1,3,4,5]",
-            "i=4: min at j=4 (A[4]=4), no swap -> [1,1,3,4,5]",
-            "Result: 1, 1, 3, 4, 5"
+            "i=1: min at j=2 (A[2]=1), swap(1,2) → [1,3,4,1,5]",
+            "i=2: min at j=4 (A[4]=1), swap(2,4) → [1,1,4,3,5]",
+            "i=3: min at j=4 (A[4]=3), swap(3,4) → [1,1,3,4,5]",
+            "i=4: min at j=4 (A[4]=4), スワップなし → [1,1,3,4,5]",
+            "結果：1, 1, 3, 4, 5"
           ]
         }
       ]
@@ -1717,15 +2713,15 @@
       "title": "Recursion",
       "titleJa": "再帰",
       "difficulty": 3,
-      "cheatsheet": "=== Recursion in Pseudo-Language ===\n\n[Factorial]\nfunction fact(n: integer): integer\n  if (n <= 1) then\n    return 1\n  endif\n  return n * fact(n - 1)\nendfunction\nfact(5) = 5 * fact(4) = 5 * 4 * 3 * 2 * 1 = 120\n\n[Fibonacci]\nfunction fib(n: integer): integer\n  if (n <= 1) then\n    return n\n  endif\n  return fib(n-1) + fib(n-2)\nendfunction\nfib(5) = 5, fib(6) = 8\n\n[Recursive Sum]\nfunction rsum(A: array, n: integer): integer\n  if (n = 0) then\n    return 0\n  endif\n  return A[n] + rsum(A, n - 1)\nendfunction\n\n[GCD (Euclidean)]\nfunction gcd(a: integer, b: integer): integer\n  if (b = 0) then\n    return a\n  endif\n  return gcd(b, a mod b)\nendfunction",
+      "cheatsheet": "=== 擬似言語の再帰 ===\n\n[階乗]\nfunction fact(n: integer): integer\n  if (n <= 1) then\n    return 1\n  endif\n  return n * fact(n - 1)\nendfunction\nfact(5) = 5 * fact(4) = 5 * 4 * 3 * 2 * 1 = 120\n\n[フィボナッチ]\nfunction fib(n: integer): integer\n  if (n <= 1) then\n    return n\n  endif\n  return fib(n-1) + fib(n-2)\nendfunction\nfib(5) = 5, fib(6) = 8\n\n[再帰的合計]\nfunction rsum(A: array, n: integer): integer\n  if (n = 0) then\n    return 0\n  endif\n  return A[n] + rsum(A, n - 1)\nendfunction\n\n[GCD（ユークリッド）]\nfunction gcd(a: integer, b: integer): integer\n  if (b = 0) then\n    return a\n  endif\n  return gcd(b, a mod b)\nendfunction",
       "example": {
-        "question": "What is fact(4)?",
+        "question": "fact(4)は？",
         "code": "function fact(n: integer): integer\n  if (n <= 1) then\n    return 1\n  endif\n  return n * fact(n - 1)\nendfunction\n\nresult <- fact(4)\nprint(result)",
         "steps": [
           "fact(4) = 4 * fact(3)",
           "fact(3) = 3 * fact(2)",
           "fact(2) = 2 * fact(1)",
-          "fact(1) = 1 (base case)",
+          "fact(1) = 1（ベースケース）",
           "fact(2) = 2 * 1 = 2",
           "fact(3) = 3 * 2 = 6",
           "fact(4) = 4 * 6 = 24"
@@ -1735,13 +2731,25 @@
       "questions": [
         {
           "type": "practice",
-          "question": "What is fact(5)?",
+          "question": "fact(5)は？",
           "code": "function fact(n: integer): integer\n  if (n <= 1) then return 1 endif\n  return n * fact(n - 1)\nendfunction\nprint(fact(5))",
           "options": [
-            {"text": "120", "correct": true},
-            {"text": "60", "correct": false},
-            {"text": "24", "correct": false},
-            {"text": "25", "correct": false}
+            {
+              "text": "120",
+              "correct": true
+            },
+            {
+              "text": "60",
+              "correct": false
+            },
+            {
+              "text": "24",
+              "correct": false
+            },
+            {
+              "text": "25",
+              "correct": false
+            }
           ],
           "steps": [
             "fact(5) = 5 * fact(4) = 5 * 24 = 120",
@@ -1749,18 +2757,30 @@
             "fact(3) = 3 * 2 = 6",
             "fact(2) = 2 * 1 = 2",
             "fact(1) = 1",
-            "Output: 120"
+            "出力：120"
           ]
         },
         {
           "type": "practice",
-          "question": "What is fib(5)?",
+          "question": "fib(5)は？",
           "code": "function fib(n: integer): integer\n  if (n <= 0) then return 0 endif\n  if (n = 1) then return 1 endif\n  return fib(n-1) + fib(n-2)\nendfunction\nprint(fib(5))",
           "options": [
-            {"text": "5", "correct": true},
-            {"text": "8", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "13", "correct": false}
+            {
+              "text": "5",
+              "correct": true
+            },
+            {
+              "text": "8",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "13",
+              "correct": false
+            }
           ],
           "steps": [
             "fib(5) = fib(4) + fib(3)",
@@ -1768,52 +2788,88 @@
             "fib(3) = fib(2) + fib(1) = 1+0+1 = 2",
             "fib(2) = fib(1) + fib(0) = 1+0 = 1",
             "fib(5) = 3 + 2 = 5",
-            "Output: 5"
+            "出力：5"
           ]
         },
         {
           "type": "practice",
-          "question": "What is fib(7)?",
+          "question": "fib(7)は？",
           "code": "function fib(n: integer): integer\n  if (n <= 0) then return 0 endif\n  if (n = 1) then return 1 endif\n  return fib(n-1) + fib(n-2)\nendfunction\nprint(fib(7))",
           "options": [
-            {"text": "13", "correct": true},
-            {"text": "8", "correct": false},
-            {"text": "21", "correct": false},
-            {"text": "10", "correct": false}
+            {
+              "text": "13",
+              "correct": true
+            },
+            {
+              "text": "8",
+              "correct": false
+            },
+            {
+              "text": "21",
+              "correct": false
+            },
+            {
+              "text": "10",
+              "correct": false
+            }
           ],
           "steps": [
-            "fib sequence: 0,1,1,2,3,5,8,13,21,...",
+            "フィボナッチ数列：0,1,1,2,3,5,8,13,21,...",
             "fib(0)=0, fib(1)=1, fib(2)=1, fib(3)=2, fib(4)=3, fib(5)=5, fib(6)=8, fib(7)=13",
-            "Output: 13"
+            "出力：13"
           ]
         },
         {
           "type": "practice",
-          "question": "What is gcd(48, 18)?",
+          "question": "gcd(48, 18)は？",
           "code": "function gcd(a: integer, b: integer): integer\n  if (b = 0) then\n    return a\n  endif\n  return gcd(b, a mod b)\nendfunction\nprint(gcd(48, 18))",
           "options": [
-            {"text": "6", "correct": true},
-            {"text": "2", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "18", "correct": false}
+            {
+              "text": "6",
+              "correct": true
+            },
+            {
+              "text": "2",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "18",
+              "correct": false
+            }
           ],
           "steps": [
-            "gcd(48,18): b=18 != 0 -> gcd(18, 48 mod 18) = gcd(18, 12)",
-            "gcd(18,12): b=12 != 0 -> gcd(12, 18 mod 12) = gcd(12, 6)",
-            "gcd(12,6): b=6 != 0 -> gcd(6, 12 mod 6) = gcd(6, 0)",
-            "gcd(6,0): b=0 -> return 6",
-            "Output: 6"
+            "gcd(48,18): b=18 ≠ 0 → gcd(18, 48 mod 18) = gcd(18, 12)",
+            "gcd(18,12): b=12 ≠ 0 → gcd(12, 18 mod 12) = gcd(12, 6)",
+            "gcd(12,6): b=6 ≠ 0 → gcd(6, 12 mod 6) = gcd(6, 0)",
+            "gcd(6,0): b=0 → 6を返す",
+            "出力：6"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of sum?",
+          "question": "sumの値は？",
           "code": "function rsum(n: integer): integer\n  if (n = 0) then return 0 endif\n  return n + rsum(n - 1)\nendfunction\nprint(rsum(5))",
           "options": [
-            {"text": "15", "correct": true},
-            {"text": "10", "correct": false},
-            {"text": "5", "correct": false},
-            {"text": "20", "correct": false}
+            {
+              "text": "15",
+              "correct": true
+            },
+            {
+              "text": "10",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "20",
+              "correct": false
+            }
           ],
           "steps": [
             "rsum(5) = 5 + rsum(4)",
@@ -1823,56 +2879,92 @@
             "rsum(1) = 1 + rsum(0)",
             "rsum(0) = 0",
             "rsum(5) = 5+4+3+2+1+0 = 15",
-            "Output: 15"
+            "出力：15"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of f(4)?",
+          "question": "f(4)の値は？",
           "code": "function f(n: integer): integer\n  if (n <= 1) then return 1 endif\n  return f(n - 1) + f(n - 2) + 1\nendfunction\nprint(f(4))",
           "options": [
-            {"text": "8", "correct": true},
-            {"text": "7", "correct": false},
-            {"text": "5", "correct": false},
-            {"text": "9", "correct": false}
+            {
+              "text": "8",
+              "correct": true
+            },
+            {
+              "text": "7",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "9",
+              "correct": false
+            }
           ],
           "steps": [
             "f(0) = 1, f(1) = 1",
             "f(2) = f(1)+f(0)+1 = 1+1+1 = 3",
             "f(3) = f(2)+f(1)+1 = 3+1+1 = 5",
             "f(4) = f(3)+f(2)+1 = 5+3+1 = 9",
-            "Output: 9"
+            "出力：9"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of pow(2, 8)?",
+          "question": "pow(2, 8)の値は？",
           "code": "function pow(base: integer, exp: integer): integer\n  if (exp = 0) then return 1 endif\n  return base * pow(base, exp - 1)\nendfunction\nprint(pow(2, 8))",
           "options": [
-            {"text": "256", "correct": true},
-            {"text": "128", "correct": false},
-            {"text": "64", "correct": false},
-            {"text": "512", "correct": false}
+            {
+              "text": "256",
+              "correct": true
+            },
+            {
+              "text": "128",
+              "correct": false
+            },
+            {
+              "text": "64",
+              "correct": false
+            },
+            {
+              "text": "512",
+              "correct": false
+            }
           ],
           "steps": [
             "pow(2,8) = 2 * pow(2,7) = 2 * 128 = 256",
             "pow(2,7) = 2 * pow(2,6) = 2 * 64 = 128",
             "pow(2,6) = 2 * pow(2,5) = 2 * 32 = 64",
-            "... and so on",
+            "... 以降同様",
             "pow(2,0) = 1",
             "2^8 = 256",
-            "Output: 256"
+            "出力：256"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of rsum_arr with A=[10,20,30]?",
+          "question": "A=[10,20,30]のrsum_arrは？",
           "code": "A: [10, 20, 30]\nfunction rsum_arr(n: integer): integer\n  if (n = 0) then return 0 endif\n  return A[n] + rsum_arr(n - 1)\nendfunction\nprint(rsum_arr(3))",
           "options": [
-            {"text": "60", "correct": true},
-            {"text": "30", "correct": false},
-            {"text": "10", "correct": false},
-            {"text": "50", "correct": false}
+            {
+              "text": "60",
+              "correct": true
+            },
+            {
+              "text": "30",
+              "correct": false
+            },
+            {
+              "text": "10",
+              "correct": false
+            },
+            {
+              "text": "50",
+              "correct": false
+            }
           ],
           "steps": [
             "rsum_arr(3) = A[3] + rsum_arr(2) = 30 + rsum_arr(2)",
@@ -1880,44 +2972,68 @@
             "rsum_arr(1) = A[1] + rsum_arr(0) = 10 + 0 = 10",
             "rsum_arr(2) = 20 + 10 = 30",
             "rsum_arr(3) = 30 + 30 = 60",
-            "Output: 60"
+            "出力：60"
           ]
         },
         {
           "type": "practice",
-          "question": "What is gcd(35, 14)?",
+          "question": "gcd(35, 14)は？",
           "code": "function gcd(a: integer, b: integer): integer\n  if (b = 0) then return a endif\n  return gcd(b, a mod b)\nendfunction\nprint(gcd(35, 14))",
           "options": [
-            {"text": "7", "correct": true},
-            {"text": "14", "correct": false},
-            {"text": "1", "correct": false},
-            {"text": "5", "correct": false}
+            {
+              "text": "7",
+              "correct": true
+            },
+            {
+              "text": "14",
+              "correct": false
+            },
+            {
+              "text": "1",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            }
           ],
           "steps": [
-            "gcd(35,14) -> gcd(14, 35 mod 14) = gcd(14, 7)",
-            "gcd(14,7) -> gcd(7, 14 mod 7) = gcd(7, 0)",
-            "gcd(7,0) -> return 7",
-            "Output: 7"
+            "gcd(35,14) → gcd(14, 35 mod 14) = gcd(14, 7)",
+            "gcd(14,7) → gcd(7, 14 mod 7) = gcd(7, 0)",
+            "gcd(7,0) → 7を返す",
+            "出力：7"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of f(6)?",
+          "question": "f(6)の値は？（コラッツ数列）",
           "code": "function f(n: integer): integer\n  if (n = 1) then return 1 endif\n  if (n mod 2 = 0) then\n    return f(n / 2)\n  else\n    return f(3 * n + 1)\n  endif\nendfunction\nprint(f(6))",
           "options": [
-            {"text": "1", "correct": true},
-            {"text": "3", "correct": false},
-            {"text": "10", "correct": false},
-            {"text": "infinite", "correct": false}
+            {
+              "text": "1",
+              "correct": true
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "10",
+              "correct": false
+            },
+            {
+              "text": "infinite",
+              "correct": false
+            }
           ],
           "steps": [
-            "f(6): even -> f(6/2) = f(3)",
-            "f(3): odd -> f(3*3+1) = f(10)",
-            "f(10): even -> f(10/2) = f(5)",
-            "f(5): odd -> f(3*5+1) = f(16)",
-            "f(16): even -> f(8) -> f(4) -> f(2) -> f(1)",
-            "f(1) = 1 (Collatz sequence)",
-            "Output: 1"
+            "f(6): 偶数 → f(6/2) = f(3)",
+            "f(3): 奇数 → f(3×3+1) = f(10)",
+            "f(10): 偶数 → f(10/2) = f(5)",
+            "f(5): 奇数 → f(3×5+1) = f(16)",
+            "f(16): 偶数 → f(8) → f(4) → f(2) → f(1)",
+            "f(1) = 1（コラッツ数列）",
+            "出力：1"
           ]
         }
       ]
@@ -1927,9 +3043,9 @@
       "title": "Data Structures",
       "titleJa": "データ構造",
       "difficulty": 3,
-      "cheatsheet": "=== Data Structures in Pseudo-Language ===\n\n[Stack - LIFO: Last In First Out]\npush(x): add x to top\npop(): remove and return top\npeek/top: look at top element\n\n[Queue - FIFO: First In First Out]\nenqueue(x): add to rear\ndequeue(): remove from front\n\n[Stack using array]\ntop <- 0\n// push(x):\ntop <- top + 1\nS[top] <- x\n// pop():\nresult <- S[top]\ntop <- top - 1\n\n[Queue using array]\nfront <- 1\nrear <- 0\n// enqueue(x):\nrear <- rear + 1\nQ[rear] <- x\n// dequeue():\nresult <- Q[front]\nfront <- front + 1\n\n[Linked List]\nEach node has: data, next pointer\nTraversal: follow next until null\n\n[Tree Traversal]\nPre-order:  root, left, right\nIn-order:   left, root, right\nPost-order: left, right, root",
+      "cheatsheet": "=== 擬似言語のデータ構造 ===\n\n[スタック - LIFO：後入先出]\npush(x)：先頭にxを追加\npop()：先頭を削除して返す\npeek/top：先頭要素を見る\n\n[キュー - FIFO：先入先出]\nenqueue(x)：末尾に追加\ndequeue()：先頭から削除\n\n[配列によるスタック]\ntop <- 0\n// push(x):\ntop <- top + 1\nS[top] <- x\n// pop():\nresult <- S[top]\ntop <- top - 1\n\n[配列によるキュー]\nfront <- 1\nrear <- 0\n// enqueue(x):\nrear <- rear + 1\nQ[rear] <- x\n// dequeue():\nresult <- Q[front]\nfront <- front + 1\n\n[連結リスト]\n各ノードは：data, nextポインタ\n走査：nextがnullになるまでたどる\n\n[木の走査]\n行きがけ順：根、左、右\n通りがけ順：左、根、右\n帰りがけ順：左、右、根",
       "example": {
-        "question": "After these stack operations, what is popped?",
+        "question": "次のスタック操作後、popした値は？",
         "code": "S: array of integer\ntop <- 0\n// push\npush(3): top <- 1; S[1] <- 3\npush(5): top <- 2; S[2] <- 5\npush(1): top <- 3; S[3] <- 1\n// pop\ntop <- top - 1\nresult <- S[top + 1]\n// pop again\ntop <- top - 1\nresult <- S[top + 1]\nprint(result)",
         "steps": [
           "push(3): S=[3], top=1",
@@ -1937,20 +3053,32 @@
           "push(1): S=[3,5,1], top=3",
           "pop: top=2, result=S[3]=1",
           "pop: top=1, result=S[2]=5",
-          "Output: 5"
+          "出力：5"
         ],
         "answer": "5"
       },
       "questions": [
         {
           "type": "practice",
-          "question": "After these operations, what is the top of the stack?",
+          "question": "次の操作後、スタックの先頭は？",
           "code": "S: array of integer\ntop <- 0\ntop <- top + 1; S[1] <- 10\ntop <- top + 1; S[2] <- 20\ntop <- top - 1\ntop <- top + 1; S[2] <- 30\nprint(S[top])",
           "options": [
-            {"text": "30", "correct": true},
-            {"text": "20", "correct": false},
-            {"text": "10", "correct": false},
-            {"text": "0", "correct": false}
+            {
+              "text": "30",
+              "correct": true
+            },
+            {
+              "text": "20",
+              "correct": false
+            },
+            {
+              "text": "10",
+              "correct": false
+            },
+            {
+              "text": "0",
+              "correct": false
+            }
           ],
           "steps": [
             "push 10: top=1, S=[10]",
@@ -1958,154 +3086,250 @@
             "pop: top=1",
             "push 30: top=2, S=[10,30]",
             "S[top] = S[2] = 30",
-            "Output: 30"
+            "出力：30"
           ]
         },
         {
           "type": "practice",
-          "question": "After these queue operations, what is dequeued?",
+          "question": "次のキュー操作後、デキューされる値は？",
           "code": "Q: array of integer\nfront <- 1; rear <- 0\nrear <- rear + 1; Q[1] <- 100\nrear <- rear + 1; Q[2] <- 200\nrear <- rear + 1; Q[3] <- 300\nresult <- Q[front]\nfront <- front + 1\nprint(result)",
           "options": [
-            {"text": "100", "correct": true},
-            {"text": "300", "correct": false},
-            {"text": "200", "correct": false},
-            {"text": "0", "correct": false}
+            {
+              "text": "100",
+              "correct": true
+            },
+            {
+              "text": "300",
+              "correct": false
+            },
+            {
+              "text": "200",
+              "correct": false
+            },
+            {
+              "text": "0",
+              "correct": false
+            }
           ],
           "steps": [
             "enqueue(100): rear=1, Q[1]=100",
             "enqueue(200): rear=2, Q[2]=200",
             "enqueue(300): rear=3, Q[3]=300",
             "dequeue: result=Q[1]=100, front=2",
-            "FIFO: first in (100) is first out",
-            "Output: 100"
+            "FIFO：先に入った(100)が先に出る",
+            "出力：100"
           ]
         },
         {
           "type": "practice",
-          "question": "After two dequeues, what is the next dequeued value?",
+          "question": "2回デキュー後、次にデキューされる値は？",
           "code": "Q: array of integer\nfront <- 1; rear <- 0\nrear <- rear + 1; Q[1] <- 5\nrear <- rear + 1; Q[2] <- 8\nrear <- rear + 1; Q[3] <- 3\n// dequeue twice\nfront <- front + 1\nfront <- front + 1\nresult <- Q[front]\nfront <- front + 1\nprint(result)",
           "options": [
-            {"text": "3", "correct": true},
-            {"text": "8", "correct": false},
-            {"text": "5", "correct": false},
-            {"text": "0", "correct": false}
+            {
+              "text": "3",
+              "correct": true
+            },
+            {
+              "text": "8",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "0",
+              "correct": false
+            }
           ],
           "steps": [
             "Q=[5,8,3], front=1, rear=3",
-            "1st dequeue: front=2",
-            "2nd dequeue: front=3",
-            "3rd dequeue: result=Q[3]=3, front=4",
-            "Output: 3"
+            "1回目デキュー: front=2",
+            "2回目デキュー: front=3",
+            "3回目デキュー: result=Q[3]=3, front=4",
+            "出力：3"
           ]
         },
         {
           "type": "practice",
-          "question": "In pre-order traversal (root, left, right), what is visited first?",
+          "question": "行きがけ順走査（根、左、右）で最初に訪問されるのは？",
           "code": "// Tree structure:\n//       A\n//      / \\\n//     B   C\n//    / \\\n//   D   E\n//\n// Pre-order: root, left subtree, right subtree",
           "options": [
-            {"text": "A", "correct": true},
-            {"text": "D", "correct": false},
-            {"text": "B", "correct": false},
-            {"text": "C", "correct": false}
+            {
+              "text": "A",
+              "correct": true
+            },
+            {
+              "text": "D",
+              "correct": false
+            },
+            {
+              "text": "B",
+              "correct": false
+            },
+            {
+              "text": "C",
+              "correct": false
+            }
           ],
           "steps": [
-            "Pre-order: visit root first, then left, then right",
-            "Start at root A",
-            "Pre-order visits: A, B, D, E, C",
-            "First visited: A",
-            "Output: A"
+            "行きがけ順：根を最初に訪問し、次に左、次に右",
+            "根Aから開始",
+            "行きがけ順の訪問：A, B, D, E, C",
+            "最初に訪問：A",
+            "出力：A"
           ]
         },
         {
           "type": "practice",
-          "question": "In-order traversal of this binary search tree gives what sequence?",
+          "question": "この二分探索木の通りがけ順走査ではどの順序？",
           "code": "// BST:\n//       4\n//      / \\\n//     2   6\n//    / \\ / \\\n//   1  3 5  7\n//\n// In-order: left, root, right",
           "options": [
-            {"text": "1, 2, 3, 4, 5, 6, 7", "correct": true},
-            {"text": "4, 2, 1, 3, 6, 5, 7", "correct": false},
-            {"text": "1, 3, 2, 5, 7, 6, 4", "correct": false},
-            {"text": "7, 6, 5, 4, 3, 2, 1", "correct": false}
+            {
+              "text": "1, 2, 3, 4, 5, 6, 7",
+              "correct": true
+            },
+            {
+              "text": "4, 2, 1, 3, 6, 5, 7",
+              "correct": false
+            },
+            {
+              "text": "1, 3, 2, 5, 7, 6, 4",
+              "correct": false
+            },
+            {
+              "text": "7, 6, 5, 4, 3, 2, 1",
+              "correct": false
+            }
           ],
           "steps": [
-            "In-order traversal: left, root, right",
-            "Visit left subtree of 4: in-order of subtree rooted at 2",
-            "  Left of 2: 1, then 2, then right of 2: 3 -> 1,2,3",
-            "Visit root: 4",
-            "Visit right subtree of 4: in-order of subtree rooted at 6",
-            "  Left of 6: 5, then 6, then right of 6: 7 -> 5,6,7",
-            "Full: 1,2,3,4,5,6,7 (sorted!)",
-            "Output: 1, 2, 3, 4, 5, 6, 7"
+            "通りがけ順走査：左、根、右",
+            "4の左部分木の通りがけ順：2を根とする部分木",
+            "  2の左：1、次に2、次に2の右：3 → 1,2,3",
+            "根を訪問：4",
+            "4の右部分木：6を根とする部分木",
+            "  6の左：5、次に6、次に6の右：7 → 5,6,7",
+            "全体：1,2,3,4,5,6,7（ソート済み！）",
+            "出力：1, 2, 3, 4, 5, 6, 7"
           ]
         },
         {
           "type": "practice",
-          "question": "After these stack operations, how many elements remain?",
+          "question": "次のスタック操作後、残っている要素数は？",
           "code": "S: array of integer\ntop <- 0\n// push 5, 3, 7, 2\ntop <- top + 1; S[1] <- 5\ntop <- top + 1; S[2] <- 3\ntop <- top + 1; S[3] <- 7\ntop <- top + 1; S[4] <- 2\n// pop twice\ntop <- top - 1\ntop <- top - 1\n// push 9\ntop <- top + 1; S[3] <- 9\nprint(top)",
           "options": [
-            {"text": "3", "correct": true},
-            {"text": "2", "correct": false},
-            {"text": "4", "correct": false},
-            {"text": "1", "correct": false}
+            {
+              "text": "3",
+              "correct": true
+            },
+            {
+              "text": "2",
+              "correct": false
+            },
+            {
+              "text": "4",
+              "correct": false
+            },
+            {
+              "text": "1",
+              "correct": false
+            }
           ],
           "steps": [
             "push 5,3,7,2: top=4",
             "pop: top=3",
             "pop: top=2",
             "push 9: top=3",
-            "top = 3 (3 elements in stack: 5,3,9)",
-            "Output: 3"
+            "top = 3（スタック内に3要素：5,3,9）",
+            "出力：3"
           ]
         },
         {
           "type": "practice",
-          "question": "Post-order traversal of this tree gives what as the last element?",
+          "question": "この木の帰りがけ順走査で最後の要素は？",
           "code": "// Tree:\n//     A\n//    / \\\n//   B   C\n//  /\n// D\n//\n// Post-order: left, right, root",
           "options": [
-            {"text": "A", "correct": true},
-            {"text": "C", "correct": false},
-            {"text": "D", "correct": false},
-            {"text": "B", "correct": false}
+            {
+              "text": "A",
+              "correct": true
+            },
+            {
+              "text": "C",
+              "correct": false
+            },
+            {
+              "text": "D",
+              "correct": false
+            },
+            {
+              "text": "B",
+              "correct": false
+            }
           ],
           "steps": [
-            "Post-order: left, right, root",
-            "Visit left subtree of A (rooted at B): post-order of B's subtree",
-            "  Left of B: D -> D",
-            "  Right of B: none",
-            "  Root B -> B",
-            "  So: D, B",
-            "Visit right subtree of A: just C -> C",
-            "Visit root A -> A",
-            "Full: D, B, C, A",
-            "Last element: A",
-            "Output: A"
+            "帰りがけ順：左、右、根",
+            "Aの左部分木（Bを根とする）の帰りがけ順",
+            "  Bの左：D → D",
+            "  Bの右：なし",
+            "  根B → B",
+            "  よって：D, B",
+            "Aの右部分木：Cのみ → C",
+            "根A → A",
+            "全体：D, B, C, A",
+            "最後の要素：A",
+            "出力：A"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the stack size after these operations?",
+          "question": "次の操作後のスタックサイズは？",
           "code": "S: array of integer\ntop <- 0\nfor (i from 1 to 5) do\n  top <- top + 1\n  S[top] <- i\nendfor\nfor (i from 1 to 3) do\n  top <- top - 1\nendfor\nprint(top)",
           "options": [
-            {"text": "2", "correct": true},
-            {"text": "3", "correct": false},
-            {"text": "5", "correct": false},
-            {"text": "0", "correct": false}
+            {
+              "text": "2",
+              "correct": true
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "0",
+              "correct": false
+            }
           ],
           "steps": [
-            "Push 5 elements: top = 5",
-            "Pop 3 elements: top = 5 - 3 = 2",
-            "Stack has 2 elements remaining",
-            "Output: 2"
+            "5要素push: top = 5",
+            "3要素pop: top = 5 - 3 = 2",
+            "スタックに2要素が残っている",
+            "出力：2"
           ]
         },
         {
           "type": "practice",
-          "question": "After these queue operations, what is the front element?",
+          "question": "次のキュー操作後、先頭要素は？",
           "code": "Q: array of integer\nfront <- 1; rear <- 0\nrear <- rear + 1; Q[1] <- 10\nrear <- rear + 1; Q[2] <- 20\nfront <- front + 1\nrear <- rear + 1; Q[3] <- 30\nprint(Q[front])",
           "options": [
-            {"text": "20", "correct": true},
-            {"text": "10", "correct": false},
-            {"text": "30", "correct": false},
-            {"text": "0", "correct": false}
+            {
+              "text": "20",
+              "correct": true
+            },
+            {
+              "text": "10",
+              "correct": false
+            },
+            {
+              "text": "30",
+              "correct": false
+            },
+            {
+              "text": "0",
+              "correct": false
+            }
           ],
           "steps": [
             "enqueue(10): rear=1, Q[1]=10",
@@ -2113,29 +3337,41 @@
             "dequeue: front=2",
             "enqueue(30): rear=3, Q[3]=30",
             "Q[front] = Q[2] = 20",
-            "Output: 20"
+            "出力：20"
           ]
         },
         {
           "type": "practice",
-          "question": "Pre-order traversal of this tree gives what as the second element?",
+          "question": "この木の行きがけ順走査で2番目の要素は？",
           "code": "// Tree:\n//       1\n//      / \\\n//     2   3\n//    / \\\n//   4   5\n//\n// Pre-order: root, left, right",
           "options": [
-            {"text": "2", "correct": true},
-            {"text": "4", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "1", "correct": false}
+            {
+              "text": "2",
+              "correct": true
+            },
+            {
+              "text": "4",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "1",
+              "correct": false
+            }
           ],
           "steps": [
-            "Pre-order: root, left subtree, right subtree",
-            "Visit root: 1 (1st)",
-            "Visit left subtree of 1 (rooted at 2):",
-            "  Visit root 2: 2 (2nd)",
-            "  Visit left: 4, then right: 5",
-            "Visit right subtree: 3",
-            "Full sequence: 1, 2, 4, 5, 3",
-            "Second element: 2",
-            "Output: 2"
+            "行きがけ順：根、左部分木、右部分木",
+            "根を訪問：1（1番目）",
+            "1の左部分木（2を根とする）を訪問：",
+            "  根2を訪問：2（2番目）",
+            "  左：4、次に右：5",
+            "右部分木：3",
+            "全体順序：1, 2, 4, 5, 3",
+            "2番目の要素：2",
+            "出力：2"
           ]
         }
       ]
@@ -2145,215 +3381,335 @@
       "title": "Bug Detection",
       "titleJa": "バグ検出",
       "difficulty": 3,
-      "cheatsheet": "=== Common Bugs in Pseudo-Language ===\n\n[Off-by-one errors]\n- Array is 1-indexed, not 0-indexed\n- for (i from 1 to N) has N iterations, not N-1\n- Loop from 1 to N-1 for N-1 iterations\n\n[Infinite loops]\n- Counter never changes inside loop\n- Counter changes wrong direction\n- Condition never becomes false\n\n[Wrong comparison]\n- = for equality (not ==)\n- <> for not equal (not !=)\n- Integer division vs float division\n\n[Missing/extra initialization]\n- Sum not initialized to 0\n- Max/min not initialized to first element\n- Flag not initialized\n\n[Scope issues]\n- Variables declared inside loop are reset each iteration\n- Array modifications persist after function call\n\n[Swap bug]\n- Must use temporary variable\n- Direct swap A[i] <- A[j]; A[j] <- A[i] loses data",
+      "cheatsheet": "=== 擬似言語のよくあるバグ ===\n\n[オフバイワンエラー]\n- 配列は1インデックス、0インデックスではない\n- for (i from 1 to N) はN回、N-1回ではない\n- N-1回なら from 1 to N-1\n\n[無限ループ]\n- カウンタがループ内で変化しない\n- カウンタが間違った方向に変化する\n- 条件が決してfalseにならない\n\n[間違った比較]\n- = は等価（== ではない）\n- <> は不等価（!= ではない）\n- 整数除算と浮動小数点除算の混同\n\n[初期化の漏れ・過剰]\n- sumが0に初期化されていない\n- max/minが先頭要素に初期化されていない\n- フラグが初期化されていない\n\n[スコープの問題]\n- ループ内で宣言された変数は反復ごとにリセットされる\n- 関数呼び出し後も配列の変更は残る\n\n[スワップのバグ]\n- 一時変数を使用する必要がある\n- 直接スワップ A[i] <- A[j]; A[j] <- A[i] はデータを失う",
       "example": {
-        "question": "What is wrong with this code that should find the sum of A?",
+        "question": "配列Aの合計を求めるコードの問題点は？",
         "code": "A: [1, 2, 3, 4, 5]\nfor (i from 1 to 5) do\n  sum <- 0\n  sum <- sum + A[i]\nendfor\nprint(sum)",
         "steps": [
-          "Bug: sum <- 0 is INSIDE the loop",
+          "バグ：sum <- 0 がループ内にある",
           "i=1: sum=0, sum=0+1=1",
           "i=2: sum=0, sum=0+2=2",
           "i=3: sum=0, sum=0+3=3",
           "i=4: sum=0, sum=0+4=4",
           "i=5: sum=0, sum=0+5=5",
-          "Result is 5, not 15",
-          "Fix: move sum <- 0 BEFORE the loop"
+          "結果は5、15ではない",
+          "修正：sum <- 0 をループの前に移動する"
         ],
-        "answer": "sum is reset to 0 every iteration, giving 5 instead of 15"
+        "answer": "sumが毎反復で0にリセットされ、15ではなく5になる"
       },
       "questions": [
         {
           "type": "practice",
-          "question": "What is wrong with this swap code?",
+          "question": "このスワップコードの問題点は？",
           "code": "A: [1, 2, 3]\nA[1] <- A[2]\nA[2] <- A[1]\nprint(A[1], A[2])",
           "options": [
-            {"text": "Both become 2 (no temp variable)", "correct": true},
-            {"text": "Values are correctly swapped", "correct": false},
-            {"text": "Both become 1", "correct": false},
-            {"text": "Runtime error", "correct": false}
+            {
+              "text": "Both become 2 (no temp variable)",
+              "correct": true
+            },
+            {
+              "text": "Values are correctly swapped",
+              "correct": false
+            },
+            {
+              "text": "Both become 1",
+              "correct": false
+            },
+            {
+              "text": "Runtime error",
+              "correct": false
+            }
           ],
           "steps": [
             "A = [1,2,3]",
-            "A[1] <- A[2]: A[1] becomes 2, A = [2,2,3]",
-            "A[2] <- A[1]: A[2] becomes 2 (already changed!), A = [2,2,3]",
-            "Bug: A[1] is overwritten before it's saved",
-            "Fix: use tmp <- A[1]; A[1] <- A[2]; A[2] <- tmp",
-            "Output: Both become 2"
+            "A[1] <- A[2]: A[1]が2になる, A = [2,2,3]",
+            "A[2] <- A[1]: A[2]が2になる（既に変更済み！）, A = [2,2,3]",
+            "バグ：A[1]が保存される前に上書きされる",
+            "修正：tmp <- A[1]; A[1] <- A[2]; A[2] <- tmp を使う",
+            "出力：両方が2になる"
           ]
         },
         {
           "type": "practice",
-          "question": "What does this buggy code output? (intended: count positive numbers)",
+          "question": "このバグコードの出力は？（意図：正の数をカウント）",
           "code": "A: [3, -1, 4, -2, 5]\ncnt <- 0\ni <- 1\nwhile (i <= 5) do\n  if (A[i] > 0) then\n    cnt <- cnt + 1\n  endif\n  // forgot: i <- i + 1\nendwhile\nprint(cnt)",
           "options": [
-            {"text": "Infinite loop (never terminates)", "correct": true},
-            {"text": "3", "correct": false},
-            {"text": "0", "correct": false},
-            {"text": "5", "correct": false}
+            {
+              "text": "Infinite loop (never terminates)",
+              "correct": true
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "0",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            }
           ],
           "steps": [
             "cnt=0, i=1",
-            "i=1: A[1]=3>0, cnt=1. i stays 1 (bug!)",
-            "i=1: A[1]=3>0, cnt=2. i stays 1",
-            "... i never changes, infinite loop",
-            "Bug: missing i <- i + 1 inside while loop",
-            "Output: Infinite loop"
+            "i=1: A[1]=3>0, cnt=1。iは1のまま（バグ！）",
+            "i=1: A[1]=3>0, cnt=2。iは1のまま",
+            "... iが変化せず、無限ループ",
+            "バグ：whileループ内に i <- i + 1 がない",
+            "出力：無限ループ"
           ]
         },
         {
           "type": "practice",
-          "question": "What does this code output? (intended: find max of array)",
+          "question": "このコードの出力は？（意図：配列の最大値）",
           "code": "A: [3, 7, 2, 9, 5]\nmax <- 0\nfor (i from 1 to 5) do\n  if (A[i] > max) then\n    max <- A[i]\n  endif\nendfor\nprint(max)",
           "options": [
-            {"text": "9", "correct": true},
-            {"text": "0", "correct": false},
-            {"text": "error", "correct": false},
-            {"text": "3", "correct": false}
+            {
+              "text": "9",
+              "correct": true
+            },
+            {
+              "text": "0",
+              "correct": false
+            },
+            {
+              "text": "error",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            }
           ],
           "steps": [
             "max=0",
-            "i=1: A[1]=3>0 -> max=3",
-            "i=2: A[2]=7>3 -> max=7",
-            "i=3: A[3]=2>7? no",
-            "i=4: A[4]=9>7 -> max=9",
-            "i=5: A[5]=5>9? no",
-            "This works here, but would fail if all values were negative!",
-            "Bug: max should be A[1], not 0",
-            "Output: 9 (happens to work for this case)"
+            "i=1: A[1]=3>0 → max=3",
+            "i=2: A[2]=7>3 → max=7",
+            "i=3: A[3]=2>7? いいえ",
+            "i=4: A[4]=9>7 → max=9",
+            "i=5: A[5]=5>9? いいえ",
+            "この場合は動作するが、全値が負の場合は失敗する！",
+            "バグ：maxは0ではなくA[1]にすべき",
+            "出力：9（この場合は偶然動作）"
           ]
         },
         {
           "type": "practice",
-          "question": "What does this code output? (intended: average of array)",
+          "question": "このコードの出力は？（意図：配列の平均）",
           "code": "A: [10, 20, 30, 40, 50]\nsum <- 0\nfor (i from 0 to 5) do\n  sum <- sum + A[i]\nendfor\navg <- sum / 5\nprint(avg)",
           "options": [
-            {"text": "Undefined behavior (A[0] is out of bounds)", "correct": true},
-            {"text": "30", "correct": false},
-            {"text": "150", "correct": false},
-            {"text": "error", "correct": false}
+            {
+              "text": "Undefined behavior (A[0] is out of bounds)",
+              "correct": true
+            },
+            {
+              "text": "30",
+              "correct": false
+            },
+            {
+              "text": "150",
+              "correct": false
+            },
+            {
+              "text": "error",
+              "correct": false
+            }
           ],
           "steps": [
-            "Bug: loop starts from 0, but IPA arrays are 1-indexed",
-            "i=0: A[0] is undefined/out of bounds",
+            "バグ：ループが0から開始しているが、IPA配列は1インデックス",
+            "i=0: A[0]は未定義/範囲外",
             "i=1: A[1]=10, i=2: A[2]=20, ..., i=5: A[5]=50",
-            "Accessing A[0] is invalid",
-            "Fix: for (i from 1 to 5)",
-            "Output: Undefined behavior"
+            "A[0]へのアクセスは無効",
+            "修正：for (i from 1 to 5)",
+            "出力：未定義動作"
           ]
         },
         {
           "type": "practice",
-          "question": "What does this code output? (intended: factorial of 5)",
+          "question": "このコードの出力は？（意図：5の階乗）",
           "code": "function fact(n: integer): integer\n  if (n = 1) then return 1 endif\n  return n * fact(n - 1)\nendfunction\nprint(fact(0))",
           "options": [
-            {"text": "Infinite recursion (no base case for n=0)", "correct": true},
-            {"text": "1", "correct": false},
-            {"text": "0", "correct": false},
-            {"text": "error", "correct": false}
+            {
+              "text": "Infinite recursion (no base case for n=0)",
+              "correct": true
+            },
+            {
+              "text": "1",
+              "correct": false
+            },
+            {
+              "text": "0",
+              "correct": false
+            },
+            {
+              "text": "error",
+              "correct": false
+            }
           ],
           "steps": [
-            "fact(0): 0=1? no -> return 0 * fact(-1)",
-            "fact(-1): -1=1? no -> return -1 * fact(-2)",
-            "Never reaches base case, infinite recursion",
-            "Bug: base case should be n <= 1",
-            "Output: Infinite recursion"
+            "fact(0): 0=1? いいえ → return 0 * fact(-1)",
+            "fact(-1): -1=1? いいえ → return -1 * fact(-2)",
+            "ベースケースに到達せず、無限再帰",
+            "バグ：ベースケースは n <= 1 にすべき",
+            "出力：無限再帰"
           ]
         },
         {
           "type": "practice",
-          "question": "What does this code output? (intended: count even numbers)",
+          "question": "このコードの出力は？（意図：偶数をカウント）",
           "code": "A: [2, 3, 4, 5, 6]\ncnt <- 0\nfor (i from 1 to 5) do\n  if (A[i] mod 2 = 0) then\n    cnt <- cnt\n  endif\nendfor\nprint(cnt)",
           "options": [
-            {"text": "0", "correct": true},
-            {"text": "3", "correct": false},
-            {"text": "5", "correct": false},
-            {"text": "2", "correct": false}
+            {
+              "text": "0",
+              "correct": true
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "2",
+              "correct": false
+            }
           ],
           "steps": [
             "cnt=0",
-            "i=1: A[1]=2 even -> cnt <- cnt (cnt stays 0)",
-            "i=2: A[2]=3 odd -> skip",
-            "i=3: A[3]=4 even -> cnt <- cnt (cnt stays 0)",
-            "Bug: cnt <- cnt does nothing; should be cnt <- cnt + 1",
-            "Output: 0"
+            "i=1: A[1]=2 偶数 → cnt <- cnt（cntは0のまま）",
+            "i=2: A[2]=3 奇数 → スキップ",
+            "i=3: A[3]=4 偶数 → cnt <- cnt（cntは0のまま）",
+            "バグ：cnt <- cnt は何もしない；cnt <- cnt + 1 にすべき",
+            "出力：0"
           ]
         },
         {
           "type": "practice",
-          "question": "What is wrong with this binary search?",
+          "question": "この二分探索の問題点は？",
           "code": "A: [1, 3, 5, 7, 9]\ntarget <- 3\nlow <- 1\nhigh <- 4  // should be 5\nwhile (low <= high) do\n  mid <- (low + high) / 2\n  if (A[mid] = target) then\n    pos <- mid\n    low <- high + 1\n  elseif (A[mid] < target) then\n    low <- mid + 1\n  else\n    high <- mid - 1\n  endif\nendwhile\nprint(pos)",
           "options": [
-            {"text": "Might miss the last element (high should be 5)", "correct": true},
-            {"text": "Works correctly", "correct": false},
-            {"text": "pos is always 0", "correct": false},
-            {"text": "Infinite loop", "correct": false}
+            {
+              "text": "Might miss the last element (high should be 5)",
+              "correct": true
+            },
+            {
+              "text": "Works correctly",
+              "correct": false
+            },
+            {
+              "text": "pos is always 0",
+              "correct": false
+            },
+            {
+              "text": "Infinite loop",
+              "correct": false
+            }
           ],
           "steps": [
-            "high = 4 instead of 5 (array length)",
-            "A[5] = 9 is never checked as mid or boundary",
-            "For target=3: mid=2, A[2]=3 found -> works here",
-            "But for target=9: would never find it since high=4 means A[5] unreachable",
-            "Bug: high should be N (=5), not N-1",
-            "Output: Works for 3 but fails for target=9"
+            "high = 4、正しくは5（配列長）",
+            "A[5] = 9 はmidや境界としてチェックされない",
+            "target=3の場合：mid=2, A[2]=3で発見 → この場合は動作",
+            "しかしtarget=9の場合：high=4なのでA[5]に到達不可能",
+            "バグ：highはN-1ではなくN（=5）にすべき",
+            "出力：3では動作するが、target=9では失敗"
           ]
         },
         {
           "type": "practice",
-          "question": "What does this code output? (intended: reverse array)",
+          "question": "このコードの出力は？（意図：配列の反転）",
           "code": "A: [1, 2, 3, 4]\nfor (i from 1 to 4) do\n  tmp <- A[i]\n  A[i] <- A[5 - i]\n  A[5 - i] <- tmp\nendfor\nprint(A[1])",
           "options": [
-            {"text": "1", "correct": true},
-            {"text": "4", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "2", "correct": false}
+            {
+              "text": "1",
+              "correct": true
+            },
+            {
+              "text": "4",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "2",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[1,2,3,4]",
-            "i=1: swap A[1] and A[4] -> [4,2,3,1]",
-            "i=2: swap A[2] and A[3] -> [4,3,2,1]",
-            "i=3: swap A[3] and A[2] -> [4,2,3,1] (undo!)",
-            "i=4: swap A[4] and A[1] -> [1,2,3,4] (undo!)",
-            "Bug: loop should only go to N/2 (=2), not N",
-            "Output: 1 (array is back to original!)"
+            "i=1: A[1]とA[4]をスワップ → [4,2,3,1]",
+            "i=2: A[2]とA[3]をスワップ → [4,3,2,1]",
+            "i=3: A[3]とA[2]をスワップ → [4,2,3,1]（元に戻る！）",
+            "i=4: A[4]とA[1]をスワップ → [1,2,3,4]（元に戻る！）",
+            "バグ：ループはNまでではなくN/2（=2）までにすべき",
+            "出力：1（配列が元に戻る！）"
           ]
         },
         {
           "type": "practice",
-          "question": "What does this code output? (intended: sum 1 to 10)",
+          "question": "このコードの出力は？（意図：1から10の合計）",
           "code": "sum <- 0\nfor (i from 1 to 10) do\n  sum <- sum + 1\nendfor\nprint(sum)",
           "options": [
-            {"text": "10", "correct": true},
-            {"text": "55", "correct": false},
-            {"text": "1", "correct": false},
-            {"text": "11", "correct": false}
+            {
+              "text": "10",
+              "correct": true
+            },
+            {
+              "text": "55",
+              "correct": false
+            },
+            {
+              "text": "1",
+              "correct": false
+            },
+            {
+              "text": "11",
+              "correct": false
+            }
           ],
           "steps": [
             "sum=0",
-            "Loop 10 times: sum += 1 each time",
-            "sum = 0 + 1 + 1 + ... + 1 (10 times) = 10",
-            "Bug: should be sum <- sum + i, not sum <- sum + 1",
-            "Output: 10 (not 55)"
+            "10回ループ：毎回 sum += 1",
+            "sum = 0 + 1 + 1 + ... + 1（10回）= 10",
+            "バグ：sum <- sum + i にすべき、sum <- sum + 1 ではない",
+            "出力：10（55ではない）"
           ]
         },
         {
           "type": "practice",
-          "question": "What does this code output? (intended: check if sorted)",
+          "question": "このコードの出力は？（意図：ソート済みか確認）",
           "code": "A: [1, 3, 2, 4, 5]\nsorted <- true\nfor (i from 1 to 4) do\n  if (A[i] > A[i + 1]) then\n    sorted <- false\n  endif\nendfor\nif sorted then\n  print(\"yes\")\nelse\n  print(\"no\")\nendif",
           "options": [
-            {"text": "no", "correct": true},
-            {"text": "yes", "correct": false},
-            {"text": "error", "correct": false},
-            {"text": "true", "correct": false}
+            {
+              "text": "no",
+              "correct": true
+            },
+            {
+              "text": "yes",
+              "correct": false
+            },
+            {
+              "text": "error",
+              "correct": false
+            },
+            {
+              "text": "true",
+              "correct": false
+            }
           ],
           "steps": [
-            "This code is actually correct!",
+            "このコードは実は正しい！",
             "A=[1,3,2,4,5], sorted=true",
-            "i=1: A[1]=1 > A[2]=3? no",
-            "i=2: A[2]=3 > A[3]=2? yes -> sorted=false",
-            "i=3: A[3]=2 > A[4]=4? no",
-            "i=4: A[4]=4 > A[5]=5? no",
-            "sorted=false -> print(\"no\")",
-            "Output: no (correctly identifies unsorted)"
+            "i=1: A[1]=1 > A[2]=3? いいえ",
+            "i=2: A[2]=3 > A[3]=2? はい → sorted=false",
+            "i=3: A[3]=2 > A[4]=4? いいえ",
+            "i=4: A[4]=4 > A[5]=5? いいえ",
+            "sorted=false → print(\"no\")",
+            "出力：no（正しくソート済みでないことを検出）"
           ]
         }
       ]
@@ -2363,183 +3719,279 @@
       "title": "Past Exam Level",
       "titleJa": "過去問レベル",
       "difficulty": 5,
-      "cheatsheet": "=== Past Exam Tips ===\n\n[Common FE Exam Patterns]\n1. Trace with nested loops and arrays\n2. Modified sort algorithm\n3. Recursive function with accumulator\n4. String processing\n5. Matrix operations\n\n[Key Strategies]\n- Draw variable tables for complex traces\n- Watch for 1-indexed arrays\n- Pay attention to integer division\n- Check boundary conditions carefully\n- Double-check loop iteration counts",
+      "cheatsheet": "=== 過去問のポイント ===\n\n[基本情報試験のよく出るパターン]\n1. ネストループと配列のトレース\n2. 変更されたソートアルゴリズム\n3. アキュムレータ付き再帰関数\n4. 文字列処理\n5. 行列操作\n\n[重要な戦略]\n- 複雑なトレースでは変数テーブルを描く\n- 1インデックス配列に注意\n- 整数除算に注意する\n- 境界条件を慎重に確認する\n- ループ反復回数を二重確認する",
       "example": {
-        "question": "What is the value of result?",
+        "question": "resultの値は？",
         "code": "A: [3, 1, 4, 1, 5, 9, 2, 6]\nresult <- 0\nfor (i from 1 to 7) do\n  if (A[i] < A[i + 1]) then\n    result <- result + A[i]\n  else\n    result <- result - A[i]\n  endif\nendfor\nprint(result)",
         "steps": [
           "A=[3,1,4,1,5,9,2,6], result=0",
-          "i=1: A[1]=3<A[2]=1? no -> result=0-3=-3",
-          "i=2: A[2]=1<A[3]=4? yes -> result=-3+1=-2",
-          "i=3: A[3]=4<A[4]=1? no -> result=-2-4=-6",
-          "i=4: A[4]=1<A[5]=5? yes -> result=-6+1=-5",
-          "i=5: A[5]=5<A[6]=9? yes -> result=-5+5=0",
-          "i=6: A[6]=9<A[7]=2? no -> result=0-9=-9",
-          "i=7: A[7]=2<A[8]=6? yes -> result=-9+2=-7",
-          "Output: -7"
+          "i=1: A[1]=3<A[2]=1? いいえ → result=0-3=-3",
+          "i=2: A[2]=1<A[3]=4? はい → result=-3+1=-2",
+          "i=3: A[3]=4<A[4]=1? いいえ → result=-2-4=-6",
+          "i=4: A[4]=1<A[5]=5? はい → result=-6+1=-5",
+          "i=5: A[5]=5<A[6]=9? はい → result=-5+5=0",
+          "i=6: A[6]=9<A[7]=2? いいえ → result=0-9=-9",
+          "i=7: A[7]=2<A[8]=6? はい → result=-9+2=-7",
+          "最終：result = -7"
         ],
         "answer": "-7"
       },
       "questions": [
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "A: [5, 3, 8, 1, 4, 7, 2, 6]\nx <- 0\nfor (i from 1 to 8) do\n  for (j from i + 1 to 8) do\n    if (A[i] > A[j]) then\n      x <- x + 1\n    endif\n  endfor\nendfor\nprint(x)",
           "options": [
-            {"text": "18", "correct": true},
-            {"text": "16", "correct": false},
-            {"text": "20", "correct": false},
-            {"text": "14", "correct": false}
+            {
+              "text": "18",
+              "correct": true
+            },
+            {
+              "text": "16",
+              "correct": false
+            },
+            {
+              "text": "20",
+              "correct": false
+            },
+            {
+              "text": "14",
+              "correct": false
+            }
           ],
           "steps": [
             "Count inversions (pairs where i<j but A[i]>A[j])",
-            "i=1(5): >3,>1,>4,>2 -> 4",
-            "i=2(3): >1,>2 -> 2",
-            "i=3(8): >1,>4,>7,>2,>6 -> 5",
-            "i=4(1): none -> 0",
-            "i=5(4): >2 -> 1",
-            "i=6(7): >2,>6 -> 2",
-            "i=7(2): none -> 0",
-            "i=8(6): none -> 0",
-            "Total: 4+2+5+0+1+2+0+0 = 14",
-            "Wait, let me recount: i=3(8)>1,>4,>7?,>2,>6 -> 8>1(y),8>4(y),8>7(y),8>2(y),8>6(y) = 5",
-            "Output: 14"
+            "i=1(5): >3,>1,>4,>2 → 4",
+            "i=2(3): >1,>2 → 2",
+            "i=3(8): >1,>4,>7,>2,>6 → 5",
+            "i=4(1): none → 0",
+            "i=5(4): >2 → 1",
+            "i=6(7): >2,>6 → 2",
+            "i=7(2): none → 0",
+            "i=8(6): none → 0",
+            "合計： 4+2+5+0+1+2+0+0 = 14",
+            "Wait, let me recount: i=3(8)>1,>4,>7?,>2,>6 → 8>1(y),8>4(y),8>7(y),8>2(y),8>6(y) = 5",
+            "出力： 14"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of result after execution?",
+          "question": "実行後のresultの値は？",
           "code": "result <- 0\nfor (i from 1 to 5) do\n  for (j from 1 to 5) do\n    if ((i + j) mod 2 = 0) then\n      result <- result + 1\n    endif\n  endfor\nendfor\nprint(result)",
           "options": [
-            {"text": "13", "correct": true},
-            {"text": "12", "correct": false},
-            {"text": "14", "correct": false},
-            {"text": "10", "correct": false}
+            {
+              "text": "13",
+              "correct": true
+            },
+            {
+              "text": "12",
+              "correct": false
+            },
+            {
+              "text": "14",
+              "correct": false
+            },
+            {
+              "text": "10",
+              "correct": false
+            }
           ],
           "steps": [
             "(i+j) mod 2 = 0 when i+j is even",
-            "i=1: j=1(2e),2(3o),3(4e),4(5o),5(6e) -> 3 even",
-            "i=2: j=1(3o),2(4e),3(5o),4(6e),5(7o) -> 2 even",
-            "i=3: j=1(4e),2(5o),3(6e),4(7o),5(8e) -> 3 even",
-            "i=4: j=1(5o),2(6e),3(7o),4(8e),5(9o) -> 2 even",
-            "i=5: j=1(6e),2(7o),3(8e),4(9o),5(10e) -> 3 even",
-            "Total: 3+2+3+2+3 = 13",
-            "Output: 13"
+            "i=1: j=1(2e),2(3o),3(4e),4(5o),5(6e) → 3 even",
+            "i=2: j=1(3o),2(4e),3(5o),4(6e),5(7o) → 2 even",
+            "i=3: j=1(4e),2(5o),3(6e),4(7o),5(8e) → 3 even",
+            "i=4: j=1(5o),2(6e),3(7o),4(8e),5(9o) → 2 even",
+            "i=5: j=1(6e),2(7o),3(8e),4(9o),5(10e) → 3 even",
+            "合計： 3+2+3+2+3 = 13",
+            "出力： 13"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of A after execution?",
+          "question": "実行後のAの値は？（A[1]+A[2]+A[3]+A[4]+A[5]の合計は？）",
           "code": "A: [4, 7, 3, 9, 1]\nfor (i from 1 to 4) do\n  for (j from 1 to 4) do\n    if (A[j] > A[j + 1]) then\n      tmp <- A[j]\n      A[j] <- A[j + 1]\n      A[j + 1] <- tmp\n    endif\n  endfor\nendfor\nprint(A[3])",
           "options": [
-            {"text": "4", "correct": true},
-            {"text": "7", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "9", "correct": false}
+            {
+              "text": "4",
+              "correct": true
+            },
+            {
+              "text": "7",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "9",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[4,7,3,9,1], full bubble sort (4 passes)",
-            "Pass 1: [4,3,7,1,9]",
-            "Pass 2: [3,4,1,7,9]",
-            "Pass 3: [3,1,4,7,9]",
-            "Pass 4: [1,3,4,7,9]",
+            "パス1: [4,3,7,1,9]",
+            "パス2: [3,4,1,7,9]",
+            "パス3: [3,1,4,7,9]",
+            "パス4: [1,3,4,7,9]",
             "Sorted: [1,3,4,7,9]",
             "A[3] = 4",
-            "Output: 4"
+            "出力： 4"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of result?",
+          "question": "実行後のresultの値は？",
           "code": "function f(n: integer): integer\n  if (n <= 0) then return 0 endif\n  if (n = 1) then return 1 endif\n  if (n mod 2 = 1) then\n    return f(n - 1) + 1\n  else\n    return f(n / 2) + 1\n  endif\nendfunction\nprint(f(10))",
           "options": [
-            {"text": "4", "correct": true},
-            {"text": "5", "correct": false},
-            {"text": "3", "correct": false},
-            {"text": "6", "correct": false}
+            {
+              "text": "4",
+              "correct": true
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "6",
+              "correct": false
+            }
           ],
           "steps": [
-            "f(10): even -> f(10/2)+1 = f(5)+1",
-            "f(5): odd -> f(5-1)+1 = f(4)+1",
-            "f(4): even -> f(4/2)+1 = f(2)+1",
-            "f(2): even -> f(2/2)+1 = f(1)+1",
-            "f(1): base -> 1",
+            "f(10): even → f(10/2)+1 = f(5)+1",
+            "f(5): odd → f(5-1)+1 = f(4)+1",
+            "f(4): even → f(4/2)+1 = f(2)+1",
+            "f(2): even → f(2/2)+1 = f(1)+1",
+            "f(1): base → 1",
             "f(2) = 1+1 = 2",
             "f(4) = 2+1 = 3",
             "f(5) = 3+1 = 4",
             "f(10) = 4+1 = 5",
-            "Output: 5"
+            "出力： 5"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of cnt?",
+          "question": "実行後のcntの値は？",
           "code": "A: [2, 5, 3, 8, 1, 6, 4, 7]\ncnt <- 0\nfor (i from 1 to 7) do\n  minPos <- i\n  for (j from i + 1 to 8) do\n    if (A[j] < A[minPos]) then\n      minPos <- j\n    endif\n  endfor\n  if (minPos <> i) then\n    cnt <- cnt + 1\n    tmp <- A[i]; A[i] <- A[minPos]; A[minPos] <- tmp\n  endif\nendfor\nprint(cnt)",
           "options": [
-            {"text": "6", "correct": true},
-            {"text": "7", "correct": false},
-            {"text": "5", "correct": false},
-            {"text": "4", "correct": false}
+            {
+              "text": "6",
+              "correct": true
+            },
+            {
+              "text": "7",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "4",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[2,5,3,8,1,6,4,7], count swaps in selection sort",
-            "i=1: min at pos 5 (A[5]=1), swap -> cnt=1, A=[1,5,3,8,2,6,4,7]",
-            "i=2: min at pos 5 (A[5]=2), swap -> cnt=2, A=[1,2,3,8,5,6,4,7]",
-            "i=3: A[3]=3 is min, no swap",
-            "i=4: min at pos 7 (A[7]=4), swap -> cnt=3, A=[1,2,3,4,5,6,8,7]",
-            "i=5: A[5]=5 is min, no swap",
-            "i=6: A[6]=6 is min, no swap",
-            "i=7: min at pos 8 (A[8]=7), swap -> cnt=4",
-            "Output: 4"
+            "i=1: min at pos 5 (A[5]=1), swap → cnt=1, A=[1,5,3,8,2,6,4,7]",
+            "i=2: min at pos 5 (A[5]=2), swap → cnt=2, A=[1,2,3,8,5,6,4,7]",
+            "i=3: A[3]=3 is min, いいえ swap",
+            "i=4: min at pos 7 (A[7]=4), swap → cnt=3, A=[1,2,3,4,5,6,8,7]",
+            "i=5: A[5]=5 is min, いいえ swap",
+            "i=6: A[6]=6 is min, いいえ swap",
+            "i=7: min at pos 8 (A[8]=7), swap → cnt=4",
+            "出力： 4"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x after execution?",
+          "question": "実行後のxの値は？",
           "code": "x <- 0\nn <- 6\nfor (i from 1 to n) do\n  for (j from 1 to n) do\n    if (i * j mod 3 = 0) then\n      x <- x + 1\n    endif\n  endfor\nendfor\nprint(x)",
           "options": [
-            {"text": "26", "correct": true},
-            {"text": "24", "correct": false},
-            {"text": "28", "correct": false},
-            {"text": "20", "correct": false}
+            {
+              "text": "26",
+              "correct": true
+            },
+            {
+              "text": "24",
+              "correct": false
+            },
+            {
+              "text": "28",
+              "correct": false
+            },
+            {
+              "text": "20",
+              "correct": false
+            }
           ],
           "steps": [
             "Count (i,j) pairs where i*j is divisible by 3, for i,j in 1..6",
             "Multiples of 3 in 1..6: 3,6",
-            "If i is 3 or 6: all 6 j values work -> 12",
-            "If i is not 3 or 6: need j to be 3 or 6 -> 4*2 = 8",
-            "Total: 12 + 8 = 20",
-            "Output: 20"
+            "If i is 3 or 6: all 6 j values work → 12",
+            "If i is not 3 or 6: need j to be 3 or 6 → 4*2 = 8",
+            "合計： 12 + 8 = 20",
+            "出力： 20"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of result?",
+          "question": "実行後のresultの値は？",
           "code": "A: [6, 2, 8, 3, 1, 7, 4, 5]\nresult <- 0\nfor (i from 1 to 4) do\n  result <- result + A[i] + A[9 - i]\nendfor\nprint(result)",
           "options": [
-            {"text": "40", "correct": true},
-            {"text": "36", "correct": false},
-            {"text": "42", "correct": false},
-            {"text": "38", "correct": false}
+            {
+              "text": "40",
+              "correct": true
+            },
+            {
+              "text": "36",
+              "correct": false
+            },
+            {
+              "text": "42",
+              "correct": false
+            },
+            {
+              "text": "38",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[6,2,8,3,1,7,4,5], result=0",
             "i=1: result += A[1]+A[8] = 6+5 = 11",
-            "i=2: result += A[2]+A[7] = 2+4 = 6 -> result=17",
-            "i=3: result += A[3]+A[6] = 8+7 = 15 -> result=32",
-            "i=4: result += A[4]+A[5] = 3+1 = 4 -> result=36",
-            "Output: 36"
+            "i=2: result += A[2]+A[7] = 2+4 = 6 → result=17",
+            "i=3: result += A[3]+A[6] = 8+7 = 15 → result=32",
+            "i=4: result += A[4]+A[5] = 3+1 = 4 → result=36",
+            "出力： 36"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of x?",
+          "question": "実行後のxの値は？",
           "code": "x <- 1\nn <- 10\nwhile (n > 1) do\n  if (n mod 2 = 0) then\n    n <- n / 2\n  else\n    n <- 3 * n + 1\n  endif\n  x <- x + 1\nendwhile\nprint(x)",
           "options": [
-            {"text": "6", "correct": true},
-            {"text": "7", "correct": false},
-            {"text": "5", "correct": false},
-            {"text": "10", "correct": false}
+            {
+              "text": "6",
+              "correct": true
+            },
+            {
+              "text": "7",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "10",
+              "correct": false
+            }
           ],
           "steps": [
             "x=1, n=10",
@@ -2549,51 +4001,75 @@
             "n=8 even: n=4, x=5",
             "n=4 even: n=2, x=6",
             "n=2 even: n=1, x=7",
-            "n=1: 1>1? no -> exit",
+            "n=1: 1>1? いいえ → 終了",
             "x = 7",
-            "Output: 7"
+            "出力： 7"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of cnt?",
+          "question": "実行後のcntの値は？",
           "code": "A: [3, 6, 2, 8, 5, 1, 4, 7]\ncnt <- 0\nfor (i from 1 to 8) do\n  for (j from i to 8) do\n    if (A[i] + A[j] = 10) then\n      cnt <- cnt + 1\n    endif\n  endfor\nendfor\nprint(cnt)",
           "options": [
-            {"text": "4", "correct": true},
-            {"text": "3", "correct": false},
-            {"text": "5", "correct": false},
-            {"text": "6", "correct": false}
+            {
+              "text": "4",
+              "correct": true
+            },
+            {
+              "text": "3",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            },
+            {
+              "text": "6",
+              "correct": false
+            }
           ],
           "steps": [
             "A=[3,6,2,8,5,1,4,7], find pairs summing to 10",
-            "i=1(A=3): j=5(A=7)->10 yes(1)",
-            "i=2(A=6): j=4(A=4)->10 yes(2)",
-            "i=3(A=2): j=7(A=8)->10 yes(3)",
-            "i=4(A=8): j=3(A=2)->10 yes(4)",
-            "i=5(A=5): j=6(A=5)->10 yes(5)",
-            "i=6(A=1): j=8(A=? nope, need 9) -> none",
+            "i=1(A=3): j=5(A=7)->10 はい(1)",
+            "i=2(A=6): j=4(A=4)->10 はい(2)",
+            "i=3(A=2): j=7(A=8)->10 はい(3)",
+            "i=4(A=8): j=3(A=2)->10 はい(4)",
+            "i=5(A=5): j=6(A=5)->10 はい(5)",
+            "i=6(A=1): j=8(A=? nope, need 9) → none",
             "Wait, let me recount properly:",
-            "i=1(3): check j=1..8: 3+7=10 at j=8 -> 1",
-            "i=2(6): 6+4=10 at j=7 -> 1",
-            "i=3(2): 2+8=10 at j=4 -> 1",
-            "i=4(8): 8+2=10 at j=3 -> 1",
-            "i=5(5): 5+5=10 at j=5 -> 1",
+            "i=1(3): check j=1..8: 3+7=10 at j=8 → 1",
+            "i=2(6): 6+4=10 at j=7 → 1",
+            "i=3(2): 2+8=10 at j=4 → 1",
+            "i=4(8): 8+2=10 at j=3 → 1",
+            "i=5(5): 5+5=10 at j=5 → 1",
             "i=6(1): need 9, none",
-            "i=7(4): 4+6=10 at j=2 -> 1",
-            "i=8(7): 7+3=10 at j=1 -> 1",
-            "Total: 7",
-            "Output: 7"
+            "i=7(4): 4+6=10 at j=2 → 1",
+            "i=8(7): 7+3=10 at j=1 → 1",
+            "合計： 7",
+            "出力： 7"
           ]
         },
         {
           "type": "practice",
-          "question": "What is the value of result?",
+          "question": "実行後のresultの値は？",
           "code": "function mystery(n: integer): integer\n  if (n <= 1) then return 0 endif\n  if (n = 2) then return 1 endif\n  return mystery(n - 1) + mystery(n - 2)\nendfunction\nprint(mystery(8))",
           "options": [
-            {"text": "13", "correct": true},
-            {"text": "8", "correct": false},
-            {"text": "21", "correct": false},
-            {"text": "5", "correct": false}
+            {
+              "text": "13",
+              "correct": true
+            },
+            {
+              "text": "8",
+              "correct": false
+            },
+            {
+              "text": "21",
+              "correct": false
+            },
+            {
+              "text": "5",
+              "correct": false
+            }
           ],
           "steps": [
             "mystery(0)=0, mystery(1)=0, mystery(2)=1",
@@ -2604,7 +4080,7 @@
             "mystery(7) = mystery(6)+mystery(5) = 5+3 = 8",
             "mystery(8) = mystery(7)+mystery(6) = 8+5 = 13",
             "This is essentially Fibonacci shifted: 0,0,1,1,2,3,5,8,13",
-            "Output: 13"
+            "出力： 13"
           ]
         }
       ]
