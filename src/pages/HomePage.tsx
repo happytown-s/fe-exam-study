@@ -111,6 +111,44 @@ export default function HomePage({
               </div>
             </div>
           </button>
+
+          <button
+            onClick={() => onNavigate('calc-training')}
+            className="w-full bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-left hover:scale-[1.02] transition-transform group"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center text-white text-xl font-bold">
+                CT
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-red-500 dark:group-hover:text-red-400 transition-colors">
+                  計算トレーニング
+                </h2>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  計算問題を集中練習 (進数・ビット演算・サブネット他)
+                </p>
+              </div>
+            </div>
+          </button>
+
+          <button
+            onClick={() => onNavigate('pseudo-language')}
+            className="w-full bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-left hover:scale-[1.02] transition-transform group"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white text-xl font-bold">
+                PL
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors">
+                  科目Bトレーニング
+                </h2>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  IPA擬似言語を集中練習 (記法・トレース・アルゴリズム他)
+                </p>
+              </div>
+            </div>
+          </button>
         </div>
       </div>
     </div>

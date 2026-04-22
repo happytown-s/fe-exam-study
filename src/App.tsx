@@ -13,6 +13,8 @@ import ExamPlayPage from './pages/ExamPlayPage';
 import ExamResultPage from './pages/ExamResultPage';
 import ReviewPage from './pages/ReviewPage';
 import TermsPage from './pages/TermsPage';
+import CalcTraining from './components/CalcTraining';
+import PseudoLanguageTraining from './components/PseudoLanguageTraining';
 
 type Page =
   | 'home'
@@ -24,7 +26,9 @@ type Page =
   | 'review'
   | 'review-play'
   | 'terms'
-  | 'terms-drill';
+  | 'terms-drill'
+  | 'calc-training'
+  | 'pseudo-language';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -234,6 +238,14 @@ export default function App() {
           onBack={() => navigate('home')}
           onStartDrill={handleTermsDrill}
         />
+      )}
+
+      {currentPage === 'calc-training' && (
+        <CalcTraining onBack={() => navigate('home')} />
+      )}
+
+      {currentPage === 'pseudo-language' && (
+        <PseudoLanguageTraining onBack={() => navigate('home')} />
       )}
 
       {currentPage === 'terms-drill' && (

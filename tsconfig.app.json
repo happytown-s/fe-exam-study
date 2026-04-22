@@ -18,6 +18,7 @@
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "resolveJsonModule": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
