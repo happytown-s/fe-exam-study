@@ -66,6 +66,7 @@ export default function App() {
   const [reviewQuestionIds, setReviewQuestionIds] = useState<number[]>([]);
   const [termsQuestionIds, setTermsQuestionIds] = useState<number[]>([]);
   const [textbookCategory, setTextbookCategory] = useState<string | null>(null);
+  const [textbookQuestionIds, setTextbookQuestionIds] = useState<number[]>([]);
 
   const {
     answerHistory,
@@ -88,9 +89,12 @@ export default function App() {
   }, []);
 
   const drillQuestions = useMemo(() => {
+    if (textbookQuestionIds.length > 0) {
+      return allQuestions.filter((q) => textbookQuestionIds.includes(q.id));
+    }
     if (!drillCategory) return allQuestions;
     return allQuestions.filter((q) => q.category === drillCategory);
-  }, [drillCategory]);
+  }, [drillCategory, textbookQuestionIds]);
 
   const handleSelectCategory = useCallback((catId: string | null) => {
     setDrillCategory(catId);
@@ -195,10 +199,12 @@ export default function App() {
 
       {currentPage === 'drill-play' && (
         <DrillPlayPage
-          key={`drill-${drillCategory ?? 'all'}`}
+          key={`drill-${drillCategory ?? 'all'}-${textbookQuestionIds.join(',')}`}
           questions={drillQuestions}
           categoryLabel={
-            drillCategory
+            textbookQuestionIds.length > 0
+              ? 'Textbook Practice'
+              : drillCategory
               ? (allQuestions.find((q) => q.category === drillCategory)
                   ?.categoryLabel ?? drillCategory)
               : '全分野'
@@ -206,7 +212,11 @@ export default function App() {
           passLine={quizConfig.passLine}
           recordAnswer={recordAnswer}
           onFinish={handleDrillFinish}
-          onBack={() => navigate('drill')}
+          onBack={() => {
+            setTextbookQuestionIds([]);
+            if (textbookCategory) navigate('textbook-view');
+            else navigate('drill');
+          }}
         />
       )}
 
@@ -288,8 +298,14 @@ export default function App() {
       {currentPage === 'textbook-view' && textbookCategory && textbookMap[textbookCategory] && (
         <TextbookView
           title={textbookMap[textbookCategory].title}
+          category={textbookCategory}
           topics={textbookMap[textbookCategory].topics}
           onBack={() => navigate('textbook-select')}
+          onPractice={(questionIds) => {
+            setDrillCategory(null);
+            setTextbookQuestionIds(questionIds);
+            navigate('drill-play');
+          }}
         />
       )}
 

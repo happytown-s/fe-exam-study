@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import textbookQuestionMap from '../data/textbook-question-map.json';
 
 interface TextbookTopic {
   topicId: string;
@@ -12,13 +13,17 @@ interface TextbookTopic {
 interface TextbookViewProps {
   topics: TextbookTopic[];
   title: string;
+  category: string;
   onBack: () => void;
+  onPractice: (questionIds: number[]) => void;
 }
 
-export default function TextbookView({ topics, title, onBack }: TextbookViewProps) {
+export default function TextbookView({ topics, title, category, onBack, onPractice }: TextbookViewProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'all' | 'list' | 'search'>('all');
+
+  const qMap = (textbookQuestionMap as Record<string, Record<string, number[]>>)[category] || {};
 
   const filteredTopics = useMemo(() => {
     if (!searchTerm.trim()) return topics;
@@ -96,7 +101,12 @@ export default function TextbookView({ topics, title, onBack }: TextbookViewProp
                   key={topic.topicId}
                   topic={topic}
                   isExpanded={expandedId === topic.topicId}
+                  questionCount={(qMap[topic.topicId] || []).length}
                   onToggle={() => toggleExpand(topic.topicId)}
+                  onPractice={() => {
+                    const ids = qMap[topic.topicId] || [];
+                    if (ids.length > 0) onPractice(ids);
+                  }}
                 />
               ))
             )}
@@ -111,14 +121,19 @@ export default function TextbookView({ topics, title, onBack }: TextbookViewProp
                   setActiveTab('all');
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                className="w-full text-left px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center gap-2"
               >
-                <span className="text-xs text-gray-400 dark:text-gray-500 mr-2">
+                <span className="text-xs text-gray-400 dark:text-gray-500 font-mono">
                   {topic.topicId}
                 </span>
-                <span className="text-sm text-gray-800 dark:text-gray-200">
+                <span className="text-sm text-gray-800 dark:text-gray-200 flex-1">
                   {topic.title}
                 </span>
+                {(qMap[topic.topicId] || []).length > 0 && (
+                  <span className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+                    {(qMap[topic.topicId] || []).length}Q
+                  </span>
+                )}
               </button>
             ))}
           </div>
@@ -127,7 +142,12 @@ export default function TextbookView({ topics, title, onBack }: TextbookViewProp
             {expandedId ? (
               <TopicDetail
                 topic={topics.find((t) => t.topicId === expandedId)!}
+                questionCount={(qMap[expandedId] || []).length}
                 onCollapse={() => setExpandedId(null)}
+                onPractice={() => {
+                  const ids = qMap[expandedId] || [];
+                  if (ids.length > 0) onPractice(ids);
+                }}
               />
             ) : (
               topics.map((topic) => (
@@ -135,7 +155,12 @@ export default function TextbookView({ topics, title, onBack }: TextbookViewProp
                   key={topic.topicId}
                   topic={topic}
                   isExpanded={false}
+                  questionCount={(qMap[topic.topicId] || []).length}
                   onToggle={() => toggleExpand(topic.topicId)}
+                  onPractice={() => {
+                    const ids = qMap[topic.topicId] || [];
+                    if (ids.length > 0) onPractice(ids);
+                  }}
                 />
               ))
             )}
@@ -149,18 +174,24 @@ export default function TextbookView({ topics, title, onBack }: TextbookViewProp
 function TopicCard({
   topic,
   isExpanded,
+  questionCount,
   onToggle,
+  onPractice,
 }: {
   topic: TextbookTopic;
   isExpanded: boolean;
+  questionCount: number;
   onToggle: () => void;
+  onPractice: () => void;
 }) {
   return (
     <div
-      className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
-      onClick={onToggle}
+      className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-shadow"
     >
-      <div className="px-4 py-3">
+      <div
+        className="px-4 py-3 cursor-pointer"
+        onClick={onToggle}
+      >
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
@@ -184,8 +215,8 @@ function TopicCard({
           </span>
         </div>
         {!isExpanded && (
-          <div className="flex flex-wrap gap-1 mt-2">
-            {topic.keywords.slice(0, 4).map((kw) => (
+          <div className="flex flex-wrap gap-1 mt-2 items-center">
+            {topic.keywords.slice(0, 3).map((kw) => (
               <span
                 key={kw}
                 className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-0.5 rounded-full"
@@ -193,9 +224,14 @@ function TopicCard({
                 {kw}
               </span>
             ))}
-            {topic.keywords.length > 4 && (
+            {topic.keywords.length > 3 && (
               <span className="text-xs text-gray-400 dark:text-gray-500">
-                +{topic.keywords.length - 4}
+                +{topic.keywords.length - 3}
+              </span>
+            )}
+            {questionCount > 0 && (
+              <span className="ml-auto text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+                {questionCount}Q
               </span>
             )}
           </div>
@@ -204,6 +240,17 @@ function TopicCard({
       {isExpanded && (
         <div className="px-4 pb-4 border-t border-gray-100 dark:border-gray-700">
           <TopicDetailContent topic={topic} />
+          {questionCount > 0 && (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onPractice();
+              }}
+              className="mt-3 w-full py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-sm font-bold rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all shadow-sm"
+            >
+              Practice ({questionCount} questions)
+            </button>
+          )}
         </div>
       )}
     </div>
@@ -212,10 +259,14 @@ function TopicCard({
 
 function TopicDetail({
   topic,
+  questionCount,
   onCollapse,
+  onPractice,
 }: {
   topic: TextbookTopic;
+  questionCount: number;
   onCollapse: () => void;
+  onPractice: () => void;
 }) {
   return (
     <div className="space-y-4">
@@ -232,6 +283,11 @@ function TopicDetail({
         <span className="text-xs font-mono text-blue-500 bg-blue-50 dark:bg-blue-900/30 px-1.5 py-0.5 rounded">
           {topic.topicId}
         </span>
+        {questionCount > 0 && (
+          <span className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+            {questionCount}Q available
+          </span>
+        )}
       </div>
 
       <h2 className="text-xl font-bold text-gray-900 dark:text-white">
@@ -242,6 +298,18 @@ function TopicDetail({
       </p>
 
       <TopicDetailContent topic={topic} />
+
+      {questionCount > 0 && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            onPractice();
+          }}
+          className="w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-sm font-bold rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all shadow-md"
+        >
+          Practice ({questionCount} questions)
+        </button>
+      )}
     </div>
   );
 }
