@@ -49,9 +49,9 @@ export default function TextbookView({ topics, title, category, onBack, onPracti
         <div className="max-w-2xl mx-auto px-4 py-3 flex items-center gap-3">
           <button
             onClick={onBack}
-            className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium"
+            className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium px-3 py-1.5 -ml-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 active:bg-gray-200 dark:active:bg-gray-600 transition-colors"
           >
-            戻る
+            &larr; 戻る
           </button>
           <h1 className="text-lg font-bold text-gray-900 dark:text-white flex-1">
             {title}
@@ -271,7 +271,7 @@ function TopicDetail({
       <div className="flex items-center gap-2">
         <button
           onClick={(e) => { e.stopPropagation(); onCollapse(); }}
-          className="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
+          className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 px-2 py-1 -ml-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
         >
           &larr; 一覧に戻る
         </button>
