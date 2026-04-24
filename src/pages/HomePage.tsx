@@ -163,7 +163,7 @@ export default function HomePage({
                   Textbook
                 </h2>
                 <p className="text-sm text-gray-500 dark:text-gray-400">
-                  9 categories / 93 topics with how-to guides & exam tips
+                  9カテゴリ / 93トピック — How-toガイドと試験対策TIPSで学習
                 </p>
               </div>
             </div>
