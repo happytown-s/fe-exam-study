@@ -51,7 +51,7 @@ export default function TextbookView({ topics, title, category, onBack, onPracti
             onClick={onBack}
             className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium"
           >
-            Back
+            戻る
           </button>
           <h1 className="text-lg font-bold text-gray-900 dark:text-white flex-1">
             {title}
@@ -71,7 +71,7 @@ export default function TextbookView({ topics, title, category, onBack, onPracti
                   : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
               }`}
             >
-              {tab === 'all' ? 'All' : tab === 'list' ? 'List' : 'Search'}
+              {tab === 'all' ? '全て' : tab === 'list' ? '一覧' : '検索'}
             </button>
           ))}
         </div>
@@ -79,7 +79,7 @@ export default function TextbookView({ topics, title, category, onBack, onPracti
           <div className="max-w-2xl mx-auto px-4 pb-3">
             <input
               type="text"
-              placeholder="Search topics, keywords..."
+              placeholder="トピック・キーワードで検索..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -92,11 +92,11 @@ export default function TextbookView({ topics, title, category, onBack, onPracti
         {activeTab === 'search' ? (
           <>
             <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-              {filteredTopics.length} / {topics.length} topics
+              {filteredTopics.length} / {topics.length} トピック
             </p>
             {filteredTopics.length === 0 ? (
               <p className="text-center text-gray-500 dark:text-gray-400 py-8">
-                No matching topics found.
+                該当するトピックが見つかりません。
               </p>
             ) : (
               filteredTopics.map((topic) => (
@@ -244,7 +244,7 @@ function TopicCard({
               onClick={(e) => { e.stopPropagation(); onPractice(); }}
               className="mt-3 w-full py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-sm font-bold rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all shadow-sm"
             >
-              Practice ({questionCount} questions)
+              練習する ({questionCount} 問)
             </button>
           )}
         </div>
@@ -273,14 +273,14 @@ function TopicDetail({
           onClick={(e) => { e.stopPropagation(); onCollapse(); }}
           className="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
         >
-          &larr; Back to all
+          &larr; 一覧に戻る
         </button>
         <span className="text-xs font-mono text-blue-500 bg-blue-50 dark:bg-blue-900/30 px-1.5 py-0.5 rounded">
           {topic.topicId}
         </span>
         {questionCount > 0 && (
           <span className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
-            {questionCount}Q available
+            {questionCount}問で練習可能
           </span>
         )}
       </div>
@@ -299,7 +299,7 @@ function TopicDetail({
           onClick={(e) => { e.stopPropagation(); onPractice(); }}
           className="w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-sm font-bold rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all shadow-md"
         >
-          Practice ({questionCount} questions)
+          練習する ({questionCount} 問)
         </button>
       )}
     </div>
@@ -313,7 +313,7 @@ function TopicDetailContent({ topic, onSearchKeyword }: { topic: TextbookTopic; 
       <div>
         <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2 flex items-center gap-1">
           <span className="text-blue-500">[</span>
-          How to Understand
+          理解のステップ
           <span className="text-blue-500">]</span>
         </h4>
         <ol className="space-y-2">
@@ -330,10 +330,10 @@ function TopicDetailContent({ topic, onSearchKeyword }: { topic: TextbookTopic; 
         </ol>
       </div>
 
-      {/* Keywords - clickable */}
+      {/* キーワード - clickable */}
       <div>
         <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">
-          Keywords
+          キーワード
         </h4>
         <div className="flex flex-wrap gap-1.5">
           {topic.keywords.map((kw) => (
@@ -354,7 +354,7 @@ function TopicDetailContent({ topic, onSearchKeyword }: { topic: TextbookTopic; 
       {/* Exam Tip */}
       <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-lg p-3">
         <h4 className="text-sm font-semibold text-amber-800 dark:text-amber-300 mb-1">
-          FE Exam Tip
+          FE試験対策
         </h4>
         <p className="text-xs text-amber-700 dark:text-amber-400 leading-relaxed">
           {topic.examTip}

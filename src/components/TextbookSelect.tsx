@@ -24,7 +24,7 @@ export default function TextbookSelect({ onSelect, onBack }: TextbookSelectProps
             onClick={onBack}
             className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium"
           >
-            Back
+            戻る
           </button>
           <h1 className="text-lg font-bold text-gray-900 dark:text-white">
             Textbook
@@ -34,8 +34,8 @@ export default function TextbookSelect({ onSelect, onBack }: TextbookSelectProps
 
       <div className="max-w-2xl mx-auto px-4 py-4 pb-24">
         <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-          Select a category to study with how-to guides, keywords, and exam tips.
-          Total: {categories.reduce((s, c) => s + c.count, 0)} topics
+          カテゴリを選択して、How-toガイド・キーワード・試験対策TIPSを確認しましょう。
+          合計 {categories.reduce((s, c) => s + c.count, 0)} トピック
         </p>
 
         <div className="grid grid-cols-1 gap-3">
@@ -55,7 +55,7 @@ export default function TextbookSelect({ onSelect, onBack }: TextbookSelectProps
                   {cat.name}
                 </h3>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  {cat.count} topics
+                  {cat.count} トピック
                 </p>
               </div>
               <span className="text-gray-300 dark:text-gray-600">
