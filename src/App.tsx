@@ -15,6 +15,30 @@ import ReviewPage from './pages/ReviewPage';
 import TermsPage from './pages/TermsPage';
 import CalcTraining from './components/CalcTraining';
 import PseudoLanguageTraining from './components/PseudoLanguageTraining';
+import TextbookView from './components/TextbookView';
+import TextbookSelect from './components/TextbookSelect';
+
+import textbookHardware from './data/textbook-hardware.json';
+import textbookSoftware from './data/textbook-software.json';
+import textbookDatabase from './data/textbook-database.json';
+import textbookNetwork from './data/textbook-network.json';
+import textbookSecurity from './data/textbook-security.json';
+import textbookManagement from './data/textbook-management.json';
+import textbookDevMethods from './data/textbook-dev-methods.json';
+import textbookProjectMgmt from './data/textbook-project-mgmt.json';
+import textbookServiceMgmt from './data/textbook-service-mgmt.json';
+
+const textbookMap: Record<string, { title: string; topics: typeof textbookHardware }> = {
+  hardware: { title: 'Hardware', topics: textbookHardware },
+  software: { title: 'Software', topics: textbookSoftware },
+   database: { title: 'Database', topics: textbookDatabase },
+  network: { title: 'Network', topics: textbookNetwork },
+  security: { title: 'Security', topics: textbookSecurity },
+  management: { title: 'Management', topics: textbookManagement },
+  'dev-methods': { title: 'Dev Methods', topics: textbookDevMethods },
+  'project-mgmt': { title: 'Project Mgmt', topics: textbookProjectMgmt },
+  'service-mgmt': { title: 'Service Mgmt', topics: textbookServiceMgmt },
+};
 
 type Page =
   | 'home'
@@ -28,7 +52,9 @@ type Page =
   | 'terms'
   | 'terms-drill'
   | 'calc-training'
-  | 'pseudo-language';
+  | 'pseudo-language'
+  | 'textbook-select'
+  | 'textbook-view';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -39,6 +65,7 @@ export default function App() {
   const [examStartKey, setExamStartKey] = useState(0);
   const [reviewQuestionIds, setReviewQuestionIds] = useState<number[]>([]);
   const [termsQuestionIds, setTermsQuestionIds] = useState<number[]>([]);
+  const [textbookCategory, setTextbookCategory] = useState<string | null>(null);
 
   const {
     answerHistory,
@@ -246,6 +273,24 @@ export default function App() {
 
       {currentPage === 'pseudo-language' && (
         <PseudoLanguageTraining onBack={() => navigate('home')} />
+      )}
+
+      {currentPage === 'textbook-select' && (
+        <TextbookSelect
+          onSelect={(catId) => {
+            setTextbookCategory(catId);
+            navigate('textbook-view');
+          }}
+          onBack={() => navigate('home')}
+        />
+      )}
+
+      {currentPage === 'textbook-view' && textbookCategory && textbookMap[textbookCategory] && (
+        <TextbookView
+          title={textbookMap[textbookCategory].title}
+          topics={textbookMap[textbookCategory].topics}
+          onBack={() => navigate('textbook-select')}
+        />
       )}
 
       {currentPage === 'terms-drill' && (

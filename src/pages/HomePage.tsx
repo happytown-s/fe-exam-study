@@ -149,6 +149,25 @@ export default function HomePage({
               </div>
             </div>
           </button>
+
+          <button
+            onClick={() => onNavigate('textbook-select')}
+            className="w-full bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-left hover:scale-[1.02] transition-transform group"
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-white text-xl font-bold">
+                TB
+              </div>
+              <div>
+                <h2 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-emerald-500 dark:group-hover:text-emerald-400 transition-colors">
+                  Textbook
+                </h2>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  9 categories / 93 topics with how-to guides & exam tips
+                </p>
+              </div>
+            </div>
+          </button>
         </div>
       </div>
     </div>
