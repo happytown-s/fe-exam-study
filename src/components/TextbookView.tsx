@@ -16,9 +16,10 @@ interface TextbookViewProps {
   category: string;
   onBack: () => void;
   onPractice: (questionIds: number[]) => void;
+  onSearchKeyword: (keyword: string) => void;
 }
 
-export default function TextbookView({ topics, title, category, onBack, onPractice }: TextbookViewProps) {
+export default function TextbookView({ topics, title, category, onBack, onPractice, onSearchKeyword }: TextbookViewProps) {
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'all' | 'list' | 'search'>('all');
@@ -39,6 +40,8 @@ export default function TextbookView({ topics, title, category, onBack, onPracti
   const toggleExpand = (id: string) => {
     setExpandedId((prev) => (prev === id ? null : id));
   };
+
+  const topicQCount = (tid: string) => (qMap[tid] || []).length;
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -101,12 +104,13 @@ export default function TextbookView({ topics, title, category, onBack, onPracti
                   key={topic.topicId}
                   topic={topic}
                   isExpanded={expandedId === topic.topicId}
-                  questionCount={(qMap[topic.topicId] || []).length}
+                  questionCount={topicQCount(topic.topicId)}
                   onToggle={() => toggleExpand(topic.topicId)}
                   onPractice={() => {
                     const ids = qMap[topic.topicId] || [];
                     if (ids.length > 0) onPractice(ids);
                   }}
+                  onSearchKeyword={onSearchKeyword}
                 />
               ))
             )}
@@ -129,9 +133,9 @@ export default function TextbookView({ topics, title, category, onBack, onPracti
                 <span className="text-sm text-gray-800 dark:text-gray-200 flex-1">
                   {topic.title}
                 </span>
-                {(qMap[topic.topicId] || []).length > 0 && (
+                {topicQCount(topic.topicId) > 0 && (
                   <span className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
-                    {(qMap[topic.topicId] || []).length}Q
+                    {topicQCount(topic.topicId)}Q
                   </span>
                 )}
               </button>
@@ -142,12 +146,13 @@ export default function TextbookView({ topics, title, category, onBack, onPracti
             {expandedId ? (
               <TopicDetail
                 topic={topics.find((t) => t.topicId === expandedId)!}
-                questionCount={(qMap[expandedId] || []).length}
+                questionCount={topicQCount(expandedId)}
                 onCollapse={() => setExpandedId(null)}
                 onPractice={() => {
                   const ids = qMap[expandedId] || [];
                   if (ids.length > 0) onPractice(ids);
                 }}
+                onSearchKeyword={onSearchKeyword}
               />
             ) : (
               topics.map((topic) => (
@@ -155,12 +160,13 @@ export default function TextbookView({ topics, title, category, onBack, onPracti
                   key={topic.topicId}
                   topic={topic}
                   isExpanded={false}
-                  questionCount={(qMap[topic.topicId] || []).length}
+                  questionCount={topicQCount(topic.topicId)}
                   onToggle={() => toggleExpand(topic.topicId)}
                   onPractice={() => {
                     const ids = qMap[topic.topicId] || [];
                     if (ids.length > 0) onPractice(ids);
                   }}
+                  onSearchKeyword={onSearchKeyword}
                 />
               ))
             )}
@@ -177,21 +183,18 @@ function TopicCard({
   questionCount,
   onToggle,
   onPractice,
+  onSearchKeyword,
 }: {
   topic: TextbookTopic;
   isExpanded: boolean;
   questionCount: number;
   onToggle: () => void;
   onPractice: () => void;
+  onSearchKeyword: (keyword: string) => void;
 }) {
   return (
-    <div
-      className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-shadow"
-    >
-      <div
-        className="px-4 py-3 cursor-pointer"
-        onClick={onToggle}
-      >
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-md transition-shadow">
+      <div className="px-4 py-3 cursor-pointer" onClick={onToggle}>
         <div className="flex items-start justify-between gap-2">
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
@@ -206,11 +209,7 @@ function TopicCard({
               {topic.summary}
             </p>
           </div>
-          <span
-            className={`text-gray-400 transition-transform text-lg ${
-              isExpanded ? 'rotate-180' : ''
-            }`}
-          >
+          <span className={`text-gray-400 transition-transform text-lg ${isExpanded ? 'rotate-180' : ''}`}>
             &#9660;
           </span>
         </div>
@@ -239,13 +238,10 @@ function TopicCard({
       </div>
       {isExpanded && (
         <div className="px-4 pb-4 border-t border-gray-100 dark:border-gray-700">
-          <TopicDetailContent topic={topic} />
+          <TopicDetailContent topic={topic} onSearchKeyword={onSearchKeyword} />
           {questionCount > 0 && (
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                onPractice();
-              }}
+              onClick={(e) => { e.stopPropagation(); onPractice(); }}
               className="mt-3 w-full py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-sm font-bold rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all shadow-sm"
             >
               Practice ({questionCount} questions)
@@ -262,20 +258,19 @@ function TopicDetail({
   questionCount,
   onCollapse,
   onPractice,
+  onSearchKeyword,
 }: {
   topic: TextbookTopic;
   questionCount: number;
   onCollapse: () => void;
   onPractice: () => void;
+  onSearchKeyword: (keyword: string) => void;
 }) {
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
         <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onCollapse();
-          }}
+          onClick={(e) => { e.stopPropagation(); onCollapse(); }}
           className="text-xs text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
         >
           &larr; Back to all
@@ -297,14 +292,11 @@ function TopicDetail({
         {topic.summary}
       </p>
 
-      <TopicDetailContent topic={topic} />
+      <TopicDetailContent topic={topic} onSearchKeyword={onSearchKeyword} />
 
       {questionCount > 0 && (
         <button
-          onClick={(e) => {
-            e.stopPropagation();
-            onPractice();
-          }}
+          onClick={(e) => { e.stopPropagation(); onPractice(); }}
           className="w-full py-3 bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-sm font-bold rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all shadow-md"
         >
           Practice ({questionCount} questions)
@@ -314,7 +306,7 @@ function TopicDetail({
   );
 }
 
-function TopicDetailContent({ topic }: { topic: TextbookTopic }) {
+function TopicDetailContent({ topic, onSearchKeyword }: { topic: TextbookTopic; onSearchKeyword: (keyword: string) => void }) {
   return (
     <div className="space-y-4 mt-3">
       {/* How-to Section */}
@@ -338,19 +330,23 @@ function TopicDetailContent({ topic }: { topic: TextbookTopic }) {
         </ol>
       </div>
 
-      {/* Keywords */}
+      {/* Keywords - clickable */}
       <div>
         <h4 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-2">
           Keywords
         </h4>
         <div className="flex flex-wrap gap-1.5">
           {topic.keywords.map((kw) => (
-            <span
+            <button
               key={kw}
-              className="text-xs bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 px-2 py-1 rounded-full font-medium"
+              onClick={(e) => {
+                e.stopPropagation();
+                onSearchKeyword(kw);
+              }}
+              className="text-xs bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-300 px-2 py-1 rounded-full font-medium hover:bg-indigo-100 dark:hover:bg-indigo-900/50 hover:underline transition-colors cursor-pointer"
             >
               {kw}
-            </span>
+            </button>
           ))}
         </div>
       </div>

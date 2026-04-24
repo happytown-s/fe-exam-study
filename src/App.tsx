@@ -67,6 +67,7 @@ export default function App() {
   const [termsQuestionIds, setTermsQuestionIds] = useState<number[]>([]);
   const [textbookCategory, setTextbookCategory] = useState<string | null>(null);
   const [textbookQuestionIds, setTextbookQuestionIds] = useState<number[]>([]);
+  const [textbookSearchKeyword, setTextbookSearchKeyword] = useState<string>('');
 
   const {
     answerHistory,
@@ -272,8 +273,13 @@ export default function App() {
 
       {currentPage === 'terms' && (
         <TermsPage
-          onBack={() => navigate('home')}
+          onBack={() => {
+            setTextbookSearchKeyword('');
+            if (textbookCategory) navigate('textbook-view');
+            else navigate('home');
+          }}
           onStartDrill={handleTermsDrill}
+          initialSearch={textbookSearchKeyword}
         />
       )}
 
@@ -305,6 +311,10 @@ export default function App() {
             setDrillCategory(null);
             setTextbookQuestionIds(questionIds);
             navigate('drill-play');
+          }}
+          onSearchKeyword={(keyword) => {
+            setTextbookSearchKeyword(keyword);
+            navigate('terms');
           }}
         />
       )}

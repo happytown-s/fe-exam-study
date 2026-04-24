@@ -5,10 +5,11 @@ import { categories } from '../data/questions';
 interface Props {
   onStartDrill: (questionIds: number[]) => void;
   onBack: () => void;
+  initialSearch?: string;
 }
 
-export default function TermsPage({ onStartDrill, onBack }: Props) {
-  const [search, setSearch] = useState('');
+export default function TermsPage({ onStartDrill, onBack, initialSearch }: Props) {
+  const [search, setSearch] = useState(initialSearch ?? '');
   const [filter, setFilter] = useState<string | null>(null);
   const [selectedTerm, setSelectedTerm] = useState<Term | null>(null);
 
