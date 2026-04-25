@@ -1,11 +1,16 @@
 import { useState, useMemo } from 'react';
 import textbookQuestionMap from '../data/textbook-question-map.json';
 
+interface HowToStep {
+  step: string;
+  detail?: string;
+}
+
 interface TextbookTopic {
   topicId: string;
   title: string;
   summary: string;
-  howTo: string[];
+  howTo: (string | HowToStep)[];
   keywords: string[];
   examTip: string;
 }
@@ -307,6 +312,19 @@ function TopicDetail({
 }
 
 function TopicDetailContent({ topic, onSearchKeyword }: { topic: TextbookTopic; onSearchKeyword: (keyword: string) => void }) {
+  const [expandedSteps, setExpandedSteps] = useState<Set<number>>(new Set());
+
+  const toggleStep = (idx: number) => {
+    setExpandedSteps(prev => {
+      const next = new Set(prev);
+      if (next.has(idx)) next.delete(idx);
+      else next.add(idx);
+      return next;
+    });
+  };
+
+  const isDetailed = topic.howTo.length > 0 && typeof topic.howTo[0] === 'object';
+
   return (
     <div className="space-y-4 mt-3">
       {/* How-to Section */}
@@ -317,16 +335,38 @@ function TopicDetailContent({ topic, onSearchKeyword }: { topic: TextbookTopic; 
           <span className="text-blue-500">]</span>
         </h4>
         <ol className="space-y-2">
-          {topic.howTo.map((step, i) => (
-            <li key={i} className="flex gap-2 text-sm">
-              <span className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xs font-bold">
-                {i + 1}
-              </span>
-              <span className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                {step}
-              </span>
-            </li>
-          ))}
+          {topic.howTo.map((entry, i) => {
+            const isObj = typeof entry === 'object';
+            const stepText = isObj ? (entry as HowToStep).step : (entry as string);
+            const detailText = isObj ? (entry as HowToStep).detail : undefined;
+            const isExpanded = expandedSteps.has(i);
+            const hasDetail = !!detailText;
+            return (
+              <li key={i} className="flex flex-col gap-1">
+                <div className="flex gap-2 items-start">
+                  <span className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xs font-bold mt-0.5">
+                    {i + 1}
+                  </span>
+                  <button
+                    className={`flex-1 text-left text-sm text-gray-700 dark:text-gray-300 leading-relaxed ${hasDetail ? 'cursor-pointer' : ''}`}
+                    onClick={() => hasDetail && toggleStep(i)}
+                  >
+                    <span>{stepText}</span>
+                    {hasDetail && (
+                      <span className="ml-2 text-xs text-blue-400 dark:text-blue-500 select-none">
+                        {isExpanded ? '\u25B2' : '\u25BC'}
+                      </span>
+                    )}
+                  </button>
+                </div>
+                {hasDetail && isExpanded && (
+                  <div className="ml-7 text-xs text-gray-600 dark:text-gray-400 leading-relaxed bg-blue-50 dark:bg-blue-900/20 rounded-lg px-3 py-2">
+                    {detailText}
+                  </div>
+                )}
+              </li>
+            );
+          })}
         </ol>
       </div>
 
