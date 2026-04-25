@@ -323,8 +323,6 @@ function TopicDetailContent({ topic, onSearchKeyword }: { topic: TextbookTopic; 
     });
   };
 
-  const isDetailed = topic.howTo.length > 0 && typeof topic.howTo[0] === 'object';
-
   return (
     <div className="space-y-4 mt-3">
       {/* How-to Section */}
